@@ -1,0 +1,4 @@
+coral
+=====
+
+C++ component framework
