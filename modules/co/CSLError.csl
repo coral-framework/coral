@@ -1,0 +1,11 @@
+/*
+	Contextual information about why a type could not be loaded.
+	---
+	tags: deprecated
+ */
+struct CSLError
+{
+	string message;		//< Error message.
+	string filename;	//< Full path to the CSL file.
+	int32 line;			//< Line where the error occurred.
+};

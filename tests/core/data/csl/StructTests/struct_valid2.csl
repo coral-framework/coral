@@ -1,0 +1,5 @@
+// A valid test enum
+struct struct_valid2 {
+
+	struct_valid3 name;
+};

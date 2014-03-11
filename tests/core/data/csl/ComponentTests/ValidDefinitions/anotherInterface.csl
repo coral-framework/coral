@@ -1,0 +1,4 @@
+interface anotherInterface
+{
+	string name;
+};

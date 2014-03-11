@@ -1,0 +1,9 @@
+/*
+	Implements co.IPort.
+	---
+	tags: private type-introspection
+ */
+component Port
+{
+	provides IPort port;
+};

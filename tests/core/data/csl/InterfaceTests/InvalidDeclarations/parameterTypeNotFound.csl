@@ -1,0 +1,10 @@
+//The second parameter type does not exist
+interface parameterTypeNotFound
+{
+	void Foo
+		( in string fooMe,
+		  in IDontExixst fooMeToo );
+
+};	
+
+

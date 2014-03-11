@@ -1,0 +1,5 @@
+@lua.Scripted( "lua.launcher.Component" )
+component Component
+{
+	provides lua.ILauncher launcher;
+};

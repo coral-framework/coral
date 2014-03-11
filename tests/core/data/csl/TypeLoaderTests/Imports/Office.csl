@@ -1,0 +1,17 @@
+import Roles.Analyst;
+import TypeLoaderTests.Imports.Roles.Designer;
+
+interface Office
+{
+	Analyst mainAnalyst;
+	Roles.Analyst[] maleAnalysts;
+	TypeLoaderTests.Imports.Roles.Analyst[] femaleAnalysts;
+
+	Designer mainDesigner;
+	Roles.Designer[] maleDesigners;
+	TypeLoaderTests.Imports.Roles.Designer[] femaleDesigners;
+
+
+	Roles.Tester[] maleTesters;
+	TypeLoaderTests.Imports.Roles.Tester[] femaleTesters;
+};

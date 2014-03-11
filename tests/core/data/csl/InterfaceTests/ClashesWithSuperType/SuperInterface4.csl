@@ -1,0 +1,4 @@
+interface SuperInterface4
+{
+	string fullName;
+};

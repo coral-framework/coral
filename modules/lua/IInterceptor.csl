@@ -1,0 +1,29 @@
+/*
+	Observes all interaction between Lua and Coral services.
+
+	Currently notifications take place after the interaction is completed
+	successfully (and only if no exception is raised by the called method).
+ */
+interface IInterceptor
+{
+	// Called when Lua first gets a reference to a service.
+	void serviceRetained( in co.IService service );
+
+	// Called when Lua releases all references to a service.
+	void serviceReleased( in co.IService service );
+
+	// Called after Lua gets the value of a service field.
+	void postGetField( in co.IService service, in co.IField field, in any value );
+
+	// Called after Lua sets the value of a service field.
+	void postSetField( in co.IService service, in co.IField field, in any value );
+
+	// Called after a service method called from Lua returns.
+	void postInvoke( in co.IService service, in co.IMethod method, in any[] args, in any returnValue );
+
+	// Called after Lua obtains a service from an object port.
+	void postGetService( in co.IObject object, in co.IPort port, in co.IService service );
+
+	// Called after Lua changes the service connected to an object receptacle.
+	void postSetService( in co.IObject object, in co.IPort receptable, in co.IService service );
+};

@@ -1,0 +1,7 @@
+// A valid test enum
+enum enum_valid
+{
+	Red, // comment
+	Blue, //< Another one
+	Green // Last one
+};

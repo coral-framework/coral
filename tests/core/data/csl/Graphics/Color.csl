@@ -1,0 +1,6 @@
+// A valid test enum
+enum Color {
+	Red, 
+	Blue,
+	Green
+};

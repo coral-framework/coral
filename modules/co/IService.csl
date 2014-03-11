@@ -1,0 +1,44 @@
+/*
+	Base of all interfaces. Represents a service provided by an object.
+
+	Coral follows a service-oriented architecture (SOA), in which services
+	are the basic unit of abstraction.
+
+	A _service_ is a self-contained unit of functionality. Every service is
+	provided _by_ an object (the #provider) _through_ an #interface. This is
+	a design pattern closely related to component-based design. Service
+	orientation is popular in distributed systems, but we think it also makes
+	sense for an in-process component model such as Coral's.
+
+	---
+	tags: component-model
+ */
+interface IService
+{
+	// The interface through which this service is provided.
+	readonly IInterface interface;
+
+	// The object that provides this service.
+	readonly IObject provider;
+
+	// The port (within the #provider) where this service is provided.
+	readonly IPort facet;
+
+	/*
+		Increments the service's reference count.
+
+		**Never call this method directly unless you know what you're doing.**
+
+		This will increment the #provider's reference count.
+	 */
+	void serviceRetain();
+
+	/*
+		Decrements the service's reference count.
+
+		**Never call this method directly unless you know what you're doing.**
+
+		This will decrement the #provider's reference count.
+	 */
+	void serviceRelease();
+};

@@ -1,0 +1,4 @@
+native class EmptyNativeClass
+{
+	// empty native classes are valid
+};

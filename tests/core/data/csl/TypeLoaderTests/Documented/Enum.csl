@@ -1,0 +1,8 @@
+// This is the Enum Declaration
+enum Enum
+{
+	// doc for first.
+	first, //< second doc for first.
+	second, //< doc for second.
+	third
+};

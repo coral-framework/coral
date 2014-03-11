@@ -1,0 +1,4 @@
+component FaultyAnnotation
+{
+	provides co.ICppBlock annotation;
+};

@@ -1,0 +1,9 @@
+/*
+	Implements co.ITypeTransaction.
+	---
+	tags: private type-creation
+ */
+component TypeTransaction
+{
+	provides ITypeTransaction transaction;
+};

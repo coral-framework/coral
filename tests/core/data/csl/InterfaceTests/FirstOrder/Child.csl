@@ -1,0 +1,7 @@
+interface Child extends Parent 
+{
+	string childName;
+};
+
+
+

@@ -1,0 +1,2 @@
+@AnnotationTests.Invalid
+exception TypeContainsErrors;

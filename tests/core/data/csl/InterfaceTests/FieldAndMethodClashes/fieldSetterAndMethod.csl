@@ -1,0 +1,12 @@
+// This test interface should raise an exeption as the name of
+// the method clashes with the field's setter
+
+
+// do not remove those empty lines from above (its part of the test)
+interface fieldSetterAndMethod
+{
+	string age;
+	void setAge();
+};
+
+

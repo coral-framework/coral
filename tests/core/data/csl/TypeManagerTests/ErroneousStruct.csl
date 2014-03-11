@@ -1,0 +1,4 @@
+struct ErroneousStruct
+{
+	ErroneousStruct2 erroneousField;
+};

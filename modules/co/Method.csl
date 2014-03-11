@@ -1,0 +1,9 @@
+/*
+	Implements co.IMethod.
+	---
+	tags: private type-introspection
+ */
+component Method
+{
+	provides IMethod methodInfo;
+};

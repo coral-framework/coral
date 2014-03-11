@@ -1,0 +1,7 @@
+struct TestNamespaces
+{
+	Continent.Europe europe;
+	Continent.Country.China china;
+	Continent.Country.China china2;
+	Continent.Country.State.Nevada nevada;
+};

@@ -1,0 +1,32 @@
+/*
+	Enumeration of states in the system's life cycle.
+
+	The two main system states are _nil_ (uninitialized) and _running_ (fully
+	functional). All the other states are transient and only observable during
+	the system's setup and teardown.
+	---
+	tags: system
+ */
+enum SystemState
+{
+	// Pre-initialization state. Only the Coral module is available.
+	SystemState_None,
+
+	// Modules are loading. They cannot interact yet.
+	SystemState_Initializing,
+
+	// Modules are initialized and can now interact with each other.
+	SystemState_Integrating,
+
+	// Modules are integrated and functional (without presentation).
+	SystemState_Integrated,
+
+	// Modules are setting up their presentation.
+	SystemState_IntegratingPresentation,
+
+	// The system is running. The presentation is live.
+	SystemState_Running,
+
+	// The system is being torn down.
+	SystemState_Disintegrating
+};

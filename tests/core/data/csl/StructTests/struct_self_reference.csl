@@ -1,0 +1,5 @@
+struct struct_self_reference
+{
+	string name;
+	struct_self_reference recursion;
+};

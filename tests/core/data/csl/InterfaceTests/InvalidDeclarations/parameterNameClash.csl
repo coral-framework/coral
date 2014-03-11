@@ -1,0 +1,10 @@
+//The second parameter clashes with the first
+interface parameterNameClash
+{
+	void Foo
+		( in string fooMe,
+		  out int32 fooMe );
+
+};	
+
+

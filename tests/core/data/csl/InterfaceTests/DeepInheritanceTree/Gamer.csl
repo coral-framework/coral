@@ -1,0 +1,4 @@
+interface Gamer extends Player
+{
+	readonly string favoriteGame;
+};

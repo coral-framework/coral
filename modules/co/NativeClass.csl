@@ -1,0 +1,9 @@
+/*
+	Implements co.INativeClass.
+	---
+	tags: private type-introspection
+ */
+component NativeClass
+{
+	provides INativeClass type;
+};

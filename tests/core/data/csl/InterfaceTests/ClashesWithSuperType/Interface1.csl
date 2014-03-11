@@ -1,0 +1,10 @@
+interface Interface1 extends SuperInterface1
+{
+	readonly string name;
+	string age;
+
+	void getAddress();
+	void setAddress();
+	void setBirthDate();
+	void getFullName();
+};

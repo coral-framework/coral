@@ -1,0 +1,5 @@
+@moduleA.Faulty( raise = error )
+interface FaultyType
+{
+	bool field1;
+};

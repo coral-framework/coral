@@ -1,0 +1,31 @@
+{
+   Exception allocation leaks on some systems
+   Memcheck:Leak
+   fun:malloc
+   fun:__cxa_get_globals
+   fun:__cxa_allocate_exception
+}
+{
+	It is OK not to close all dynamic libs
+	Memcheck:Leak
+	...
+	fun:dlopen*
+}
+{
+	dyld thread leak on MacOSX
+	Memcheck:Leak
+	...
+	fun:_dyld_start
+}
+{
+	stdio leak 1 on MacOSX
+	Memcheck:Leak
+	...
+	fun:vsnprintf
+}
+{
+	stdio leak 2 on MacOSX
+	Memcheck:Leak
+	...
+	fun:vfprintf_l
+}

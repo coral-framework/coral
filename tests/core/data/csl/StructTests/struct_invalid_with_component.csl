@@ -1,0 +1,5 @@
+// A invalid test with component member
+struct struct_invalid_with_component {
+
+	testComponent comp;
+};

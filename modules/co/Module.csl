@@ -1,0 +1,9 @@
+/*
+	Implements co.IModule.
+	---
+	tags: private module-system
+ */
+component Module
+{
+	provides IModule module;
+};

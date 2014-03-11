@@ -1,0 +1,14 @@
+/*
+	Describes a field as a member of a co.IRecordType.
+
+	---
+	tags: type-introspection
+ */
+interface IField extends IMember
+{
+	// Field type.
+	readonly IType type;
+
+	// Whether the field is read-only (true) or read-write (false).
+	readonly bool isReadOnly;
+};

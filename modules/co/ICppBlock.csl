@@ -1,0 +1,23 @@
+/*
+	Contains C++ code for interfaces and native classes in CSL.
+
+	For example, the following interface would be annotated with a
+	co.ICppBlock containg `// hello`:
+
+	~~~ csl
+	interface ISample
+	{
+		<c++
+			// hello
+		c++>
+	};
+	~~~
+
+	---
+	tags: type-annotation
+ */
+interface ICppBlock extends IAnnotation
+{
+	// C++ code.
+	string value;
+};

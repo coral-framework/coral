@@ -1,0 +1,5 @@
+// the role is required
+component withoutInterfaceRole
+{
+	testInterface anInterface;
+};

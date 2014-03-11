@@ -1,0 +1,5 @@
+struct readonlyField
+{
+	int32 ok;
+	readonly int32 notOK;
+};

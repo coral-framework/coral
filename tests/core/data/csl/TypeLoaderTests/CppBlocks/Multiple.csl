@@ -1,0 +1,16 @@
+// tests if a multiple blocks are beeing processed
+interface Multiple
+{
+	string foo;
+
+	<c++
+	void myInjectedFoo() {;}
+	c++>
+
+	string moreFoo;
+
+	<c++
+	void myLastInjectedFoo() {;}
+	c++>
+};
+

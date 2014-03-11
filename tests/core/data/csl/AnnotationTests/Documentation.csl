@@ -1,0 +1,8 @@
+@co.Documentation( "overwritten", value = "First annotation" )
+@co.Documentation( "Second annotation" )
+@co.Documentation( "Third annotation" )
+
+enum Documentation
+{
+	zero, one, two, three
+};

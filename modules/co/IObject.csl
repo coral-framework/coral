@@ -1,0 +1,93 @@
+/*
+	Provides object identity and reflection for every component instance.
+
+	In Coral terminology, an _object_ is an instance of a component.
+	Objects are the underlying building blocks of an application. Although
+	the application _works_ in terms of services, it is ultimately _built_ in
+	terms of objects. The decoupling of services and objects (or interfaces
+	and components) promotes reuse and results in more adaptable architectures.
+
+	Every object exists to _provide services_ through its ports, and by design
+	__all objects must provide__ co.IObject at the first port.
+
+	An object may also need to _use services_ from other objects, which poses
+	the question of _how it should obtain references to external services_.
+	Our advice is that every (or most) service dependencies should be made
+	explicit---to support dependency injection---through a _receptacle_,
+	which is a port that works like a field.
+
+	_(Ports and fields are very similar, so both will merge in the future.)_
+
+	---
+	tags: component-model
+ */
+interface IObject
+{
+	// The component from which this object was created.
+	readonly IComponent component;
+
+	/*
+		Returns the service provided-by or bound-to a `port` in this object.
+
+		The result can only be NULL if the port is a _receptacle_ (it would
+		indicate that no service is bound to the port).
+
+		Raises co.NoSuchPortException if the `port` is invalid.
+	 */
+	IService getServiceAt( in IPort port ) raises NoSuchPortException;
+
+	/*
+		Binds a `service` to a `receptacle` in this object.
+
+		Raises co.NoSuchPortException if `receptacle` is invalid.
+		Raises co.IllegalCastException if `service` is invalid for the `receptacle`.
+		Raises co.IllegalStateException if `receptacle` cannot be changed in the current object state.
+	 */
+	void setServiceAt( in IPort receptacle, in IService service )
+		raises NoSuchPortException, IllegalCastException, IllegalStateException;
+
+	<c++
+	/*
+		Returns the first service of type `T` provided by this object;
+		or NULL if there is no service of type `T`.
+	 */
+	template<typename T> inline T* findService()
+	{
+		return static_cast<T*>( findServiceByType( this, typeOf<T>::get() ) );
+	}
+
+	/*
+		Returns the first service of type T provided by this object.
+		Raises co.NoSuchPortException if there is no service of type `T`.
+	 */
+	template<typename T> inline T* getService()
+	{
+		return static_cast<T*>( getServiceByType( this, typeOf<T>::get() ) );
+	}
+
+	/*
+		Returns the service at port `portName` in this object;
+		or NULL if there's no port named `portName`.
+		__Note__ that NULL is also a valid value for a receptacle.
+	 */
+	inline IService* findService( const std::string& portName )
+	{
+		return findServiceByName( this, portName );
+	}
+
+	/*
+		Returns the service at port `portName` in this object;
+		Raises co.NoSuchPortException if there's no port named `portName`.
+	 */
+	inline IService* getService( const std::string& portName )
+	{
+		return getServiceByName( this, portName );
+	}
+
+	// Binds a `service` to the receptacle named `receptacleName`.
+	inline void setService( const std::string& receptacleName, IService* service )
+	{
+		setServiceByName( this, receptacleName, service );
+	}
+	c++>
+};

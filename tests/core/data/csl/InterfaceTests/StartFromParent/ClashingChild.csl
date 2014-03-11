@@ -1,0 +1,7 @@
+interface ClashingChild extends ClashingParent 
+{
+	string name;
+};
+
+
+

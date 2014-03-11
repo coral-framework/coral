@@ -1,0 +1,14 @@
+/*
+	Describes a struct type.
+
+	A struct is a set of named fields of various types. Field declaration
+	order is irrelevant, since Coral automatically re-arranges struct fields
+	according to size in C++.
+
+	---
+	tags: type-introspection
+ */
+interface IStruct extends IRecordType
+{
+	// empty
+};

@@ -1,0 +1,7 @@
+// missing semicolon
+struct struct4
+{
+	string name;
+}
+
+import struct1;

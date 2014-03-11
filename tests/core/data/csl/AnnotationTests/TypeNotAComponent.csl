@@ -1,0 +1,2 @@
+@AnnotationTests.IAmNotAComponent
+exception TypeNotAComponent;

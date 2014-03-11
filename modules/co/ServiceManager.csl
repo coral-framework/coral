@@ -1,0 +1,9 @@
+/*
+	Implements co.IServiceManager.
+	---
+	tags: private component-model
+ */
+component ServiceManager
+{
+	provides IServiceManager serviceManager;
+};

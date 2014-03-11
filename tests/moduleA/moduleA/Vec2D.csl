@@ -1,0 +1,46 @@
+/*
+	Proof-of-concept native class that implements a trivial 2D vector.
+ */
+native class Vec2D
+{
+	<c++
+		namespace moduleA {
+			struct Vec2D
+			{
+				double x, y;
+				inline Vec2D() : x( 0 ), y ( 0 ) {;}
+				inline bool operator==( const Vec2D& o ) const { return x == o.x && y == o.y; }
+			};
+		} // namespace moduleA
+	c++>
+
+	// X coordinate.
+	double x;
+
+	// Y coordinate.
+	double y;
+
+	// Vector length.
+	readonly double length;
+
+	// Squared vector length.
+	readonly double length2;
+
+	// Sets all coordinates.
+	void set( in double x, in double y );
+
+	// Gets all coordinates.
+	void get( out double x, out double y );
+
+	// Returns the dot product of this vector and 'other'.
+	double dot( in Vec2D other );
+
+	// Returns whether (x,y) == (other.x, other.y).
+	bool equals( in Vec2D other );
+
+	// Sets c with b; b with a, and returns this Vec2D.
+	Vec2D testInOut( in Vec2D a, inout Vec2D b, out Vec2D c );
+
+	// Dummy method to test code gen
+	co.IService dummyMethod( in any one, out any two );
+};

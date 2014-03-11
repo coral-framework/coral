@@ -1,0 +1,6 @@
+native class TestNativeClass2
+{
+	<c++ should support c++>
+	string[] a;
+	<c++ C++ blocks c++>
+};

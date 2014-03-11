@@ -1,0 +1,7 @@
+// inexistant base element type
+struct inexistantArrayElementType
+{
+	IDontExist[] foo;
+};
+
+

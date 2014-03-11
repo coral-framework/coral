@@ -1,0 +1,4 @@
+interface ComputerUser extends Gamer
+{
+	string computer;
+};

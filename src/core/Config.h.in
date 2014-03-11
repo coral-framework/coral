@@ -1,0 +1,31 @@
+#ifndef _CO_CONFIG_H_
+#define _CO_CONFIG_H_
+
+// Coral version numbers.
+#define CORAL_VERSION_MAJOR		${CORAL_VERSION_MAJOR}
+#define CORAL_VERSION_MINOR		${CORAL_VERSION_MINOR}
+#define CORAL_VERSION_PATCH		${CORAL_VERSION_PATCH}
+
+// Coral version string.
+#define CORAL_VERSION_STR	"${CORAL_VERSION}"
+
+// Generated code is only compatible when they are at this revision number.
+#define CORAL_COMPILER_OUTPUT_REVISION	${CORAL_COMPILER_OUTPUT_REVISION}
+
+// Equivalent to <tt>sizeof(void*)</tt>.
+#define CORAL_POINTER_SIZE ${CORAL_POINTER_SIZE}
+
+// Possible values for CORAL_BYTE_ORDER:
+#define CORAL_BIG_ENDIAN 		4321	//!< Identifies a big-endian memory format.
+#define CORAL_LITTLE_ENDIAN 	1234	//!< Identifies a little-endian memory format.
+
+// Detected machine byte order (either CORAL_BIG_ENDIAN or CORAL_LITTLE_ENDIAN).
+#define CORAL_BYTE_ORDER	${CORAL_BYTE_ORDER}
+
+// Sanity check all settings:
+#if ( CORAL_POINTER_SIZE != 4 && CORAL_POINTER_SIZE != 8 ) || \
+	( CORAL_BYTE_ORDER != CORAL_BIG_ENDIAN && CORAL_BYTE_ORDER != CORAL_LITTLE_ENDIAN )
+	#error Coral was not properly configured.
+#endif
+
+#endif // _CO_CONFIG_H_

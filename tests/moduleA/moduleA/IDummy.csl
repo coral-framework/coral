@@ -1,0 +1,4 @@
+interface IDummy
+{
+	string foo;
+};

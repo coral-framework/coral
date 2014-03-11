@@ -1,0 +1,4 @@
+struct ErroneousStruct2
+{
+	omg a syntax error!
+};

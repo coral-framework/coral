@@ -1,0 +1,6 @@
+import TypeLoaderTests.Imports.Chicken;
+
+interface Egg
+{
+	string eggName;
+};

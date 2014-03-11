@@ -1,0 +1,5 @@
+// A invalid test with exceptionﬂ member
+struct struct_invalid_with_exception {
+
+	Global.AnotherException ex;
+};

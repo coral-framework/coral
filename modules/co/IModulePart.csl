@@ -1,0 +1,41 @@
+/*
+	Represents an artifact loaded as part of a module.
+
+	A module part represents an artifact---such as a library, script or data
+	file---that adds functionality to the system.
+
+	This interface plays a central role in program composition, since it
+	ultimately handles all system life-cycle events.
+
+	See co.IModule for an explanation of all module events.
+
+	---
+	tags: module-system
+ */
+interface IModulePart
+{
+	/*
+		Initializes the module part.
+	 */
+	void initialize( in IModule module );
+
+	/*
+		Integrates the module part with the system.
+	 */
+	void integrate( in IModule module );
+
+	/*
+		Integrates the module part's presentation into the system.
+	 */
+	void integratePresentation( in IModule module );
+
+	/*
+		Disintegrates the module part from the system.
+	 */
+	void disintegrate( in IModule module );
+
+	/*
+		Disposes the module part.
+	 */
+	void dispose( in IModule module );
+};

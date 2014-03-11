@@ -1,0 +1,7 @@
+enum enum_invalid_identifier2
+{
+	first param,
+	second
+}
+
+

@@ -1,0 +1,8 @@
+//Struct Declaration
+struct Struct
+{
+	// struct member.
+	string name; //< extra doc.
+
+	string foo; //< postDoc.
+};

@@ -1,0 +1,4 @@
+struct struct_inheritance extends struct_valid {
+
+	string name;
+};

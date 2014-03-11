@@ -1,0 +1,9 @@
+@co.CppBlock
+struct InstanceSharing
+{
+	@co.CppBlock bool one;
+
+	@co.CppBlock string two;
+
+	@co.CppBlock double three;
+};

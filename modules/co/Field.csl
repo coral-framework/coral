@@ -1,0 +1,9 @@
+/*
+	Implements co.IField.
+	---
+	tags: private type-introspection
+ */
+component Field
+{
+	provides IField field;
+};

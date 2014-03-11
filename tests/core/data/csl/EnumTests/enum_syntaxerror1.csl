@@ -1,0 +1,5 @@
+enum enum_syntaxerror1
+	Red, // comment
+	Blue,
+	Green
+};

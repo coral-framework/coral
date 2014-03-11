@@ -1,0 +1,104 @@
+/*
+	Bundles a set of extensions.
+
+	A module emerges from a set of #parts loaded from a #namespace. Each module
+	part represents an artifact---such as a library, script or data file---that
+	adds functionality to the system.
+
+	Modules and their #parts share the same _life cycle_, which is intertwined
+	with the system's life cycle. Whenever the system changes state it updates
+	all modules, and whenever a module changes state it updates its #parts.
+
+	Modules must respond to five life-cycle events:
+
+	1. In #initialize modules should publish services and set reflectors for
+	all their types. During this event a module cannot do anything that
+	requires other modules---it should wait until #integrate.
+	2. In #integrate modules may query and use services from other modules.
+	3. In #integratePresentation modules can integrate presentation elements.
+	4. In #disintegrate modules should release all external references.
+	5. In #dispose modules should free all allocated resources.
+
+	The system will #abort a module if any event raises an exception.
+
+	---
+	tags: module-system
+ */
+interface IModule
+{
+	// Namespace from which the module was loaded.
+	readonly INamespace namespace;
+
+	// Current state of the module and all its #parts.
+	readonly ModuleState state;
+
+	// List of parts that comprise the module.
+	readonly IModulePart[] parts;
+
+	/*
+		Adjusts the order in which modules receive updates from the system.
+
+		Modules are sorted by increasing rank value. The default rank is zero.
+	 */
+	int32 rank;
+
+	//------ Module Life Cycle Control Methods --------------------------------
+
+	/*
+		Initializes the module.
+
+		This changes #state to `ModuleState_Initialized`.
+
+		Raises co.IllegalStateException if #state isn't `ModuleState_None`.
+	 */
+	void initialize() raises IllegalStateException;
+
+	/*
+		Integrates the module with the system.
+
+		This changes #state to `ModuleState_Integrated`.
+
+		Raises co.IllegalStateException if #state isn't `ModuleState_Initialized`.
+	 */
+	void integrate() raises IllegalStateException;
+
+	/*
+		Integrates the module's presentation into the system.
+
+		This changes #state to `ModuleState_PresentationIntegrated`.
+
+		Raises co.IllegalStateException if #state isn't `ModuleState_Integrated`.
+	 */
+	void integratePresentation() raises IllegalStateException;
+
+	/*
+		Disintegrates the module from the system.
+
+		This changes #state to `ModuleState_Disintegrated`.
+
+		Raises co.IllegalStateException if #state isn't `ModuleState_PresentationIntegrated`.
+	 */
+	void disintegrate() raises IllegalStateException;
+
+	/*
+		Disposes the module.
+
+		This changes #state to `ModuleState_Disposed`.
+
+		Raises co.IllegalStateException if #state isn't `ModuleState_Disintegrated`.
+	 */
+	void dispose() raises IllegalStateException;
+
+	/*
+		Aborts the module.
+
+		If the module was already integrated, this method calls #disintegrate.
+
+		This always calls #dispose and changes #state to `ModuleState_Aborted`.
+
+		Raises co.IllegalStateException if the module was already disposed.
+	 */
+	void abort() raises IllegalStateException;
+
+	//------ End of Module Life Cycle Control Methods -------------------------
+};

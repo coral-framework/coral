@@ -1,0 +1,7 @@
+/*
+	A co.IModulePart that wraps a Lua script in a module's dir.
+ */
+component ModulePart
+{
+	provides co.IModulePart part;
+};

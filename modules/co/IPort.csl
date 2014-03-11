@@ -1,0 +1,18 @@
+/*
+	Describes a component port. See co.IComponent.
+
+	A port can be either a _facet_ or a _receptacle_. A facet is a port
+	that _provides_ a service, while a receptacle is a port that _receives_
+	a service (indicating a dependency).
+
+	---
+	tags: type-introspection
+ */
+interface IPort extends IMember
+{
+	// Port interface---indicates the type of service provided or received.
+	readonly IInterface type;
+
+	// Whether this port is a facet (true) or a receptacle (false).
+	readonly bool isFacet;
+};

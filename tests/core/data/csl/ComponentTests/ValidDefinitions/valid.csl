@@ -1,0 +1,13 @@
+// this is a valid component specification
+component valid
+{
+	// interfaces:
+	provides anotherInterface firstProvided;
+	provides anotherInterface secondProvided;
+	provides anInterface thirdProvided;
+
+	// receptacles:
+	receives anInterface firstReceptacle;
+	receives anInterface secondReceptacle;
+	receives anotherInterface thirdReceptacle;
+};

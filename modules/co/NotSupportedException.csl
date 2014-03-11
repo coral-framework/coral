@@ -1,0 +1,6 @@
+/*
+	Raised when an operation is not supported.
+	---
+	tags: exception
+ */
+exception NotSupportedException;

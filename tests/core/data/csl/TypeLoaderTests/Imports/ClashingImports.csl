@@ -1,0 +1,7 @@
+import Places.Office;
+import Roles.Office;
+
+interface ClashingImports
+{
+	string foo;
+};

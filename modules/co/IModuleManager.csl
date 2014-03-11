@@ -1,0 +1,83 @@
+/*
+	Façade to the module system, with methods to find and load modules.
+
+	Coral features an _extensible module system_ based on three concepts:
+
+	1. A **module** is an aggregate of **module parts** loaded from a
+		_namespace_ in the Coral repository. See co.IModule.
+	2. A **module part** is an _artifact_ loaded as part of a module. It could
+		be a library, a script, etc. See co.IModulePart.
+	3. A **loader** is a service that recognizes and loads a certain kind of
+		**module part**. See co.IModulePartLoader.
+
+	A namespace has a _loadable module_ if at least one **loader** can load a
+	**module part** from its location. Use #isLoadable to check this, #load to
+	really load a module, and #findModule to find an already-loaded module.
+
+	The framework starts with just one loader for _dynamic libraries_.
+	See #loaders, #installLoader and #uninstallLoader.
+
+	Get this service from co.ISystem's co.ISystem#modules.
+
+	---
+	tags: module-system
+ */
+interface IModuleManager
+{
+	// List of loaded modules.
+	readonly IModule[] modules;
+
+	// List of installed loaders.
+	readonly IModulePartLoader[] loaders;
+
+	/*
+		Whether module compatibility checking is enabled.
+
+		The default is true, which means a module should abort itself if it
+		notices any problem that could lead to crashes or data corruption.
+		You may want to disable these checks for testing purposes.
+	 */
+	bool compatibilityChecking;
+
+	/*
+		Returns the module currently loaded at namespace `moduleName`.
+	 */
+	IModule findModule( in string moduleName );
+
+	/*
+		Adds a loader to #loaders.
+
+		Raises co.IllegalArgumentException if `loader` is invalid.
+	 */
+	void installLoader( in IModulePartLoader loader );
+
+	/*
+		Removes an installed loader.
+
+		Raises co.IllegalArgumentException if `loader` isn't found in #loaders.
+	 */
+	void uninstallLoader( in IModulePartLoader loader );
+
+	/*
+		Returns whether namespace `moduleName` contains a loadable module.
+
+		Warning: a positive result does not guarantee that #load will succeed.
+	 */
+	bool isLoadable( in string moduleName );
+
+	/*
+		Gets or loads the module at namespace `moduleName`.
+
+		This method calls all #loaders to gather a list of co.IModulePart's
+		from `moduleName` and create a co.IModule. The module is integrated
+		into the system by means of events---which may load more modules,
+		in a cascade effect.
+
+		Any module that raises an exception during an event is aborted.
+
+		Raises co.IllegalStateException if the system is inoperative.
+		Raises co.ModuleLoadException if the module cannot be loaded.
+	 */
+	IModule load( in string moduleName )
+		raises ModuleLoadException, IllegalStateException;
+};

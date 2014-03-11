@@ -1,0 +1,8 @@
+/*
+	This file is encoded with windows-style line endings (CRLF)
+ */
+interface WindowsLineBreaks
+{
+	string foo;
+};
+

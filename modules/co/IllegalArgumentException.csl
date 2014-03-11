@@ -1,0 +1,6 @@
+/*
+	Raised when a method is passed an illegal argument.
+	---
+	tags: exception
+ */
+exception IllegalArgumentException;

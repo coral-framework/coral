@@ -1,0 +1,6 @@
+enum enum_inheritance extends enum_valid
+{
+	fox,
+	dog,
+	test
+};

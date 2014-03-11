@@ -1,0 +1,50 @@
+/*
+	A sample test for the CSL compiler
+ */
+interface validInterface
+{
+	// The field's type.
+	// AAAA
+	readonly Graphics.Color carColor;
+
+	readonly Global.Date createdOn;
+
+	Global.Person owner;
+
+	<c++
+	//CODE BLOCK
+	void cPlusPlusFoo()
+	{
+		int a = 1;
+	}
+	c++>
+
+
+	Global.Person[] owners;
+
+	string[] names;
+
+	/*
+	A multiline comment
+	!!!!!
+	 */
+	void Foo1(out string nome);
+
+	void Foo2();
+
+	void Foo3(in string nome);
+
+	string Foo4(out string nome1, in string nome2);
+
+	//A method that raises.
+	string Foo5(out string nome1, in string nome2)
+	raises Global.SameException;
+
+	string Foo6(out string nome1, in string nome2)
+		raises Global.SameException,  Global.OtherException, Global.AnotherException;
+
+	void Foo7(in string[] nomes);
+
+};
+
+

@@ -1,0 +1,2 @@
+// General-purpose exception raised by the Lua module.
+exception Exception;

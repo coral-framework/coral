@@ -1,0 +1,9 @@
+/*
+	Implements co.INamespace.
+	---
+	tags: private type-introspection
+ */
+component Namespace
+{
+	provides INamespace namespace;
+};

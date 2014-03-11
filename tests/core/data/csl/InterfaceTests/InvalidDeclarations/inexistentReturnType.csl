@@ -1,0 +1,8 @@
+// Method declaration has a inexistent returning type 
+interface inexistentReturnType
+{
+	IDontExist Foo(in string fooMe);
+
+};
+
+

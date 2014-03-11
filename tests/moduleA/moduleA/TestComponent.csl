@@ -1,0 +1,10 @@
+component TestComponent { // formatted in a single line for test purposes
+	provides TestInterface testInterface;
+
+	// dummy co.ITypeTransaction implementation, just to test cross-module inheritance
+	provides co.ITypeTransaction transaction;
+
+	// test 'receives'
+	receives co.IType type;
+	receives co.IInterface itf;
+};

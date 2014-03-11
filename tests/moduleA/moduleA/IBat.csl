@@ -1,0 +1,5 @@
+// used in the Lua component tests
+interface IBat extends IMammal
+{
+	readonly bool bloodsucker;
+};

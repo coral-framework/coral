@@ -1,0 +1,5 @@
+@lua.Scripted
+component LuaScriptedNoArg
+{
+	provides moduleA.IDummy dummy;
+};

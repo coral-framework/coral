@@ -1,0 +1,9 @@
+/*
+	Implements co.ISystem.
+	---
+	tags: private system
+ */
+component System
+{
+	provides ISystem system;
+};

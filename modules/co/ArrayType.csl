@@ -1,0 +1,9 @@
+/*
+	Implements co.IArray.
+	---
+	tags: private type-introspection
+ */
+component ArrayType
+{
+	provides IArray type;
+};

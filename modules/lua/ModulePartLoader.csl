@@ -1,0 +1,9 @@
+/*
+	A co.IModulePartLoader that allows Coral modules to be written in Lua.
+	If a module 'foo' contains a script named 'foo.lua', this component
+	will create a lua.ModulePart to wrap the script as a co.IModulePart.
+ */
+component ModulePartLoader
+{
+	provides co.IModulePartLoader loader;
+};

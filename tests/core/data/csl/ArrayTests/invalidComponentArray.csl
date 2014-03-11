@@ -1,0 +1,7 @@
+/*
+	Invalid interface to verifiy that componets cannot be in arrays
+ */
+interface invalidComponentArray 
+{
+	testComponent[] comp;
+};

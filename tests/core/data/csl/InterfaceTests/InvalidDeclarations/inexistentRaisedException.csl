@@ -1,0 +1,9 @@
+// Method declaration has a inexistent raised exception
+interface inexistentRaisedException
+{
+	string Foo(in string fooMe) 
+	raises IDontExist;
+
+};
+
+

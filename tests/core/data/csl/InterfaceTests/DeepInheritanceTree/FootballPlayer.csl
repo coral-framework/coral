@@ -1,0 +1,4 @@
+interface FootballPlayer extends Player
+{
+	string role;
+};

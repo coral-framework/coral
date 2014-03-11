@@ -1,0 +1,37 @@
+/*
+	Atomically validates and adds a set of types to the system.
+
+	The transaction validates the integrity of a set of interdependent types
+	as they are added to the system. If the validation fails, it removes all
+	types in the transaction from the system.
+
+	---
+	tags: type-creation
+ */
+interface ITypeTransaction
+{
+	// List of type builders in the transaction.
+	readonly ITypeBuilder[] typeBuilders;
+
+	/*
+		Validates and commits all types in the transaction.
+
+		This method validates all type builders in the transaction, checking
+		for missing data and semantic errors. If the validation fails, an
+		exception is raised and you _must_ call #rollback.
+
+		Raises co.MissingInputException if a type is missing required data.
+		Raises co.IllegalNameException if a type contains clashing members.
+		Raises co.IllegalStateException if an inheritance cycle is detected.
+		Raises co.NotSupportedException if the transaction is empty or dirty.
+	 */
+	void commit() raises MissingInputException, IllegalNameException,
+		IllegalStateException, NotSupportedException;
+
+	/*
+		Removes references to the types in the transaction.
+
+		The types will die with their builders.
+	 */
+	void rollback();
+};

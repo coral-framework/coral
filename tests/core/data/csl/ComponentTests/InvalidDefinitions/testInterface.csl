@@ -1,0 +1,4 @@
+interface testInterface
+{
+	string foo;
+};

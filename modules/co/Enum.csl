@@ -1,0 +1,9 @@
+/*
+	Implements co.IEnum.
+	---
+	tags: private type-introspection
+ */
+component Enum
+{
+	provides IEnum type;
+};

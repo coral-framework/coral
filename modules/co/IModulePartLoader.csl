@@ -1,0 +1,24 @@
+/*
+	Loads a certain kind of co.IModulePart from the repository.
+
+	---
+	tags: module-system
+ */
+interface IModulePartLoader
+{
+	/*
+		Returns whether a module part can be loaded from `moduleName`.
+
+		This checks if the repository contains a loadable module artifact in
+		namespace `moduleName`. For example, the default loader would check
+		if a dynamic library file named `moduleName` exists in `moduleName`.
+	 */
+	bool canLoadModulePart( in string moduleName );
+
+	/*
+		Loads a module part from namespace `moduleName`.
+
+		Any exception raised by this method will force the module's abortion.
+	 */
+	IModulePart loadModulePart( in string moduleName );
+};

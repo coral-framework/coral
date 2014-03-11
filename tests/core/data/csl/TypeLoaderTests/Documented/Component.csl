@@ -1,0 +1,9 @@
+// Component Declaration
+component Component
+{
+	// provided
+	provides Interface providedInterface;
+	provides Interface providedInterfaceNotDocumented;
+
+	receives Interface requiredInterface; 	//< Required interface
+};

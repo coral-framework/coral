@@ -1,0 +1,6 @@
+// member clash
+component memberClash
+{
+ 	provides testInterface foo;
+ 	receives testInterface foo;
+};

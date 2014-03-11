@@ -1,0 +1,6 @@
+// This struct declaration name is diferent from the file name
+struct DiferentCaseName
+{
+	string foo;
+};
+

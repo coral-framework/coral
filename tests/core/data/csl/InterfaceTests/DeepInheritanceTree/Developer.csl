@@ -1,0 +1,4 @@
+interface Developer extends ComputerUser
+{
+	string[] skills;
+};

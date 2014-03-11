@@ -1,0 +1,150 @@
+/*
+	A central database where services are _published_ and _queried_.
+
+	Services are always queried by type---an instance of co.IInterface---so
+	for example, you can find a car by looking for a service of type `ICar`,
+	a boat by looking for `IBoat`, or either by looking for `IVehicle`.
+
+	The database supports three types of queries:
+
+	1. Global Query _(S)_
+	: Returns the service of type `S` published for global use---the Coral
+	analogue of a _singleton_. For example, queries with `S`=`ICar` would
+	always return the same general-purpose car instance.
+	See #addService and #getService.
+
+	2. Type-specialized Query _(S, T)_
+	: Returns a service of type `S` specialized for the type `T`.
+	For example, you may query a vehicle _specialized by medium_ so that with
+	`S`=`IVehicle`, `T`=`IWater` you'd get a boat, and with `S`=`IVehicle`,
+	`T`=`IRoad` you'd get a car. When an exact result is not available, the
+	query goes for the next best result by querying the ancestors of `T`,
+	until it finally falls back to a global query.
+	See #addServiceForType and #getServiceForType.
+
+	3. Instance-specialized Query _(S, I)_
+	: Returns a service of type `S` specialized for an instance `I`. First we
+	check if `I`'s co.IObject also provides a service of type `S`---if so, it
+	is returned; otherwise, we fall back to query 2 with `T`=`I.interface`.
+	Building on the previous example, although a car is suitable for most
+	roads, on a few rough ones you may want to switch to an off-road vehicle.
+	That is, you want the query to return a specialized vehicle for a certain
+	road `I`. In order to achieve this, you add a port of type `S` (providing
+	the vehicle) to `I`'s object. See #getServiceForInstance.
+
+	Notice that query 3 falls back to query 2, and query 2 falls back to
+	query 1. As a result, once you publish a global service of type `S`,
+	all specialized queries for `S` are guaranteed to succeed.
+
+	**Database keys are unique**---publishing a service will replace any
+	previous record with the same key.
+
+	**Lazy instantiation**---instead of adding a service, you may specify the
+	_name of a component_ that provides the service, and it won't be created
+	until the service is first queried.
+	See #addServiceProvider and #addServiceProviderForType.
+
+	Get this service from co.ISystem's co.ISystem#services.
+
+	---
+	tags: component-model
+ */
+interface IServiceManager
+{
+	/*
+		Whether lazy instantiation is enabled. Default is true.
+
+		If false, components will be instantiated when added, instead of
+		when queried.
+	 */
+	bool isLazy;
+
+	/*
+		Publishes a `global` provider of `serviceType`.
+
+		Raises co.IllegalArgumentException if any argument is null.
+		Raises co.IllegalCastException if `service` is not of `serviceType`.
+	 */
+	void addService( in IInterface serviceType, in IService global )
+		raises IllegalArgumentException, IllegalCastException;
+
+	/*
+		Publishes a `specialized` provider of `serviceType` for `type`.
+
+		Raises co.IllegalArgumentException if any argument is null.
+		Raises co.IllegalCastException if `service` is not of `serviceType`.
+	 */
+	void addServiceForType( in IInterface serviceType, in IInterface type, in IService specialized )
+		raises IllegalArgumentException, IllegalCastException;
+
+	/*
+		Publishes a global provider of `serviceType` (with lazy instantiation).
+
+		The service is obtained from a new instance of `componentName`, by
+		scanning the object for a service of type `serviceType`. If an error
+		occurs, we drop the service and raise co.MissingServiceException.
+
+		Raises co.IllegalArgumentException if any argument is invalid.
+		Raises co.NoSuchPortException if the component does not provide `serviceType`.
+		Raises co.MissingServiceException if #isLazy is false and we cannot obtain the service.
+	 */
+	void addServiceProvider( in IInterface serviceType, in string componentName )
+		raises IllegalArgumentException, NoSuchPortException, MissingServiceException;
+
+	/*
+		Publishes a specialized provider of `serviceType` for `type` (with
+		lazy instantiation).
+
+		The service is obtained from a new instance of `componentName`, by
+		scanning the object for a service of type `serviceType`. If an error
+		occurs, we drop the service and raise co.MissingServiceException.
+
+		Raises co.IllegalArgumentException if any argument is invalid.
+		Raises co.NoSuchPortException if the component does not provide `serviceType`.
+		Raises co.MissingServiceException if #isLazy is false and we cannot obtain the service.
+	 */
+	void addServiceProviderForType( in IInterface serviceType, in IInterface type, in string componentName )
+		raises IllegalArgumentException, NoSuchPortException, MissingServiceException;
+
+	/*
+		Returns the global service of type `serviceType`.
+
+		Raises co.IllegalArgumentException if `serviceType` is null.
+		Raises co.MissingServiceException if no result is found.
+	 */
+	IService getService( in IInterface serviceType )
+		raises IllegalArgumentException, MissingServiceException;
+
+	/*
+		Returns a service of type `serviceType` specialized for `type`.
+
+		Raises co.IllegalArgumentException if any argument is null.
+		Raises co.MissingServiceException if no result is found.
+	 */
+	IService getServiceForType( in IInterface serviceType, in IInterface clientType )
+		raises IllegalArgumentException, MissingServiceException;
+
+	/*
+		Returns a service of type `serviceType` specialized for `instance`.
+
+		Raises co.IllegalArgumentException if any argument is null.
+		Raises co.MissingServiceException if no result is found.
+	 */
+	IService getServiceForInstance( in IInterface serviceType, in IService instance )
+		raises IllegalArgumentException, MissingServiceException;
+
+	/*
+		Removes the service of type `serviceType` published for global use.
+
+		Raises co.MissingServiceException if no such service is found.
+	 */
+	void removeService( in IInterface serviceType ) raises MissingServiceException;
+
+	/*
+		Removes the service of type `serviceType` published for `type`.
+
+		Raises co.MissingServiceException if no such service is found.
+	 */
+	void removeServiceForType( in IInterface serviceType, in IInterface clientType )
+		raises MissingServiceException;
+};

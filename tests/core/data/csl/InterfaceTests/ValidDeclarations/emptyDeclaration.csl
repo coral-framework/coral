@@ -1,0 +1,9 @@
+/*
+	Invalid Interface declaration
+ */
+interface emptyDeclaration
+{
+
+};
+
+

@@ -1,0 +1,9 @@
+/*
+	Implements co.IStruct.
+	---
+	tags: private type-introspection
+ */
+component Struct
+{
+	provides IStruct type;
+};

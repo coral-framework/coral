@@ -1,0 +1,9 @@
+interface multipleTypes
+{
+	string foo;
+};
+
+interface secondType
+{
+	string foo;
+};

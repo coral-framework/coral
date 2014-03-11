@@ -1,0 +1,9 @@
+import TypeLoaderTests.Imports.Office;
+
+interface Designer
+{
+	string name;
+
+	// should be the  TypeLoaderTests.Imports.Office type;
+	Office mainOffice;
+};

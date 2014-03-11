@@ -1,0 +1,4 @@
+struct Struct1
+{
+	Struct2 to2;
+};

@@ -1,0 +1,23 @@
+/*
+	Struct with the fields arranged to waste memory, was it a plain C struct being
+	compiled with 8-byte alignment.
+
+	This demonstrates that the Coral compiler ignores the order in which the fields
+	were declared, and sorts them by descreasing order of field size (or a rough estimate)
+	to decrease memory waste.
+ */
+struct BadlySortedStruct
+{
+    int8 myInt8;		// 7 bytes of padding
+    double myDouble;
+    int16 myInt16;		// 2 bytes of padding
+    float myFloat;
+    TestEnum myEnum;
+    bool myBool;
+    uint8 myUInt8;		// 2 bytes of padding
+    int32 myInt32;
+    uint16 myUInt16;
+
+    // without rearranging the fields, and with 8-byte alingment, this struct
+    // would take 40 bytes (13 bytes of padding); sorting would reduce its size to 32 bytes.
+};

@@ -1,0 +1,11 @@
+/*
+	Interface for types that have fields.
+
+	---
+	tags: type-introspection
+ */
+interface IRecordType extends ICompositeType
+{
+	// List of member fields.
+	readonly IField[] fields;
+};

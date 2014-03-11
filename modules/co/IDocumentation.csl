@@ -1,0 +1,28 @@
+/*
+	Contains documentation for types in CSL.
+
+	Keeps the type's documentation in #value and offers two methods for
+	storing and retrieving additional documentation by member name.
+
+	---
+	tags: type-annotation
+ */
+interface IDocumentation extends IAnnotation
+{
+	// Type documentation.
+	string value;
+
+	/*
+		Adds documentation for `member`.
+
+		Appends `doc` to any pre-existing documentation for `member`.
+	 */
+	void addDocFor( in string member, in string doc );
+
+	/*
+		Gets documentation for `member`.
+
+		Returns an empty string if `member` has no documentation.
+	*/
+	string getDocFor( in string member );
+};

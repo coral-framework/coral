@@ -1,0 +1,9 @@
+// method raises a type that is not an exception
+interface RaisesInvalidType 
+{
+	void foo() 
+	raises NotAnExceptionType;
+ 
+};
+
+

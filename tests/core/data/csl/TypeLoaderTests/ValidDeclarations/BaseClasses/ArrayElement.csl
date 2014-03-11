@@ -1,0 +1,4 @@
+struct ArrayElement
+{
+	string name;
+};

@@ -1,0 +1,9 @@
+//Missing the paramter in/out modifier
+interface missingParameterIO
+{
+	void Foo
+		( string fooMe );
+
+};	
+
+

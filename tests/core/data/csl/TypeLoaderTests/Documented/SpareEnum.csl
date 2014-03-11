@@ -1,0 +1,8 @@
+// This is the Enum Declaration
+enum SpareEnum
+{
+	// doc for first.
+	first, //< second doc for first.
+	second, //< doc for second.
+	third
+};

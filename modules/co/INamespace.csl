@@ -1,0 +1,72 @@
+/*
+	Represents a namespace in the Coral repository.
+
+	Namespaces are the _nodes_ in the hierarchy of the Coral repository.
+	A namespace's #fullName stands for a unique (dot-separated) _tree path_
+	in the repository. For example, `foo.bar` means _(root)_⇒`foo`⇒`bar`.
+
+	A namespace contains #types, #childNamespaces, and possibly a reference
+	to its corresponding #module (if one is loaded).
+
+	The unnamed _(root)_ namespace is available from co.ITypeManager.
+
+	---
+	tags: type-system
+ */
+interface INamespace
+{
+	// Local name of the namespace within its parent. For example, "bar".
+	readonly string name;
+
+	// Fully qualified name of the namespace. For example, "foo.bar".
+	readonly string fullName;
+
+	// Parent namespace, or null if this is the root.
+	readonly INamespace parentNamespace;
+
+	// List of child namespaces.
+	readonly INamespace[] childNamespaces;
+
+	// List of local types (i.e. defined in this namespace).
+	readonly IType[] types;
+
+	// Module loaded in this namespace, or null if none was loaded.
+	readonly IModule module;
+
+	/*
+		Finds a local type by name.
+
+		Returns null if no type is found.
+	 */
+	IType findType( in string name );
+
+	/*
+		Finds a child namespace by name.
+		
+		Returns null if no namespace is found.
+	 */
+	INamespace findChildNamespace( in string name );
+
+	/*
+		Creates a local type with the given `name` and `kind`.
+
+		To complete the type definition you must pass all required data to
+		the returned co.ITypeBuilder. Once you're done defining a graph of
+		interdependent types, use the system's co.ITypeManager#transaction
+		to _commit_ the graph to the system.
+
+		Raises co.IllegalNameException if `name` is not a valid identifier.
+		Raises co.IllegalNameException if `name` clashes with something.
+		Raises co.IllegalArgumentException if `kind` is invalid.
+	 */
+	ITypeBuilder defineType( in string name, in TypeKind kind )
+		raises IllegalNameException, IllegalArgumentException;
+
+	/*
+		Creates a child namespace with the given `name`.
+
+		Raises co.IllegalNameException if `name` is not a valid identifier.
+		Raises co.IllegalNameException if `name` clashes with something.
+	 */
+	INamespace defineChildNamespace( in string name ) raises IllegalNameException;
+};

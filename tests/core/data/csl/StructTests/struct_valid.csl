@@ -1,0 +1,10 @@
+// A valid test enum
+struct struct_valid {
+
+	string name;
+
+	// The car color;
+	Graphics.Color color;
+
+	Graphics.Size size;
+};

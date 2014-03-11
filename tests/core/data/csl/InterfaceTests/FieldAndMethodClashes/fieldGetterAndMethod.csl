@@ -1,0 +1,7 @@
+// This test interface should raise an exeption as the name of
+// the method clashes with the field's getter
+interface fieldGetterAndMethod
+{
+	readonly string name;
+	void getName();
+};

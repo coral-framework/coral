@@ -1,0 +1,22 @@
+/*
+	Interface for members of a co.ICompositeType.
+
+	Each type member has a unique #name within its #owner's hierarchy.
+
+	---
+	tags: type-introspection
+ */
+interface IMember extends IAnnotated
+{
+	// Member name.
+	readonly string name;
+
+	// Member kind (field, method or port).
+	readonly MemberKind kind;
+
+	// Type that contains this member.
+	readonly ICompositeType owner;
+
+	// Index of the member within its type's co.ICompositeType#members array.
+	readonly uint16 index;
+};

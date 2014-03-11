@@ -1,0 +1,5 @@
+@moduleA.Faulty( "omg errors" )
+interface DeepErrors
+{
+	bool field1;
+};

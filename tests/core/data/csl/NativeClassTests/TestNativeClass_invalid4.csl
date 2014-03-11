@@ -1,0 +1,5 @@
+native class TestNativeClass_invalid4 ( )
+{
+string[] a;
+
+};

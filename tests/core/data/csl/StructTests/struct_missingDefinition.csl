@@ -1,0 +1,3 @@
+// An invalid test enum
+struct struct_missingDefinition {
+};

@@ -1,0 +1,22 @@
+/*
+	Describes a native class type.
+
+	A native class _imports_ a type from C++ to Coral as a _value type_ with
+	fields and methods. It can efficiently represent small domain-specific
+	objects such as color, 3D vectors, 4x4 matrices, and so forth.
+
+	Every native class definition includes its own C++ type declaration---that
+	is, a chunk of C++ code that defines a type with the same name and under
+	the same namespace as the native class. See the co.ICppBlock annotation.
+
+	You may choose to only _forward declare_ the C++ type in the native class.
+	In this case you must use the `co.Include` annotation (see co.IInclude)
+	to specify which C++ header to include in order to use the native class.
+
+	---
+	tags: type-introspection
+ */
+interface INativeClass extends IClassType
+{
+	// empty
+};

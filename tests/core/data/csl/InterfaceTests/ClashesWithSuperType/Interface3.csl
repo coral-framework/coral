@@ -1,0 +1,10 @@
+interface Interface3 extends SuperInterface3
+{
+	readonly string name;
+	string age;
+
+	void getAddress();
+	void setAddress();
+	void setBirthDate();
+	void getFullName();
+};

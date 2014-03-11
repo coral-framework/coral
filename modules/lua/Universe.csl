@@ -1,0 +1,8 @@
+/*
+	Singleton that manages a Lua universe. If multiple instances are created, all will share
+	the same underlying lua_State. The system-wide lua.IState can be obtained as a service.
+ */
+component Universe
+{
+	provides IState state;
+};

@@ -1,0 +1,16 @@
+struct TestStruct
+{
+	int8 anInt8;
+	int16 anInt16;
+
+	TestEnum testEnum;
+	co.IType aType;
+
+	Vec2D vec2d;
+
+	co.CSLError innerStruct;
+
+	float[] floatArray;
+	TestEnum[] enumArray;
+	co.IType[] typeArray;
+};

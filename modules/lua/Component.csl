@@ -1,0 +1,11 @@
+/*
+	A dynamic component, with interfaces defined in run-time and methods implemented in Lua.
+ */
+component Component
+{
+	// Handles requests to the proxy interfaces created for this component.
+	provides co.IDynamicServiceProvider dynamicServiceProvider;
+
+	// This component has its own built-in reflector.
+	provides co.IReflector reflector;
+};

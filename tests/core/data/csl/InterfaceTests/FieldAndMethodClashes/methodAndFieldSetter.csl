@@ -1,0 +1,7 @@
+// This test interface should raise an exeption as the setter
+// clashes with the name of the method.
+interface methodAndFieldSetter
+{
+	void setAddress();
+	string address;
+};

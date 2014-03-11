@@ -1,0 +1,90 @@
+/*
+	Assists in the definition of a new Coral type.
+
+	The workflow for defining a new type is as follows:
+
+	1. Create a type builder by calling co.INamespace#defineType on
+	a co.INamespace.
+	2. Pass data to the type builder via the _define_ methods below, as
+	appropriate for the kind of type you're defining.
+	3. Repeat 1 and 2 as needed to define a graph of types, then use the
+	global co.ITypeManager#transaction to add the graph to the system.
+
+	---
+	tags: type-creation
+ */
+interface ITypeBuilder
+{
+	// Kind of type being defined.
+	readonly TypeKind kind;
+
+	// Local name of the type being defined.
+	readonly string typeName;
+
+	// Namespace where the type is being defined.
+	readonly INamespace namespace;
+
+	/*
+		Adds an identifier to an enum.
+
+		Raises co.NotSupportedException if the type is not an enum.
+		Raises co.NotSupportedException if the type has already been created.
+		Raises co.IllegalNameException if `name` is invalid.
+	 */
+	void defineIdentifier( in string name ) raises NotSupportedException, IllegalNameException;
+
+	/*
+		Adds a field to a record type (a struct, interface or native class).
+
+		Raises co.NotSupportedException if the type is not a record type.
+		Raises co.NotSupportedException if the type has already been created.
+		Raises co.IllegalNameException if `name` is invalid.
+		Raises co.IllegalArgumentException if `type` is invalid.
+		Raises co.IllegalArgumentException if `isReadOnly` is true and #kind is TK_STRUCT.
+	 */
+	void defineField( in string name, in IType type, in bool isReadOnly )
+		raises NotSupportedException, IllegalNameException, IllegalArgumentException;
+
+	/*
+		Adds a method to a class type (an interface or native class).
+
+		You must use the returned co.IMethodBuilder to complete the definition.
+
+		Raises co.NotSupportedException if the type is not a class type.
+		Raises co.NotSupportedException if the type has already been created.
+		Raises co.IllegalNameException if `name` is invalid.
+	 */
+	IMethodBuilder defineMethod( in string name ) raises NotSupportedException, IllegalNameException;
+
+	/*
+		Adds a port to a component.
+
+		Raises co.NotSupportedException if the type is not a component.
+		Raises co.NotSupportedException if the type has already been created.
+		Raises co.IllegalNameException if `name` is invalid.
+		Raises co.IllegalArgumentException if `itf` is invalid.
+	 */
+	void definePort( in string name, in IInterface itf, in bool isFacet )
+		raises NotSupportedException, IllegalNameException, IllegalArgumentException;
+
+	/*
+		Makes the type inherit from `baseType`.
+
+		Raises co.NotSupportedException if the type doesn't support inheritance.
+		Raises co.NotSupportedException if the type has already been created.
+		Raises co.NotSupportedException if a base type was already defined.
+		Raises co.IllegalArgumentException if `baseType` is invalid.
+	 */
+	void defineBaseType( in IType baseType )
+		raises NotSupportedException, IllegalArgumentException;
+
+	/*
+		Creates and returns the type. *You don't have to call this method.*
+
+		This method is automatically called when you co.ITypeTransaction#commit
+		a type transaction.
+
+		Raises co.MissingInputException if the type is missing required data.
+	 */
+	IType createType() raises MissingInputException;
+};

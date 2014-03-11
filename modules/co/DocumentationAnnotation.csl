@@ -1,0 +1,9 @@
+/*
+	Provides the special @co.Documentation annotation.
+	---
+	tags: private type-introspection
+ */
+component DocumentationAnnotation
+{
+	provides IDocumentation annotation;
+};

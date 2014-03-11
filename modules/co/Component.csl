@@ -1,0 +1,9 @@
+/*
+	Implements co.IComponent.
+	---
+	tags: private type-introspection
+ */
+component Component
+{
+	provides IComponent type;
+};

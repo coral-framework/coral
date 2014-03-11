@@ -1,0 +1,30 @@
+/*
+	Enumeration of Coral type kinds.
+
+	See also: co.IType.
+
+	---
+	tags: type-system
+ */
+enum TypeKind
+{
+	TK_NULL,		//< Null value.
+	TK_BOOL,		//< Boolean value.
+	TK_INT8,		//< 8-bit signed integer.
+	TK_INT16,		//< 16-bit signed integer.
+	TK_INT32,		//< 32-bit signed integer.
+	TK_UINT8,		//< 8-bit unsigned integer.
+	TK_UINT16,		//< 16-bit unsigned integer.
+	TK_UINT32,		//< 32-bit unsigned integer.
+	TK_FLOAT,		//< 32-bit IEEE 754 floating-point number.
+	TK_DOUBLE,		//< 64-bit IEEE 754 floating-point number.
+	TK_ENUM,		//< Enumeration of identifiers. See co.IEnum.
+	TK_STRING,		//< 8-bit clean string.
+	TK_ANY,			//< Coral's variant type.
+	TK_ARRAY,		//< One-dimensional array of elements. See co.IArray.
+	TK_STRUCT,		//< Set of named fields of various types. See co.IStruct.
+	TK_NATIVECLASS,	//< Native C++ value type. See co.INativeClass.
+	TK_INTERFACE,	//< Interface type. See co.IInterface.
+	TK_COMPONENT,	//< Component type. See co.IComponent.
+	TK_EXCEPTION	//< Exception raised by methods. See co.IException.
+};

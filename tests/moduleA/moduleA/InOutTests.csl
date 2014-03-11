@@ -1,0 +1,12 @@
+interface InOutTests
+{
+	void testAny( in any i, inout any io, out any o );
+
+	void testStruct( in TestStruct i, inout TestStruct io, out TestStruct o );
+
+	void testArrayOfInts( in int32[] i, inout int32[] io, out int32[] o );
+	void testArrayOfAnys( in any[] i, inout any[] io, out any[] o );
+	void testArrayOfStructs( in co.CSLError[] i, inout co.CSLError[] io, out co.CSLError[] o );
+
+	File testFile( in File i, out File o );
+};

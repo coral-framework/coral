@@ -1,0 +1,9 @@
+/*
+	Invalid interface to verifiy that exceptions cannot be passed as parameters in methods
+ */
+interface invalidInterfaceWithComponentAsParameter 
+{
+	void alpha( in testComponent comp );
+};
+
+

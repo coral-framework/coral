@@ -1,0 +1,4 @@
+struct struct3
+{
+	string name;
+;

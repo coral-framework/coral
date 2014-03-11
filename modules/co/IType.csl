@@ -1,0 +1,62 @@
+/*
+	Represents a Coral type. Base interface for type descriptors.
+
+	Types can be identified either by a #name within a #namespace, or uniquely
+	by #fullName. Every type has a #kind that determines its actual type and
+	descriptor interface (i.e. subtype of co.IType).
+
+	---
+	tags: type-system
+ */
+interface IType extends IAnnotated
+{
+	// Local name of the type (within its namespace). For example, "SomeType".
+ 	readonly string name;
+
+	// Fully qualified name of the type. For example, "nspc.SomeType".
+	readonly string fullName;
+
+	// Namespace where the type is defined.
+	readonly INamespace namespace;
+
+	// What kind of type is this type.
+	readonly TypeKind kind;
+
+	/*
+		Fingerprint of all type data (except annotations).
+
+		Considers all data that could affect the _source code_ of a type.
+	 */
+	readonly Uuid fullSignature;
+
+	/*
+		Fingerprint of the type's binary interface.
+
+		Considers all data that could affect the _binary interface_ of
+		a type---i.e. things that break C++ ABI compatibility.
+	 */
+	readonly Uuid binarySignature;
+
+	/*
+		The type's reflector, or null if a reflector hasn't been set yet.
+
+		To guarantee you'll obtain a reflector, get #reflector instead.
+	 */
+	readonly IReflector currentReflector;
+
+	/*
+		The type's reflector. Getting this field may raise an exception.
+
+		If the reflector is null, the getter will attempt to load the type's
+		module in order to get a reflector. If it's still null then, the
+		getter will raise an exception. The setter is plain and safe, however.
+	 */
+	IReflector reflector;
+
+	/*
+		Returns whether this type descends from the given `super` type.
+
+		Also returns true if this type is equal to `super`.
+	 */
+	bool isA( in IType super );
+};

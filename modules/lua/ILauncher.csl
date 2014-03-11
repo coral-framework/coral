@@ -1,0 +1,11 @@
+/*
+	Main interface for the lua.Launcher component.
+ */
+interface ILauncher
+{
+	/*
+		Expects a Lua script name as first argument.
+		All other arguments are passed to the script.
+	 */
+	int32 main( in string[] args );
+};

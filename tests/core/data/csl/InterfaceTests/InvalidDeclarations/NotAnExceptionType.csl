@@ -1,0 +1,5 @@
+// A struct used in test for RaisesInvalidType.csl
+struct NotAnExceptionType
+{
+	string name;
+};

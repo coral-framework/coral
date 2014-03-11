@@ -1,0 +1,4 @@
+// comment
+exception exception_invalid3; // comment
+{
+};

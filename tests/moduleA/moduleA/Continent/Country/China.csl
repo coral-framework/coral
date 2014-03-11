@@ -1,0 +1,6 @@
+struct China
+{
+	int32 population;
+	float demographicDensity;
+	Taiwan taiwan;
+};

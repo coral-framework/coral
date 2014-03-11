@@ -1,0 +1,7 @@
+/*
+	Annotation for components scripted in Lua.
+ */
+interface IScripted extends co.IDynamicTypeProvider
+{
+	string value;
+};

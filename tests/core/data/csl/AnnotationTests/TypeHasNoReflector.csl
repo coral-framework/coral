@@ -1,0 +1,2 @@
+@AnnotationTests.NoReflector
+exception TypeHasNoReflector;

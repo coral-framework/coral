@@ -1,0 +1,8 @@
+// Method declaration has no returning type 
+interface missingReturnType
+{
+	Foo(in string fooMe);
+
+};
+
+

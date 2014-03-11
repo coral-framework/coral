@@ -1,0 +1,5 @@
+interface User extends Developer
+{
+	// User -> Developer -> ComputerUser -> Gamer -> Player -> DogOwner
+	// FootballPlayer -> Player -> DogOwner
+};

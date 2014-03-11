@@ -1,0 +1,4 @@
+interface IContainErrors extends co.IAnnotation
+{
+	boom syntax error;
+};

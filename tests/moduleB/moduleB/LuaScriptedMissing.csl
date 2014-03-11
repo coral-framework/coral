@@ -1,0 +1,5 @@
+@lua.Scripted( "moduleB.missingScript" )
+component LuaScriptedMissing
+{
+	provides moduleA.IDummy dummy;
+};

@@ -1,0 +1,10 @@
+/*
+	Invalid Field name that starts with Uppercase
+ */
+interface invalidFieldName
+{
+	readonly 
+			string Name;
+};
+
+

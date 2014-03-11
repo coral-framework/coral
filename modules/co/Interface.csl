@@ -1,0 +1,9 @@
+/*
+	Implements co.IInterface.
+	---
+	tags: private type-introspection
+ */
+component Interface
+{
+	provides IInterface type;
+};

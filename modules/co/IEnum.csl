@@ -1,0 +1,21 @@
+/*
+	Describes an enum type.
+
+	Contains a list of #identifiers with _implicit values_ from 0 to n-1.
+
+	---
+	tags: type-introspection
+ */
+interface IEnum extends IType
+{
+	// List of identifiers.
+	readonly string[] identifiers;
+
+	/*
+		Finds an identifier and returns its value.
+
+		Returns -1 if `id` is not a valid identifier.
+		Valid results are in the range [0, n-1].
+	 */
+	int32 getValueOf( in string id );
+};

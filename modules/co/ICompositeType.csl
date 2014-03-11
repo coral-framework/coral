@@ -1,0 +1,22 @@
+/*
+	Interface for types that have members.
+
+	---
+	tags: type-introspection
+ */
+interface ICompositeType extends IType
+{
+	/*
+		List of local members (fields, methods, ports, etc.).
+
+		This excludes inherited members. See #getMember.
+	 */
+	readonly IMember[] members;
+
+	/*
+		Finds a member by name, considering inherited members.
+
+		Returns null if no member is found with the given #name.
+	 */
+	IMember getMember( in string name );
+};

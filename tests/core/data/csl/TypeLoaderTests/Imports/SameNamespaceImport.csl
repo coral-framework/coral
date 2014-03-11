@@ -1,0 +1,9 @@
+import Office;
+
+interface SameNamespaceImport 
+{
+	string foo;
+};
+
+
+

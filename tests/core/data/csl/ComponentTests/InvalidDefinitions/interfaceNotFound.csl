@@ -1,0 +1,5 @@
+// interface type 'IDontExist' not found
+component interfaceNotFound
+{
+ 	provides IDontExist foo;
+};

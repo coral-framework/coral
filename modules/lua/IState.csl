@@ -1,0 +1,56 @@
+/*
+	For interfacing with Lua.
+	The main Lua state is exposed as a global lua.IState service.
+ */
+interface IState
+{
+	// List of active interceptors.
+	readonly IInterceptor[] interceptors;
+
+	// Adds an interceptor at the end of the list.
+	void addInterceptor( in IInterceptor interceptor );
+
+	// Removes the given interceptor from the list.
+	void removeInterceptor( in IInterceptor interceptor );
+
+	/*
+		Looks for a Lua script with the given \a name in the Coral path.
+		The search follows the same conventions used for locating Lua modules.
+		Returns false if there is no script with the given name.
+	 */
+	bool findScript( in string name, out string filename );
+
+	/*
+		Calls a function from a Lua module.
+
+		This method is roughly equivalent to the following code in Lua:
+		\code results = require( moduleName )[functionName]( args ) \encode
+
+		The module is obtained through "require" (so it is only loaded once) and must return
+		either a function or a table containing functions. If the module returns a function,
+		you must pass an empty \a functionName; otherwise, you should specify the name of the
+		function to be called.
+
+		The list of arguments passed to the function is given by \a args.
+
+		If \a results is non-empty, it will be assigned with the results of the function call,
+		up to either the number of returned values or the number of elements in \a results,
+		whichever is smaller. Each element in \a results must be a valid output variable, and
+		if a Lua value cannot be assigned to a var in \a results due to type incompatibilities,
+		an exception is raised.
+
+		\return the number of results actually returned by the function in Lua.
+
+		\throw lua.Exception if no module exists with the given \a moduleName.
+		\throw lua.Exception if functionName does not specify a valid function to be called.
+		\throw lua.Exception if the function raises any Lua error.
+		\throw co.Exception if the function raises any Coral exception using <tt>co.raise()</tt>.
+		\throw lua.Exception if one of the function results could not be assigned to
+					an output variable in \a results due to type incompatibilities.
+	 */
+	int32 call( in string moduleName, in string functionName, in any[] args, in any[] results )
+			raises Exception;
+
+	// Invokes a full cycle of the Lua garbage collector.
+	void collectGarbage();
+};

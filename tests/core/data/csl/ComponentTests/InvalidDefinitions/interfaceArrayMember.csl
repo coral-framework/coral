@@ -1,0 +1,5 @@
+// cannot use an interface array
+component interfaceArrayMember
+{
+ 	provides testInterface[] foo;
+};

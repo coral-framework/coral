@@ -1,0 +1,7 @@
+/*
+	Provides the @lua.Scripted( "script.name" ) annotation.
+ */
+component ScriptedAnnotation
+{
+	provides IScripted annotation;
+};

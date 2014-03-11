@@ -1,0 +1,52 @@
+/*
+	Base interface for services that can be annotated.
+
+	An annotated service may contain any number of #annotations.
+
+	Use #findAnnotation to get an annotation of a certain type.
+	For example, in Lua:
+
+	~~~ lua
+	local annotation = svc:findAnnotation( co.Type "my.IAnnotationType" )
+	~~~
+
+	And in C++, for convenience, you may pass the type as a template argument:
+
+	~~~ cpp
+	co::IAnnotationRef a = svc->findAnnotation<my::IAnnotationType>();
+	~~~
+
+	---
+	tags: type-annotation
+ */
+interface IAnnotated
+{
+	// List of annotations on this service.
+	IAnnotation[] annotations;
+
+	/*
+		Adds an annotation onto this service.
+
+		Raises co.IllegalArgumentException if `annotation` is invalid.
+	 */
+	void addAnnotation( in IAnnotation annotation )
+		raises IllegalArgumentException;
+
+	/*
+		Finds the first annotation of a given type.
+
+		Returns null if no annotation of type `annotationType` is found.
+
+		Raises co.IllegalArgumentException if `annotationType` is invalid.
+	 */
+	IAnnotation findAnnotation( in IInterface annotationType )
+		raises IllegalArgumentException;
+
+	<c++
+		// T isA co.IAnnotation
+		template<typename T> inline T* findAnnotation()
+		{
+			return static_cast<T*>( findAnnotation( co::typeOf<T>::get() ) );
+		}
+	c++>
+};

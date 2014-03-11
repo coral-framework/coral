@@ -1,0 +1,4 @@
+interface DogOwner
+{
+	int32 numDogs;
+};

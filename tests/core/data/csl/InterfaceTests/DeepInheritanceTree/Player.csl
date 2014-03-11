@@ -1,0 +1,4 @@
+interface Player extends DogOwner
+{
+	int32 skill;
+};

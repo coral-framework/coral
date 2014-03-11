@@ -1,0 +1,21 @@
+/*
+	Describes an interface type.
+
+	Interfaces support single inheritance and extend co.IService by default.
+	In other words, every interface extends another interface---except for
+	co.IService, which is the root of the hierarchy and has a null #baseType.
+
+	---
+	tags: type-introspection
+ */
+interface IInterface extends IClassType
+{
+	// Parent interface, or null if this interface is co.IService.
+	readonly IInterface baseType;
+
+	// List of ancestors. Starts with #baseType and goes up to co.IService.
+	readonly IInterface[] superTypes;
+
+	// List of interfaces that directly extend this interface.
+	readonly IInterface[] subTypes;
+};

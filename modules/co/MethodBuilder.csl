@@ -1,0 +1,9 @@
+/*
+	Implements co.IMethodBuilder.
+	---
+	tags: private type-creation
+ */
+component MethodBuilder
+{
+	provides IMethodBuilder methodBuilder;
+};

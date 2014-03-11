@@ -1,0 +1,9 @@
+/*
+	Invalid interface to verifiy that exceptions cannot be passed as parameters in methods
+ */
+interface invalidInterfaceWithExceptionAsParameter
+{
+	void beta( in Global.AnotherException ex );
+};
+
+

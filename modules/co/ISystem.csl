@@ -1,0 +1,87 @@
+/*
+	Façade to the whole system. Controls the system's life cycle.
+
+	The Coral _system_ coordinates the dynamic set of #modules, #types
+	and #services that compose a program at runtime.
+
+	A _program_ in Coral is a runtime composition of modules, types and
+	services subject to the system's life cycle.
+
+	The system's _life cycle_ starts with a nil #state, as shown in the
+	diagram below. From nil, the _set-up_ process sets the system up and
+	running by initializing and integrating modules. When the program is over,
+	the _teardown_ process resets the system to nil by disintegrating and
+	disposing all modules. The grayed boxes in the center correspond to the
+	_module events_ that are triggered during a set-up/teardown cycle.
+	![](/img/system-life-cycle.svg 'The system's life cycle'){:.centerfig}
+
+	The co.ISystem service is Coral's only _singleton_. See the documentation
+	on [how to obtain it in C++](/reference/languages/cpp#getSystem)
+	or [another language](/reference/languages).
+
+	---
+	tags: system
+ */
+interface ISystem
+{
+	// The system's current life-cycle state. See co.SystemState.
+	readonly SystemState state;
+
+	// Façade to the type system, with methods to find, load and create types.
+	readonly ITypeManager types;
+
+	// Façade to the module system, with methods to find and load modules.
+	readonly IModuleManager modules;
+
+	// A global database where services are published and queried.
+	readonly IServiceManager services;
+
+	//------ System Life Cycle Control Methods --------------------------------
+
+	/*
+		Loads all `requiredModules` (if any) and integrates the system.
+
+		This method must be called when #state is `SystemState_None`.
+		It will change to `SystemState_Integrated` on success,
+		or back to `SystemState_None` on exceptions.
+
+		Raises co.IllegalStateException if #state isn't `SystemState_None`.
+		Raises co.ModuleLoadException if loading one of the `requiredModules` fails.
+	 */
+	void setupBase( in string[] requiredModules )
+		raises IllegalStateException, ModuleLoadException;
+
+	/*
+		Integrates the presentation layer and sets the system running.
+
+		Must be called after #setupBase.
+		The system's #state changes to `SystemState_Running` on success.
+
+		Raises co.IllegalStateException if #state isn't `SystemState_Integrated`.
+	 */
+	void setupPresentation() raises IllegalStateException;
+
+	/*
+		Disintegrates and disposes all modules.
+
+		Must be called while the system is running.
+		This resets the system's #state to `SystemState_None`.
+
+		Raises co.IllegalStateException if #state isn't `SystemState_Running`.
+	 */
+	void tearDown() raises IllegalStateException;
+
+	<c++
+		// Sets the system up and running without loading any modules.
+		inline void setup() { setup( Slice<std::string>() ); }
+
+		// Sets the system up and running with the specified modules.
+		inline void setup( Slice<std::string> requiredModules )
+		{
+			setupBase( requiredModules );
+			setupPresentation();
+		}
+	c++>
+
+	//------ End of System Life Cycle Control Methods -------------------------
+};

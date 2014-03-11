@@ -1,0 +1,9 @@
+/*
+	Provides the special @co.CppBlock annotation.
+	---
+	tags: private type-introspection
+ */
+component CppBlockAnnotation
+{
+	provides ICppBlock annotation;
+};

@@ -1,0 +1,9 @@
+/*
+	Implements co.IException.
+	---
+	tags: private type-introspection
+ */
+component ExceptionType
+{
+	provides IException type;
+};

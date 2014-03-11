@@ -1,0 +1,8 @@
+/*
+	Launcher component that provides a command-line front end to the Coral Compiler.
+ */
+@lua.Scripted( "co.compiler.Compile" )
+component Compile
+{
+	provides lua.ILauncher launcher;
+};

@@ -1,0 +1,5 @@
+// used in the Lua component tests
+interface IMammal
+{
+	readonly bool ableToFly;
+};

@@ -1,0 +1,4 @@
+component TestAnnotation
+{
+	provides ITestAnnotation annotation;
+};

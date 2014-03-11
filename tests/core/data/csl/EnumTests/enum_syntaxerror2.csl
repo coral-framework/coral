@@ -1,0 +1,6 @@
+enum enum_syntaxerror2
+{
+	Red, // comment
+	Blue,
+	Green
+}

@@ -1,0 +1,32 @@
+/*
+	Exposes tons of fields for testing annotations.
+ */
+interface ITestAnnotation extends co.IAnnotation
+{
+	double value;
+
+	any a;
+	bool b;
+	int8 i8;
+	uint8 u8;
+	int16 i16;
+	uint16 u16;
+	int32 i32;
+	uint32 u32;
+	float flt;
+	double dbl;
+	string str;
+
+	string[] strArray;
+	double[] dblArray;
+
+	co.TypeKind typeKind;
+	co.CSLError cslError;
+	co.Uuid uuid;
+	Vec2D vec2D;
+
+	co.IType type;
+
+	readonly string readOnlyStr;
+	readonly double readOnlyDbl;
+};

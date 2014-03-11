@@ -1,0 +1,4 @@
+interface IAmNotAComponentAnnotation extends co.IAnnotation
+{
+	bool fail;
+};

@@ -1,0 +1,2 @@
+bindir = ${CMAKE_BINARY_DIR}/bin
+libdir = ${CMAKE_BINARY_DIR}/lib

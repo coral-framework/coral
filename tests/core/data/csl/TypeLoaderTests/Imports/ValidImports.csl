@@ -1,0 +1,8 @@
+import Roles.Analyst;
+import Roles.Designer;
+import Supplies.Table;
+
+interface ValidImports
+{
+	string name;
+};

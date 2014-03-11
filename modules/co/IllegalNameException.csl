@@ -1,0 +1,6 @@
+/*
+	Raised when a name is illegal.
+	---
+	tags: exception
+ */
+exception IllegalNameException;

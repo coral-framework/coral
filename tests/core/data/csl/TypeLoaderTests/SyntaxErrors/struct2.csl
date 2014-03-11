@@ -1,0 +1,4 @@
+struct 1struct2
+{
+	string name;
+};

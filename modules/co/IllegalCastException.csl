@@ -1,0 +1,6 @@
+/*
+	Raised when a type cast or a value conversion fails.
+	---
+	tags: exception
+ */
+exception IllegalCastException;

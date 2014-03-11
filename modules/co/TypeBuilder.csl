@@ -1,0 +1,9 @@
+/*
+	Implements co.ITypeBuilder.
+	---
+	tags: private type-creation
+ */
+component TypeBuilder
+{
+	provides ITypeBuilder typeBuilder;
+};

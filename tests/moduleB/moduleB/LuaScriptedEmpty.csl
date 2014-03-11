@@ -1,0 +1,5 @@
+@lua.Scripted( "moduleB.empty" )
+component LuaScriptedEmpty
+{
+	provides moduleA.IDummy dummy;
+};

@@ -1,0 +1,12 @@
+/*
+	Describes an exception type.
+
+	Represents an exception raised by methods.
+
+	---
+	tags: type-introspection
+ */
+interface IException extends IType
+{
+	// no members
+};

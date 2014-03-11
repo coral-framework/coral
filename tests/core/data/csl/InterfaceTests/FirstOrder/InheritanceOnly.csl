@@ -1,0 +1,4 @@
+// this interface has only an inheritance and no members, and should be valid
+interface InheritanceOnly extends Parent
+{
+}; 

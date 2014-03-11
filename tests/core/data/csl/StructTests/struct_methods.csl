@@ -1,0 +1,8 @@
+struct struct_methods 
+{
+	uint32 currentTime;
+	int32 bestTime;
+	uint16 halfTime;
+	uint8 testTime;
+	uint32 getTimeOfDay();	
+};

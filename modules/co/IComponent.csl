@@ -1,0 +1,17 @@
+/*
+	Describes a component type.
+
+	---
+	tags: type-introspection
+ */
+interface IComponent extends ICompositeType
+{
+	// List of all component ports (both facets and receptacles).
+	readonly IPort[] ports;
+
+	// List of facets (ports that _provide_ services).
+	readonly IPort[] facets;
+
+	// List of receptacles (ports for _consuming_ services).
+	readonly IPort[] receptacles;
+};

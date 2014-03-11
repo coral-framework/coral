@@ -1,0 +1,9 @@
+/*
+	Launcher component for use with the 'coral' launcher executable.
+	This launcher expects a fully-qualified Lua script name as first argument.
+	The script will be invoked with the same argument list, but with the first argument removed.
+ */
+component Launcher
+{
+	provides ILauncher launcher;
+};

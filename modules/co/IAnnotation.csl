@@ -1,0 +1,12 @@
+/*
+	Base interface for annotations. Decorates an annotated service.
+
+	Although empty, this interface is useful for queries such as co.IType#isA.
+
+	---
+	tags: type-annotation
+ */
+interface IAnnotation
+{
+	// empty
+};

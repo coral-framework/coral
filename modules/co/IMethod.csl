@@ -1,0 +1,17 @@
+/*
+	Describes a method as a member of a co.IClassType.
+
+	---
+	tags: type-introspection
+ */
+interface IMethod extends IMember
+{
+	// The method's return type, or null if `void`.
+	readonly IType returnType;
+
+	// List of method parameters.
+	readonly IParameter[] parameters;
+
+	// List of raised exceptions.
+	readonly IException[] exceptions;
+};

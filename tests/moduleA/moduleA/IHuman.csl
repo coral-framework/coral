@@ -1,0 +1,5 @@
+// used in the Lua component tests
+interface IHuman extends IMammal
+{
+	readonly string name;
+};

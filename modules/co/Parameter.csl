@@ -1,0 +1,9 @@
+/*
+	Implements co.IParameter.
+	---
+	tags: private type-introspection
+ */
+component Parameter
+{
+	provides IParameter parameter;
+};

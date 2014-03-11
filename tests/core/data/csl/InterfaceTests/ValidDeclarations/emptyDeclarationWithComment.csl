@@ -1,0 +1,9 @@
+/*
+	Invalid Interface declaration
+ */
+interface emptyDeclarationWithComment
+{
+	// Comments are not member declarations.
+};
+
+

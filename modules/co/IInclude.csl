@@ -1,0 +1,41 @@
+/*
+	States a header file must be included in order to use a native class.
+
+	The preferred approach for simple native classes in Coral is to fully
+	define the C++ type inside the native class in CSL.
+
+	However, for non-trivial native classes, this approach may cause problems
+	with circular dependencies and slow down build times. In C++ the solution
+	in these situations is to use _forward declarations_ as much as possible,
+	and only include the full type definition at the last moment.
+	This is exactly what this annotation allows you to do!
+
+	To define a native class that uses forward declaration as much as possible:
+
+	1. The C++ code inside the native class should be a forward declaration.
+	2. Use this annotation to indicate which header should be included.
+
+	For example, to create a native class `MyValue` in module `mymodule` as
+	a forward declaration to `mylib::RealClass`:
+
+	~~~ csl
+	@co.Include("myLib/RealClass.h")
+	native class MyValue
+	{
+		<c++
+			namespace mylib { class RealClass; }
+			namespace mymodule { typedef myLib::RealClass MyValue; }
+		c++>
+	}
+	~~~
+
+	This annotation is implemented by co.IncludeAnnotation.
+
+	---
+	tags: type-annotation
+ */
+interface IInclude extends IAnnotation
+{
+	// C++ header name.
+	string value;
+};

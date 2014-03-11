@@ -1,0 +1,11 @@
+/*
+	Interface for types that have methods.
+
+	---
+	tags: type-introspection
+ */
+interface IClassType extends IRecordType
+{
+	// List of member methods.
+	readonly IMethod[] methods;
+};

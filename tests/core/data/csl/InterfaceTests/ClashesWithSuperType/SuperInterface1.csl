@@ -1,0 +1,5 @@
+interface SuperInterface1
+{
+	void getName();
+};
+

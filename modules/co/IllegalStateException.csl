@@ -1,0 +1,6 @@
+/*
+	Raised when something is in an unexpected or illegal state.
+	---
+	tags: exception
+ */
+exception IllegalStateException;

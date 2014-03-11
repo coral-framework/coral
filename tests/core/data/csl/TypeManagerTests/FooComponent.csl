@@ -1,0 +1,4 @@
+component FooComponent
+{
+	provides IFoo foo;
+};

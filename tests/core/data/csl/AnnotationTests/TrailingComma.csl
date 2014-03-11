@@ -1,0 +1,4 @@
+@co.CppBlock( value = "Yes", value = "This one is ok" )
+@co.CppBlock( value = "But this one is not (trailing comma)", )
+
+exception TrailingComma;

@@ -1,0 +1,56 @@
+/*
+	Assists in the definition of a method for a new Coral type.
+
+	The workflow for defining a new method is as follows:
+
+	1. Create a method builder by calling co.ITypeBuilder#defineMethod on
+	a co.ITypeBuilder.
+	2. Use the methods below to specify the method signature.
+	3. Call #createMethod to add the method to the type builder.
+
+	---
+	tags: type-creation
+ */
+interface IMethodBuilder
+{
+	// Type builder for which the method is being defined.
+	readonly ITypeBuilder typeBuilder;
+
+	// Name of the method being defined.
+	readonly string methodName;
+
+	/*
+		Defines the method's return type.
+
+		Raises co.IllegalArgumentException if `type` is invalid.
+		Raises co.NotSupportedException if a return type was already defined.
+	 */
+	void defineReturnType( in IType type )
+		raises IllegalArgumentException, NotSupportedException;
+
+	/*
+		Adds a method parameter.
+
+		Raises co.IllegalNameException if `name` is invalid.
+		Raises co.IllegalArgumentException if `type` is invalid.
+		Raises co.IllegalArgumentException if `isIn` and `isOut` are both false.
+	 */
+	void defineParameter( in string name, in IType type, in bool isIn, in bool isOut )
+		raises IllegalNameException, IllegalArgumentException;
+
+	/*
+		Adds an exception raised by the method.
+
+		Raises co.IllegalArgumentException if `exceptionType` is invalid.
+	 */
+	void defineException( in IException exceptionType )
+		raises IllegalArgumentException;
+
+	/*
+		Creates the method into #typeBuilder.
+
+		Raises co.IllegalNameException if `methodName` clashes with something.
+		Raises co.NotSupportedException if the type was already created.
+	 */
+	void createMethod() raises IllegalNameException, NotSupportedException;
+};

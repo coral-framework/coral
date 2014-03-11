@@ -1,0 +1,13 @@
+/*
+	Describes an array type.
+
+	Represents a one-dimensional array of #elementType.
+
+	---
+	tags: type-introspection
+ */
+interface IArray extends IType
+{
+	// Array element type.
+	readonly IType elementType;
+};

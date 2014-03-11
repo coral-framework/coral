@@ -1,0 +1,11 @@
+/*
+	Provides the `@co.Include` annotation for use with native classes.
+
+	---
+	tags: type-annotation
+ */
+component IncludeAnnotation
+{
+	// The annotation type.
+	provides IInclude annotation;
+};

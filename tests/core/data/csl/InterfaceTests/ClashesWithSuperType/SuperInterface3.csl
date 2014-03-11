@@ -1,0 +1,4 @@
+interface SuperInterface3
+{
+	string address;
+};

@@ -1,0 +1,14 @@
+@co.CppBlock( "At the type" )
+
+interface CppBlock
+{
+	@co.CppBlock( value = "at fieldOne" )
+	bool fieldOne;
+
+	@co.CppBlock( "at fieldTwo" ) readonly string fieldTwo;
+
+	@co.CppBlock( "at methodOne" ) void methodOne();
+
+	@co.CppBlock( "at methodTwo" )
+	double methodTwo( in bool arg1 );
+};

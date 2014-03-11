@@ -1,0 +1,74 @@
+/*
+	Allows an object to provide new services at runtime via _dynamic proxies_.
+
+	**This interface can only be implemented in C++.**
+
+	A _dynamic proxy_ is a service that uses reflection to delegate calls to a
+	co.IDynamicServiceProvider. The provider handles all field and method calls
+	for its proxies via #dynamicGetField, #dynamicSetField and #dynamicInvoke.
+
+	A proxy is created by calling co.IReflector#newDynamicProxy on an interface
+	reflector. For example, in order to provide a service of type `bar.IFoo`
+	at runtime, an object may create a proxy for itself like this:
+
+	~~~cpp
+	co::getType( "bar.IFoo" )->getReflector()->newDynamicProxy( this );
+	~~~
+
+	The created proxy will call #dynamicRegisterService from its constructor.
+	In this call the _provider_ must save a pointer to the proxy---which it
+	must _delete_ at some point---and assign an _id >= 0_ to identify the
+	proxy in all future calls.
+
+	Currently the only safe place to _delete_ a proxy is in the provider's
+	destructor.	**Per-proxy reference counting is not currently supported,
+	but this will be fixed in the next release.**
+
+	---
+	tags: component-model
+ */
+interface IDynamicServiceProvider
+{
+	/*
+		Called when a new `proxy` service is created for this provider.
+
+		This method is called from within the constructor of a proxy
+		created for this provider. It must save a raw pointer to the proxy
+		and return an _id >= 0_ to identify the proxy in all future calls.
+	 */
+	int32 dynamicRegisterService( in IService proxy );
+
+	/*
+		Called when the port through which a proxy is provided is requested.
+
+		**Currently this means a new component type must be defined for every
+		dynamic object layout, which is very limiting. In the next release
+		we will allow for every single object to have a unique set of ports.**
+	 */
+	IPort dynamicGetFacet( in int32 proxyId );
+
+	/*
+		Called when a proxy needs to get the value of a `field`.
+
+		This method should put the field's value into `var`.
+	 */
+	void dynamicGetField( in int32 proxyId, in IField field, in any var );
+
+	/*
+		Called when a proxy needs to set the value of a `field`.
+
+		This method should set the field's value to `value`.
+	 */
+	void dynamicSetField( in int32 proxyId, in IField field, in any value );
+
+	/*
+		Called when a proxy has a `method` invoked.
+
+		Arguments in `args` are in direct order and honor _out_ variables.
+
+		This method must obey the invoked method's contract. It should put
+		the method's return value (if any) into `retVal` and any additional
+		output values into the corresponding variables in `args`.
+	 */
+	void dynamicInvoke( in int32 proxyId, in IMethod method, in any[] args, in any retVal );
+};

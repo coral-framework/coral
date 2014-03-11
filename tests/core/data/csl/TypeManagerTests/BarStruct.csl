@@ -1,0 +1,5 @@
+// depends on IFoo
+struct BarStruct
+{
+	IFoo foo;
+};

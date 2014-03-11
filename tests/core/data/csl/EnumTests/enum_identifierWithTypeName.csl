@@ -1,0 +1,8 @@
+// A valid test enum
+enum enum_identifierWithTypeName
+{
+	enum,
+	int32, // comment
+	string,
+	int16
+};

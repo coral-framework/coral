@@ -1,0 +1,22 @@
+/*
+	Describes a method parameter. See co.IMethod.
+
+	For every parameter, either #isIn or #isOut (or both) must be true.
+
+	---
+	tags: type-introspection
+ */
+interface IParameter
+{
+	// Parameter name.
+	readonly string name;
+
+	// Parameter type.
+	readonly IType type;
+
+	// Whether the parameter is used as input.
+	readonly bool isIn;
+
+	// Whether the parameter is used as output.
+	readonly bool isOut;
+};

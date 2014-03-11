@@ -1,0 +1,16 @@
+@moduleA.Test(
+	1+2*6/2-3/2,
+	b = true,
+	i8 = false,
+	u8 = 300,
+	flt = -0.00075,
+	str = "Hello\nWorld\0This\32is\32awesome\! \
+More.",
+	i32 = 7,
+	i32 = 9
+)
+
+interface AnnotationData
+{
+	bool field1;
+};

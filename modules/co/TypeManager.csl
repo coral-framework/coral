@@ -1,0 +1,9 @@
+/*
+	Implements co.ITypeManager.
+	---
+	tags: private type-system
+ */
+component TypeManager
+{
+	provides ITypeManager typeManager;
+};

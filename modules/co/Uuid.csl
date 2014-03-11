@@ -1,0 +1,39 @@
+/*
+	A 128-bit Universally Unique IDentifier (UUID).
+	---
+	tags: deprecated
+ */
+native class Uuid
+{
+	<c++
+
+		#include <co/reserved/Uuid.h>
+
+	c++>
+
+	// True if this is the null UUID (that is, "00000000-0000-0000-0000000000000000").
+	readonly bool isNull;
+
+	//! Creates an Uuid based on the SHA-1 hash of the specified data string.
+	void createSha1( in string data );
+
+	//! Creates a new random Uuid.
+	void createRandom();
+
+	// Makes this Uuid a null UUID.
+	void clear();
+
+	/*
+		Returns the string representation of this Uuid. UUIDs are formatted according to the
+		pattern "xxxxxxxx-xxxx-xxxx-xxxxxxxxxxxxxxxx", where 'x' is an hexadecimal digit.
+	 */
+	void getString( out string str );
+
+	/*
+		Sets the contents of this Uuid based on a string formatted according to the pattern
+		"{xxxxxxxx-xxxx-xxxx-xxxxxxxxxxxxxxxx}", where 'x' is an hexadecimal digit.
+		The curly braces shown here are optional, but it is safe to include them.
+		If the string is malformed, the Uuid will become null.
+	 */
+	void setString( in string str );
+};

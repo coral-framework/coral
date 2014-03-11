@@ -1,0 +1,30 @@
+/*
+	Proof-of-concept native class that is simply a FILE* wrapper.
+ */
+native class File
+{
+	<c++
+		#include <cstdio>
+		namespace moduleA {
+			typedef FILE* File;
+		} // namespace moduleA
+	c++>
+
+	// Whether the file is open.
+	readonly bool isOpen;
+
+	// Current position within the file stream.
+	uint32 pos;
+
+	// Creates a file with the given name.
+	void open( in string filename, in string mode );
+
+	// Closes the file.
+	void close();
+
+	// Writes a line to the file.
+	void write( in string line );
+
+	// Reads a line from the file.
+	void read( out string line );
+};

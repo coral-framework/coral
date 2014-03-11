@@ -1,0 +1,9 @@
+/*
+	Implements co.IModuleManager.
+	---
+	tags: private module-system
+ */
+component ModuleManager
+{
+	provides IModuleManager moduleManager;
+};

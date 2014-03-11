@@ -1,0 +1,39 @@
+interface TestInterface
+{
+	readonly string nameReadonly;
+
+	string name;
+
+	string[] names;
+
+	IDummy dummyInterfaceField;
+
+	readonly TestInterface selfReferenceField;
+
+	TestEnum testEnum;
+
+	TestStruct testStruct;
+	TestStruct[] testStructArray;
+
+	<c++
+	inline int testCppBlock1()
+	{
+		return 1;
+	}
+	c++>
+
+	IDummy[] dummyInterfaces;
+
+	void testInParameters( in float size, in TestEnum enumValue, in string text, in TestStruct testStruct, in IDummy dummyInterface, in int32[] intList, in IDummy[] interfaces );
+
+	void testOutParameters( out float size, out TestEnum enumValue, out string text, out TestStruct testStruct, out IDummy dummyInterface, out int32[] intList, out IDummy[] interfaces );
+
+	any testAnyReturn( in any param );
+
+	<c++
+	inline int testCppBlock2()
+	{
+		return 2;
+	}
+	c++>
+};

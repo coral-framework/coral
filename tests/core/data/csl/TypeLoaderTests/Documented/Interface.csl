@@ -1,0 +1,16 @@
+// This is the interface Declaration
+/*
+	This could be a multi-line comment
+ */
+interface Interface
+{
+	// and this is the field doc.
+	string name;
+
+	// foo method declaration.
+
+	// using separated.
+
+	/* documentation lines.*/
+	void foo();
+};

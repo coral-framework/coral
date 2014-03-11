@@ -1,0 +1,83 @@
+/*
+	Façade to the type system, with methods to find and create types.
+
+	The entire hierarchy of namespaces---with types and modules---can be
+	traversed from the #rootNS namespace. For example, to reach the `foo.bar`
+	namespace you'd traverse _(root)_⇒`foo`⇒`bar`. However, it's better to use
+	either #findNamespace or #getNamespace for random access to a namespace.
+
+	This façade also provides random access to types. Use #getType to load a
+	type by full name, or #findType to get an existing type (without loading).
+	In order to get an array, simply append "[]" to the type name.
+
+	Get this service from co.ISystem's co.ISystem#types.
+
+	---
+	tags: type-system
+ */
+interface ITypeManager
+{
+	/*
+		The root (or global) namespace. Corresponds to the repository root.
+
+		Provides hierarchical access to all types and modules.
+	 */
+	readonly INamespace rootNS;
+
+	/*
+		Transaction that must be used in order to add types to the system.
+
+		New types are automatically added to this transaction and can only
+		be removed by a successful commit or rollback.
+	 */
+	readonly ITypeTransaction transaction;
+
+ 	/*
+ 		Finds an existing namespace by full name.
+
+ 		Returns null if the namespace has not been created yet.
+ 	 */
+ 	INamespace findNamespace( in string fullName );
+
+	/*
+		Finds an existing type by full name.
+
+		Returns null if the type doesn't exist or has not been loaded yet.
+	 */
+ 	IType findType( in string fullName );
+
+ 	/*
+ 		Gets or creates a namespace by full name.
+
+ 		Raises co.IllegalNameException if `fullName` is invalid.
+ 	 */
+ 	INamespace getNamespace( in string fullName );
+
+	/*
+		Gets or loads a type by full name.
+
+		This method will get or create an array if `fullName` ends with "[]".
+
+		Raises co.IllegalArgumentException if `fullName` is empty or an illegal array type.
+		Raises co.TypeLoadException if an error occurs while loading the type.
+	 */
+	IType getType( in string fullName ) raises IllegalArgumentException, TypeLoadException;
+
+	/*
+		Gets or creates an array of the given `elementType`.
+
+		Raises co.IllegalArgumentException if `elementType` is an illegal array type.
+	 */
+	IArray getArrayOf( in IType elementType ) raises IllegalArgumentException;
+
+	/*
+		Gets or loads a type by full name, without raising exceptions.
+
+		As an alternative to #getType, instead of raising an exception in case
+		of type load errors, this method will fill `errorStack` with details
+		(from the outermost to the innermost error) and return null.
+
+		This method **does not create arrays**, but can get existing arrays.
+	 */
+	IType loadType( in string typeName, out CSLError[] errorStack );
+};

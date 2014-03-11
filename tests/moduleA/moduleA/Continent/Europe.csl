@@ -1,0 +1,6 @@
+enum Europe
+{
+	France,
+	Portugal,
+	England
+};

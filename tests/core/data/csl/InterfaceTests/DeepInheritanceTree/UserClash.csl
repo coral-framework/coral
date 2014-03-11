@@ -1,0 +1,4 @@
+interface UserClash extends Developer
+{
+	string getNumDogs();
+};

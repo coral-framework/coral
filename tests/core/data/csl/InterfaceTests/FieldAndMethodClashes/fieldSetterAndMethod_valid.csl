@@ -1,0 +1,10 @@
+// this test interface should not raise an exeption because the
+// method name is available as the is readonly
+interface fieldSetterAndMethod_valid
+{
+	readonly string age;
+	void setAge();
+	void isAge();
+};
+
+

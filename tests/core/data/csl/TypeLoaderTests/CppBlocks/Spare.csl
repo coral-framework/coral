@@ -1,0 +1,11 @@
+// tests if a single block is beeing processed
+interface Spare
+{
+	string foo;
+
+	<c++
+	//This code block was injected by the compiler using the '<c++' tag
+	void myInjectedFoo() {;}
+	c++>
+};
+
