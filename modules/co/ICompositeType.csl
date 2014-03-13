@@ -16,7 +16,7 @@ interface ICompositeType extends IType
 	/*
 		Finds a member by name, considering inherited members.
 
-		Returns null if no member is found with the given #name.
+		Returns null if no member is found with the given `name`.
 	 */
 	IMember getMember( in string name );
 };
