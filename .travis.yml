@@ -5,13 +5,11 @@ compiler:
   - clang
 
 before_install:
-  - sudo apt-get install libgtest-dev
+  - sudo apt-get install libgtest-dev valgrind
   - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -"
 
 before_script:
-  - pwd
-  - mkdir build
-  - cd build
+  - pwd && mkdir build && cd build
   - cmake -DCMAKE_BUILD_TYPE=Debug ..
 
 script: make testsuites && make test
