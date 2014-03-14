@@ -17,4 +17,4 @@ script: make testsuites && make test
 after_success:
   - lcov --capture --directory src/core --output-file coverage_full.info
   - lcov --remove coverage_full.info "*/include/*" "*/generated/*" "*.l" "*.cc" -o coverage_clean.info
-  - coveralls-lcov coverage_clean.info
+  - cd .. && coveralls-lcov build/coverage_clean.info
