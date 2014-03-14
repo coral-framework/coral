@@ -30,9 +30,9 @@
 
 cmake_minimum_required( VERSION 2.8.5 )
 
-################################################################################
+###############################################################################
 # Initialization
-################################################################################
+###############################################################################
 
 # Initialize CORAL_ROOT
 if( NOT CORAL_ROOT )
@@ -98,9 +98,16 @@ endforeach()
 set( CORAL_CONFIG_SUFFIXES "" ${CORAL_CONFIG_SUFFIXES} ) # prepend the empty suffix
 list( REMOVE_DUPLICATES CORAL_CONFIG_SUFFIXES )
 
-################################################################################
+# Set TEST_COVERAGE to true to globally enable test coverage in GCC/Clang.
+if( CMAKE_COMPILER_IS_GNUCXX AND TEST_COVERAGE )
+	set( COVERAGE_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage" )
+	set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COVERAGE_FLAGS}")
+	set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${COVERAGE_FLAGS}")
+endif()
+
+###############################################################################
 # Function to get the current CORAL_PATH as a comma-separated string
-################################################################################
+###############################################################################
 function( CORAL_GET_PATH_STRING coralPathStr )
 	set( result )
 	foreach( repo ${CORAL_PATH} )
@@ -113,9 +120,9 @@ function( CORAL_GET_PATH_STRING coralPathStr )
 	set( ${coralPathStr} ${result} PARENT_SCOPE )
 endfunction()
 
-################################################################################
+###############################################################################
 # Function to generate mappings for a list of types
-################################################################################
+###############################################################################
 function( CORAL_GENERATE_MAPPINGS generatedHeaders )
 	set( outDir "${CMAKE_CURRENT_BINARY_DIR}/generated" )
 
@@ -150,9 +157,9 @@ function( CORAL_GENERATE_MAPPINGS generatedHeaders )
 	set_property( DIRECTORY APPEND PROPERTY ADDITIONAL_MAKE_CLEAN_FILES "${outDir}/__coralc_cache.lua" )
 endfunction()
 
-################################################################################
+###############################################################################
 # Function to generate code for a module (all extra args are passed to coralc)
-################################################################################
+###############################################################################
 function( CORAL_GENERATE_MODULE generatedSourceFiles moduleName )
 	set( outDir "${CMAKE_CURRENT_BINARY_DIR}/generated" )
 
@@ -197,9 +204,9 @@ function( CORAL_GENERATE_MODULE generatedSourceFiles moduleName )
 	set_property( DIRECTORY APPEND PROPERTY ADDITIONAL_MAKE_CLEAN_FILES "${outDir}/__coralc_cache.lua" )
 endfunction()
 
-################################################################################
+###############################################################################
 # Defines a target to generate docs for a module. Passes extra args to coralc.
-################################################################################
+###############################################################################
 function( CORAL_GENERATE_DOX targetName moduleName outDir )
 	CORAL_GET_PATH_STRING( coralPathStr )
 	add_custom_target( ${targetName}
@@ -210,9 +217,9 @@ function( CORAL_GENERATE_DOX targetName moduleName outDir )
 	)
 endfunction()
 
-################################################################################
+###############################################################################
 # Macro to set common properties for all targets.
-################################################################################
+###############################################################################
 macro( CORAL_TARGET_PROPERTIES targetName )
 	# Artifacts always get config-specific a suffix, except in release mode:
 	set_target_properties( ${targetName} PROPERTIES
@@ -266,17 +273,17 @@ macro( CORAL_TARGET_PROPERTIES targetName )
 	endforeach()
 endmacro( CORAL_TARGET_PROPERTIES )
 
-################################################################################
+###############################################################################
 # Macro to set common build options for targets that use Coral.
-################################################################################
+###############################################################################
 macro( CORAL_TARGET targetName )
 	CORAL_TARGET_PROPERTIES( ${targetName} )
 	target_link_libraries( ${targetName} ${CORAL_LIBRARIES} )
 endmacro( CORAL_TARGET )
 
-################################################################################
+###############################################################################
 # Macro to set common build options for Coral Module targets.
-################################################################################
+###############################################################################
 macro( CORAL_MODULE_TARGET moduleName targetName )
 	string( REPLACE "." "/" modulePath ${moduleName} )
 	set_target_properties( ${targetName} PROPERTIES
@@ -287,9 +294,9 @@ macro( CORAL_MODULE_TARGET moduleName targetName )
 	CORAL_TARGET( ${targetName} )
 endmacro( CORAL_MODULE_TARGET )
 
-################################################################################
+###############################################################################
 # Macro to build Coral modules comprised only of CSL types (no implementations).
-################################################################################
+###############################################################################
 macro( CORAL_BUILD_CSL_MODULE moduleName )
 	CORAL_GENERATE_MODULE( _GENERATED_SOURCES ${moduleName} )
 	include_directories( ${CORAL_INCLUDE_DIRS} "${CMAKE_CURRENT_BINARY_DIR}/generated" )
@@ -298,9 +305,9 @@ macro( CORAL_BUILD_CSL_MODULE moduleName )
 	source_group( "@Generated" FILES ${_GENERATED_SOURCES} )
 endmacro( CORAL_BUILD_CSL_MODULE )
 
-################################################################################
+###############################################################################
 # Macro to set env vars for a test executable so it finds the Coral library.
-################################################################################
+###############################################################################
 macro( CORAL_TEST_ENVIRONMENT testName )
 	set_property( TEST ${testName} APPEND PROPERTY ENVIRONMENT
 		PATH=${CORAL_BIN_ROOT}/lib
@@ -309,39 +316,28 @@ macro( CORAL_TEST_ENVIRONMENT testName )
 	)
 endmacro( CORAL_TEST_ENVIRONMENT )
 
-################################################################################
+###############################################################################
 # Macro to add a test target that invokes the Coral Launcher passing arguments.
-################################################################################
+###############################################################################
 macro( CORAL_ADD_TEST testName )
 	CORAL_GET_PATH_STRING( coralPathStr )
 	add_test( NAME ${testName} COMMAND ${CORAL_LAUNCHER} --mode $<CONFIGURATION> -p "${coralPathStr}" ${ARGN} )
 	CORAL_TEST_ENVIRONMENT( ${testName} )
 endmacro( CORAL_ADD_TEST )
 
-################################################################################
-# Macro to enable generation of 'test coverage' data for a target.
-# Only works on UNIX, and only if the CMake var 'TEST_COVERAGE' is enabled.
-################################################################################
-macro( CORAL_ENABLE_TEST_COVERAGE targetName )
-	if( UNIX AND TEST_COVERAGE )
-		set_property( TARGET ${targetName} APPEND PROPERTY COMPILE_FLAGS "-fprofile-arcs;-ftest-coverage" )
-		set_property( TARGET ${targetName} APPEND PROPERTY LINK_FLAGS "-fprofile-arcs;-ftest-coverage" )
-	endif()
-endmacro( CORAL_ENABLE_TEST_COVERAGE )
-
-################################################################################
+###############################################################################
 # Adds a file to the list of files to be cleaned in a directory
-################################################################################
+###############################################################################
 macro( CORAL_ADD_TO_MAKE_CLEAN filename )
 	set_property( DIRECTORY APPEND PROPERTY ADDITIONAL_MAKE_CLEAN_FILES "${filename}" )
 endmacro( CORAL_ADD_TO_MAKE_CLEAN )
 
-################################################################################
+###############################################################################
 # Macro to create a custom target that generates documentation using Doxygen.
 # The target will configure_file() "${CMAKE_CURRENT_SOURCE_DIR}/${doxyfileName}"
 # then run Doxygen on the resulting file from within the current binary dir.
 # All extra macro arguments (${ARGN}) will be passed along to Doxygen.
-################################################################################
+###############################################################################
 macro( CORAL_GENERATE_DOXYGEN targetName doxyfileName )
 	find_package( Doxygen )
 	if( DOXYGEN_FOUND )
@@ -386,9 +382,9 @@ macro( CORAL_GENERATE_DOXYGEN targetName doxyfileName )
 	endif( DOXYGEN_FOUND )
 endmacro( CORAL_GENERATE_DOXYGEN )
 
-################################################################################
+###############################################################################
 # Find the Coral Framework
-################################################################################
+###############################################################################
 function( _coral_find_program _name )
 	find_program( ${_name}
 		NAMES ${ARGN}

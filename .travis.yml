@@ -7,9 +7,13 @@ compiler:
 before_install:
   - sudo apt-get install libgtest-dev valgrind
   - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -"
+  - sudo pip install cpp-coveralls --use-mirrors
 
 before_script:
   - pwd && mkdir build && cd build
-  - cmake -DCMAKE_BUILD_TYPE=Debug ..
+  - cmake -DCMAKE_BUILD_TYPE=Debug -DTEST_COVERAGE=On ..
 
 script: make testsuites && make test
+
+after_success:
+  - coveralls -e src/lua -e tests -E ".*/CSL\\.l" -E ".*/scanner\\.cc"
