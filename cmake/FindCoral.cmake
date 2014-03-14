@@ -98,13 +98,6 @@ endforeach()
 set( CORAL_CONFIG_SUFFIXES "" ${CORAL_CONFIG_SUFFIXES} ) # prepend the empty suffix
 list( REMOVE_DUPLICATES CORAL_CONFIG_SUFFIXES )
 
-# Set TEST_COVERAGE to true to globally enable test coverage in GCC/Clang.
-if( CMAKE_COMPILER_IS_GNUCXX AND TEST_COVERAGE )
-	set( COVERAGE_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage" )
-	set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COVERAGE_FLAGS}")
-	set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${COVERAGE_FLAGS}")
-endif()
-
 ###############################################################################
 # Function to get the current CORAL_PATH as a comma-separated string
 ###############################################################################
@@ -254,7 +247,8 @@ macro( CORAL_TARGET_PROPERTIES targetName )
 		add_definitions( -D_VARIADIC_MAX=10 ) # defaults to 5, GTest requires 10
 	else()
 		# Hide all DSO symbols by default (Ref: http://gcc.gnu.org/wiki/Visibility)
-		set_property( TARGET ${targetName} APPEND PROPERTY COMPILE_FLAGS "-fvisibility=hidden" )
+		set_property( TARGET ${targetName} APPEND_STRING PROPERTY
+			COMPILE_FLAGS "-fvisibility=hidden " )
 	endif()
 
 	# Adjust settings on a per-config-type basis
@@ -324,6 +318,19 @@ macro( CORAL_ADD_TEST testName )
 	add_test( NAME ${testName} COMMAND ${CORAL_LAUNCHER} --mode $<CONFIGURATION> -p "${coralPathStr}" ${ARGN} )
 	CORAL_TEST_ENVIRONMENT( ${testName} )
 endmacro( CORAL_ADD_TEST )
+
+###############################################################################
+# Macro to setup a target for test coverage.
+# Only enabled if 'TEST_COVERAGE' is true, and if using GCC/Clang.
+###############################################################################
+macro( CORAL_TARGET_FOR_COVERAGE targetName )
+	if( CMAKE_COMPILER_IS_GNUCXX AND TEST_COVERAGE )
+		set_property( TARGET ${targetName} APPEND_STRING PROPERTY
+			COMPILE_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage " )
+		set_property( TARGET ${targetName} APPEND_STRING PROPERTY
+			LINK_FLAGS "-fprofile-arcs -ftest-coverage " )
+	endif()
+endmacro( CORAL_TARGET_FOR_COVERAGE )
 
 ###############################################################################
 # Adds a file to the list of files to be cleaned in a directory

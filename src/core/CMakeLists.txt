@@ -87,6 +87,8 @@ set_target_properties( core PROPERTIES
 
 CORAL_TARGET_PROPERTIES( core )
 
+CORAL_TARGET_FOR_COVERAGE( core )
+
 if( UNIX )
     target_link_libraries( core dl )
 endif()

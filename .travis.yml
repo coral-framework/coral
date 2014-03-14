@@ -5,9 +5,9 @@ compiler:
   - clang
 
 before_install:
-  - sudo apt-get install libgtest-dev valgrind
+  - sudo apt-get install libgtest-dev valgrind lcov
   - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -"
-  - sudo pip install cpp-coveralls --use-mirrors
+  - sudo gem install coveralls-lcov json
 
 before_script:
   - pwd && mkdir build && cd build
@@ -16,4 +16,6 @@ before_script:
 script: make testsuites && make test
 
 after_success:
-  - coveralls -e src/lua -e tests -E ".*/CSL\\.l" -E ".*/scanner\\.cc"
+  - lcov --capture --directory src/core --output-file coverage_full.info
+  - lcov --remove coverage_full.info "*/include/*" "*/generated/*" "*.l" "*.cc" -o coverage_clean.info
+  - coveralls-lcov coverage_clean.info
