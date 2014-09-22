@@ -4,14 +4,14 @@
 	For example, the following interface would be annotated with a
 	co.ICppBlock containg `// hello`:
 
-	~~~ csl
+	``` csl
 	interface ISample
 	{
 		<c++
 			// hello
 		c++>
 	};
-	~~~
+	```
 
 	---
 	tags: type-annotation

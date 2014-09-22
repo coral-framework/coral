@@ -18,7 +18,7 @@
 	For example, to create a native class `MyValue` in module `mymodule` as
 	a forward declaration to `mylib::RealClass`:
 
-	~~~ csl
+	``` csl
 	@co.Include("myLib/RealClass.h")
 	native class MyValue
 	{
@@ -27,7 +27,7 @@
 			namespace mymodule { typedef myLib::RealClass MyValue; }
 		c++>
 	}
-	~~~
+	```
 
 	This annotation is implemented by co.IncludeAnnotation.
 

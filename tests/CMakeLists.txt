@@ -2,17 +2,15 @@
 # Unit Tests
 ########################################################################
 
-# Disable sign-compare warnings (unavoidable when using GTest)
-if( NOT MSVC )
-	add_definitions( "-Wno-sign-compare" )
-endif()
-
 # We require the GTest Framework
 find_package( GTest )
 if( GTEST_FOUND )
+	# Disable sign-compare warnings caused by GTest
+	if( NOT MSVC )
+		add_definitions( "-Wno-sign-compare" )
+	endif()
 
-	# On UNIX, GTest generally depends on pthreads, and since CMake
-	# does not add pthreads to GTEST_LIBRARIES, we do it...
+	# On UNIX, GTest needs pthreads, but it's not included in GTEST_LIBRARIES...
 	if( UNIX )
 		list( APPEND GTEST_LIBRARIES pthread )
 	endif()
@@ -21,9 +19,11 @@ if( GTEST_FOUND )
 	include_directories( ${GTEST_INCLUDE_DIRS} )
 
 	# Check if Valgrind is available for the memory check tests
-	find_program( VALGRIND_COMMAND valgrind )
-	if( NOT VALGRIND_COMMAND )
-		message( "WARNING: valgrind not found - memory tests have been disabled!" )
+	if( UNIX )
+		find_program( VALGRIND_COMMAND valgrind )
+		if( NOT VALGRIND_COMMAND )
+			message( "WARNING: valgrind not found - memory tests have been disabled!" )
+		endif()
 	endif()
 
 	add_subdirectory( core )

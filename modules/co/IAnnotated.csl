@@ -6,15 +6,15 @@
 	Use #findAnnotation to get an annotation of a certain type.
 	For example, in Lua:
 
-	~~~ lua
+	``` lua
 	local annotation = svc:findAnnotation( co.Type "my.IAnnotationType" )
-	~~~
+	```
 
 	And in C++, for convenience, you may pass the type as a template argument:
 
-	~~~ cpp
+	``` cpp
 	co::IAnnotationRef a = svc->findAnnotation<my::IAnnotationType>();
-	~~~
+	```
 
 	---
 	tags: type-annotation

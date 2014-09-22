@@ -13,7 +13,7 @@
 	the _teardown_ process resets the system to nil by disintegrating and
 	disposing all modules. The grayed boxes in the center correspond to the
 	_module events_ that are triggered during a set-up/teardown cycle.
-	![](/img/system-life-cycle.svg 'The system's life cycle'){:.centerfig}
+	![](system-life-cycle.svg 'The system's life cycle'){:.centerfig}
 
 	The co.ISystem service is Coral's only _singleton_. See the documentation
 	on [how to obtain it in C++](/reference/languages/cpp#getSystem)
@@ -41,8 +41,8 @@ interface ISystem
 	/*
 		Loads all `requiredModules` (if any) and integrates the system.
 
-		This method must be called when #state is `SystemState_None`.
-		It will change to `SystemState_Integrated` on success,
+		Must be called when the system's #state is `SystemState_None`.
+		This method changes #state to `SystemState_Integrated` on success,
 		or back to `SystemState_None` on exceptions.
 
 		Raises co.IllegalStateException if #state isn't `SystemState_None`.

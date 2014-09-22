@@ -2,7 +2,7 @@
 # Initialization
 ########################################################################
 
-cmake_minimum_required( VERSION 2.8 )
+cmake_minimum_required( VERSION 2.8.12 )
 
 project( CORAL )
 
@@ -16,7 +16,7 @@ set( CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH} )
 # Coral Version
 set( CORAL_VERSION_MAJOR	"0" )
 set( CORAL_VERSION_MINOR	"8" )
-set( CORAL_VERSION_PATCH	"0" )
+set( CORAL_VERSION_PATCH	"1" )
 set( CORAL_VERSION "${CORAL_VERSION_MAJOR}.${CORAL_VERSION_MINOR}.${CORAL_VERSION_PATCH}" )
 
 # Code generation rules revision

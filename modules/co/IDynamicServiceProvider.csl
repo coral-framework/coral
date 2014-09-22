@@ -11,9 +11,9 @@
 	reflector. For example, in order to provide a service of type `bar.IFoo`
 	at runtime, an object may create a proxy for itself like this:
 
-	~~~cpp
+	``` cpp
 	co::getType( "bar.IFoo" )->getReflector()->newDynamicProxy( this );
-	~~~
+	```
 
 	The created proxy will call #dynamicRegisterService from its constructor.
 	In this call the _provider_ must save a pointer to the proxy---which it

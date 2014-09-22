@@ -30,7 +30,7 @@ TEST( CryptoHashTests, sha1TextInput )
 
 	// test the Zero Sha1 hash (empty)
 	sha1.reset();
-	sha1.addData("");
+	sha1.addData( "" );
 	sha1.getResult( result );
 	result.toString( textResult );
 

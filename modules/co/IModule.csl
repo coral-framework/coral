@@ -1,7 +1,7 @@
 /*
-	Bundles a set of extensions.
+	A collection of types and resources.
 
-	A module emerges from a set of #parts loaded from a #namespace. Each module
+	A module consists in a set of #parts loaded from a #namespace. Each module
 	part represents an artifact---such as a library, script or data file---that
 	adds functionality to the system.
 
@@ -26,7 +26,7 @@
  */
 interface IModule
 {
-	// Namespace from which the module was loaded.
+	// Namespace where the module is located.
 	readonly INamespace namespace;
 
 	// Current state of the module and all its #parts.
