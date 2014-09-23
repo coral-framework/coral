@@ -4,12 +4,16 @@ compiler:
   - gcc
 
 before_install:
-  - sudo apt-get install libgtest-dev valgrind lcov
+  - sudo add-apt-repository --yes ppa:kalakris/cmake
+  - sudo apt-get update -qq
+
+install:
+  - sudo apt-get install cmake libgtest-dev valgrind lcov
   - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -"
   - gem install coveralls-lcov json
 
 before_script:
-  - pwd && mkdir build && cd build && cmake --version
+  - pwd && mkdir build && cd build
   - cmake -DCMAKE_BUILD_TYPE=Debug -DTEST_COVERAGE=On ..
 
 script: make testsuites && make test
