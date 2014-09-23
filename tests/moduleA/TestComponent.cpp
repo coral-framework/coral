@@ -112,27 +112,18 @@ public:
 		IDummy* dummyInterface, co::Slice<co::int32> intList,
 		co::Slice<IDummy*> interfaces )
 	{
-		size = -1;
-		enumValue = First;
 		assert( text != "" );
-
 		assert( testStruct.anInt16 > 0 );
-
-		dummyInterface = NULL;
-
 		assert( !intList.isEmpty() );
-
-		co::int32 myFirstInt = intList.getFirst();
-		assert( myFirstInt > 0 );
-		myFirstInt = -1;
-
+		assert( intList.getFirst() > 0 );
 		assert( !interfaces.isEmpty() );
-		IDummy* firstInterface = interfaces.getFirst();
-		firstInterface = NULL;
-
-		// suppress warnings in release mode
+    
+    CORAL_UNUSED( size );
+    CORAL_UNUSED( enumValue );
 		CORAL_UNUSED( text );
-		CORAL_UNUSED( testStruct );
+    CORAL_UNUSED( testStruct );
+    CORAL_UNUSED( dummyInterface );
+    CORAL_UNUSED( intList );
 		CORAL_UNUSED( interfaces );
 	}
 

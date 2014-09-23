@@ -177,20 +177,6 @@ const uint32	MAX_UINT32	=  0xFFFFFFFF;
 //! Supresses 'unused parameter' warnings.
 #define CORAL_UNUSED( x ) (void)x;
 
-/*!
-	\def CORAL_FORCE_INLINE
-	\brief Portable function attribute to force inlining.
-	\def CORAL_NO_INLINE
-	\brief Portable function attribute to forbid inlining.
- */
-#if defined(CORAL_CC_MSVC)
-	#define CORAL_FORCE_INLINE __forceinline 
-	#define CORAL_NO_INLINE __declspec(noinline)
-#else // assumes the compiler is GCC-compatible 
-	#define CORAL_FORCE_INLINE __attribute__((always_inline)) 
-	#define CORAL_NO_INLINE __attribute__((noinline)) 
-#endif 
-
 
 //------ Portable shared-library interface attributes --------------------------
 
