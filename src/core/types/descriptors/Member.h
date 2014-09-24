@@ -26,7 +26,7 @@ public:
 	{
 		_owner = owner;
 
-		assert( index < MAX_UINT32 );
+		assert( index < UINT32_MAX );
 		_index = static_cast<uint16>( index );
 	}
 

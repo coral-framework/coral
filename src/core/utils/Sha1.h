@@ -1,5 +1,5 @@
-#ifndef _CORAL_UTILS_SHA1_H_
-#define _CORAL_UTILS_SHA1_H_
+#ifndef _CO_SHA1_H_
+#define _CO_SHA1_H_
 
 #include <cstdint>
 
@@ -21,9 +21,9 @@ struct Context {
 
 const uint8_t DIGEST_SIZE = 20;
 
-void init(Context *context);
-void update(Context *context, const uint8_t *data, uint32_t length);
-void final(Context *context, uint8_t digest[DIGEST_SIZE]);
+void init(Context* context);
+void update(Context* context, const uint8_t* data, uint32_t length);
+void final(Context* context, uint8_t digest[DIGEST_SIZE]);
 
 }  // namespace sha1
 

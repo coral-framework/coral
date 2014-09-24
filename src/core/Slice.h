@@ -7,8 +7,6 @@ namespace co {
 
 template<typename T> class TSlice;
 
-#ifndef DOXYGEN
-
 // Instructs Coral how to take a Slice<T> out of a container C.
 template<typename T, typename C>
 struct Slicer
@@ -69,8 +67,6 @@ struct Slicer<T, co::TSlice<ET> >
 {
 	static const bool isValid = false;
 };
-
-#endif // DOXYGEN
 
 /*!
 	\brief A const iterator for one-dimensional arrays.

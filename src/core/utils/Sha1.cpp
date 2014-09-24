@@ -1,18 +1,16 @@
-// C++ re-implementation of the SHA-1 algorithm (based on public domain code)
-
 #include "Sha1.h"
 #include <co/Platform.h>
 #include <algorithm>
 
 namespace {
-  
+
 using namespace sha1;
 
 uint32_t rol(uint32_t value, uint8_t bits) {
   return (value << bits) | (value >> (32 - bits));
 }
 
-uint32_t blk0(Block64 &b64, uint8_t i) {
+uint32_t blk0(Block64& b64, uint8_t i) {
 #if CORAL_BYTE_ORDER == CORAL_LITTLE_ENDIAN
   return (b64.l[i] = (rol(b64.l[i], 24) & 0xFF00FF00) |
                      (rol(b64.l[i], 8) & 0x00FF00FF));
@@ -21,44 +19,44 @@ uint32_t blk0(Block64 &b64, uint8_t i) {
 #endif
 }
 
-uint32_t blk(Block64 &b64, uint8_t i) {
+uint32_t blk(Block64& b64, uint8_t i) {
   return (b64.l[i & 15] = rol(b64.l[(i + 13) & 15] ^ b64.l[(i + 8) & 15] ^
                                   b64.l[(i + 2) & 15] ^ b64.l[i & 15],
                               1));
 }
 
-void R0(uint32_t v, uint32_t &w, uint32_t x, uint32_t y, uint32_t &z, uint8_t i,
-        Block64 &b64) {
+void R0(uint32_t v, uint32_t& w, uint32_t x, uint32_t y, uint32_t& z, uint8_t i,
+        Block64& b64) {
   z += ((w & (x ^ y)) ^ y) + blk0(b64, i) + 0x5A827999 + rol(v, 5);
   w = rol(w, 30);
 }
 
-void R1(uint32_t v, uint32_t &w, uint32_t x, uint32_t y, uint32_t &z, uint8_t i,
-        Block64 &b64) {
+void R1(uint32_t v, uint32_t& w, uint32_t x, uint32_t y, uint32_t& z, uint8_t i,
+        Block64& b64) {
   z += ((w & (x ^ y)) ^ y) + blk(b64, i) + 0x5A827999 + rol(v, 5);
   w = rol(w, 30);
 }
 
-void R2(uint32_t v, uint32_t &w, uint32_t x, uint32_t y, uint32_t &z, uint8_t i,
-        Block64 &b64) {
+void R2(uint32_t v, uint32_t& w, uint32_t x, uint32_t y, uint32_t& z, uint8_t i,
+        Block64& b64) {
   z += (w ^ x ^ y) + blk(b64, i) + 0x6ED9EBA1 + rol(v, 5);
   w = rol(w, 30);
 }
 
-void R3(uint32_t v, uint32_t &w, uint32_t x, uint32_t y, uint32_t &z, uint8_t i,
-        Block64 &b64) {
+void R3(uint32_t v, uint32_t& w, uint32_t x, uint32_t y, uint32_t& z, uint8_t i,
+        Block64& b64) {
   z += (((w | x) & y) | (w & x)) + blk(b64, i) + 0x8F1BBCDC + rol(v, 5);
   w = rol(w, 30);
 }
 
-void R4(uint32_t v, uint32_t &w, uint32_t x, uint32_t y, uint32_t &z, uint8_t i,
-        Block64 &b64) {
+void R4(uint32_t v, uint32_t& w, uint32_t x, uint32_t y, uint32_t& z, uint8_t i,
+        Block64& b64) {
   z += (w ^ x ^ y) + blk(b64, i) + 0xCA62C1D6 + rol(v, 5);
   w = rol(w, 30);
 }
 
 //! Worker function that hashes a 64-byte block.
-void transform(uint32_t state[5], Block64 &b64) {
+void transform(uint32_t state[5], Block64& b64) {
   // copy context->state[] to working vars
   uint32_t a = state[0];
   uint32_t b = state[1];
@@ -160,7 +158,7 @@ void transform(uint32_t state[5], Block64 &b64) {
 
 namespace sha1 {
 
-void init(Context *context) {
+void init(Context* context) {
   context->state[0] = 0x67452301;
   context->state[1] = 0xEFCDAB89;
   context->state[2] = 0x98BADCFE;
@@ -170,11 +168,10 @@ void init(Context *context) {
 }
 
 // Run your data through this.
-void update(Context *context, const uint8_t *data, uint32_t length) {
+void update(Context* context, const uint8_t* data, uint32_t length) {
   uint32_t j = (context->count[0] >> 3) & 63;
 
-  if ((context->count[0] += length << 3) < (length << 3))
-    context->count[1]++;
+  if ((context->count[0] += length << 3) < (length << 3)) context->count[1]++;
 
   context->count[1] += (length >> 29);
 
@@ -197,7 +194,7 @@ void update(Context *context, const uint8_t *data, uint32_t length) {
 }
 
 // Add padding and return the message digest.
-void final(Context *context, uint8_t digest[DIGEST_SIZE]) {
+void final(Context* context, uint8_t digest[DIGEST_SIZE]) {
   uint8_t finalCount[8];
   for (uint8_t i = 0; i < 8; ++i) {
     // endian independent
@@ -205,10 +202,10 @@ void final(Context *context, uint8_t digest[DIGEST_SIZE]) {
         (context->count[i >= 4 ? 0 : 1] >> ((3 - (i & 3)) * 8)) & 255);
   }
 
-  update(context, reinterpret_cast<const uint8_t *>("\200"), 1);
+  update(context, reinterpret_cast<const uint8_t*>("\200"), 1);
 
   while ((context->count[0] & 504) != 448) {
-    update(context, reinterpret_cast<const uint8_t *>("\0"), 1);
+    update(context, reinterpret_cast<const uint8_t*>("\0"), 1);
   }
 
   update(context, finalCount, 8);

@@ -51,7 +51,7 @@ public:
 	virtual void addData( const uint8* data, size_t length )
 	{
 		assertNoResult();
-		assert( length < co::MAX_UINT32 );
+		assert( length < UINT32_MAX );
 		sha1::update( &_ctx, data, static_cast<co::uint32>( length ) );
 	}
 

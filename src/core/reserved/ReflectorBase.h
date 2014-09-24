@@ -85,8 +85,6 @@ protected:
 /* Auxiliary templates used internally by the generated reflectors          */
 /****************************************************************************/
 
-#ifndef DOXYGEN
-
 CORAL_EXPORT void* checkInstance( const Any& any, ICompositeType* ct, IMember* member );
 
 template<typename T>
@@ -94,8 +92,6 @@ T* checkInstance( const Any& any, IMember* member )
 {
 	return reinterpret_cast<T*>( checkInstance( any, typeOf<T>::get(), member ) );
 }
-
-#endif
 
 } // namespace co
 

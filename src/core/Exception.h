@@ -49,9 +49,7 @@ private:
 	std::string _message;
 };
 
-#ifndef DOXYGEN
 template<> struct kindOf<Exception> : public kindOfBase<TK_EXCEPTION> {};
-#endif // DOXYGEN
 
 } // namespace co
 

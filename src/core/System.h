@@ -8,9 +8,7 @@
 
 namespace co {
 
-/*!
-	Implements co.ISystem.
- */
+// Implements co.ISystem.
 class System : public System_Base
 {
 public:

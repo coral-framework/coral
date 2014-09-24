@@ -1,0 +1,16 @@
+---
+BasedOnStyle: Google
+Language: Cpp
+Standard: Cpp11
+TabWidth: 2
+AlwaysBreakTemplateDeclarations: false
+
+# clang-format 3.5
+DerivePointerBinding: false
+PointerBindsToType: true
+
+# clang-format 3.6
+#PointerAlignment: right
+#DerivePointerAlignment: false
+
+...

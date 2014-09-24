@@ -4,4 +4,4 @@
 #include <co/Slice.h>
 #include <co/RefPtr.h>
 
-#endif // _CO_COMMON_H_
+#endif  // _CO_COMMON_H_

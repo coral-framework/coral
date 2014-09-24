@@ -402,14 +402,14 @@ TEST( AnyTests, setGetUInt16 )
 
 TEST( AnyTests, setGetInt32 )
 {
-	setAndGetTest<co::int32>( co::MIN_INT32, co::MIN_INT32 + 1 );
-	setAndGetTest<co::int32>( co::MAX_INT32, co::MAX_INT32 - 1 );
+	setAndGetTest<co::int32>( INT32_MIN, INT32_MIN + 1 );
+	setAndGetTest<co::int32>( INT32_MAX, INT32_MAX - 1 );
 }
 
 TEST( AnyTests, setGetUInt32 )
 {
 	setAndGetTest<co::uint32>( 0, -1 );
-	setAndGetTest<co::uint32>( co::MAX_UINT32, co::MAX_UINT32 - 1 );
+	setAndGetTest<co::uint32>( UINT32_MAX, UINT32_MAX - 1 );
 }
 
 TEST( AnyTests, setGetFloat )
@@ -649,8 +649,8 @@ TEST( AnyTests, coercionsFromBool )
 TEST( AnyTests, coercionsFromUInt32 )
 {
 	co::Any a0; a0.setIn<co::uint32>( 0 );
-	co::Any a1; a1.setIn<co::uint32>( co::MAX_INT16 );
-	co::Any a2; a2.setIn<co::uint32>( co::MAX_UINT32 );
+	co::Any a1; a1.setIn<co::uint32>( INT16_MAX );
+	co::Any a2; a2.setIn<co::uint32>( UINT32_MAX );
 
 	EXPECT_ANY_STREQ( a0, "in uint32: 0" );
 	EXPECT_ANY_STREQ( a1, "in uint32: 32767" );
@@ -663,13 +663,13 @@ TEST( AnyTests, coercionsFromUInt32 )
 
 	// to int16
 	EXPECT_EQ( 0, a0.get<co::int16>() );
-	EXPECT_EQ( co::MAX_INT16, a1.get<co::int16>() );
+	EXPECT_EQ( INT16_MAX, a1.get<co::int16>() );
 	EXPECT_EQ( -1, a2.get<co::int16>() ); // truncation + 2's complement = -1
 
 	// to double
 	EXPECT_EQ( 0.0, a0.get<double>() );
-	EXPECT_EQ( static_cast<double>( co::MAX_INT16 ), a1.get<double>() );
-	EXPECT_EQ( static_cast<double>( co::MAX_UINT32 ), a2.get<double>() );
+	EXPECT_EQ( static_cast<double>( INT16_MAX ), a1.get<double>() );
+	EXPECT_EQ( static_cast<double>( UINT32_MAX ), a2.get<double>() );
 
 	// to enum (co::TypeKind)
 	EXPECT_EQ( co::TK_NULL, a0.get<co::TypeKind>() );

@@ -21,7 +21,6 @@ set( EXTRA_SOURCES
 	${CORE_SOURCE_DIR}/utils/Properties.h
 	${CORE_SOURCE_DIR}/utils/Properties.cpp
 	${CORE_SOURCE_DIR}/utils/StringTokenizer.h
-	${CORE_SOURCE_DIR}/utils/StringTokenizer.cpp
 )
 
 ########################################################################

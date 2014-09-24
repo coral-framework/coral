@@ -15,8 +15,6 @@ namespace co {
 class Any;
 class AnyValue;
 
-#ifndef DOXYGEN
-
 //! Private namespace with auxiliary code for co::Any.
 namespace __any {
 
@@ -224,8 +222,6 @@ struct Variable<const std::vector<co::RefPtr<T> >&>
 };
 
 } // namespace __any
-
-#endif // DOXYGEN
 
 /*!
 	\brief An intermediate representation for variables in the Coral type system, used for reflection.
@@ -627,24 +623,18 @@ private:
 	Any _any;
 };
 
-#ifndef DOXYGEN
 template<> struct kindOf<Any> { static const TypeKind kind = TK_ANY; };
 template<> struct kindOf<AnyValue> { static const TypeKind kind = TK_ANY; };
 inline void swap( Any& a, Any& b ) { a.swap( b ); }
 inline void swap( AnyValue& a, AnyValue& b ) { a.swap( b ); }
-#endif // DOXYGEN
 
 } // namespace co
-
-#ifndef DOXYGEN
 
 // std::swap specialization for co::Any:
 namespace std {
 template<> inline void swap( co::Any& a, co::Any& b ) { a.swap( b ); }
 template<> inline void swap( co::AnyValue& a, co::AnyValue& b ) { a.swap( b ); }
 } // namespace std
-
-#endif // DOXYGEN
 
 //! Outputs the type of variable in a co::Any. Usage: "os << any.state". \relates co::Any
 CORAL_EXPORT std::ostream& operator<<( std::ostream& os, const co::__any::State& s );
