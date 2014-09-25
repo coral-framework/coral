@@ -126,7 +126,7 @@ void streamOut( std::ostream& os, const co::Any& var )
 			double scalar;
 			castTo<double>( kind, var.isIn() ? &var.state.data : var.state.data.ptr, &scalar );
 
-			#ifdef CORAL_OS_WIN
+			#ifdef CORAL_OS_WINDOWS
 				// makes windows compatible with the rest of the world
 				_set_output_format( _TWO_DIGIT_EXPONENT );
 			#endif

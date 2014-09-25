@@ -19,57 +19,57 @@ local askedForList = false
 local askedForVersion = false
 
 local flags = {
-	-- Aliases
-	g = 'generate',
-	p = 'path',
-	o = 'outdir',
-	m = 'mappingsdir',
-	v = 'version',
-	h = 'help',
+  -- Aliases
+  g = 'generate',
+  p = 'path',
+  o = 'outdir',
+  m = 'mappingsdir',
+  v = 'version',
+  h = 'help',
 }
 
 function flags.path( flag, dirList )
-	if not dirList then
-		return nil, "missing comma-separated list of dirs (Coral repositories)"
-	end
-	co.addPath( dirList )
-	return 1
+  if not dirList then
+    return nil, "missing comma-separated list of dirs (Coral repositories)"
+  end
+  co.addPath( dirList )
+  return 1
 end
 
 function flags.generate( flag, name )
-	if not name then return nil, "missing module name" end
-	moduleName = name
-	return 1
+  if not name then return nil, "missing module name" end
+  moduleName = name
+  return 1
 end
 
 function flags.json()
-	askedForJSON = true
+  askedForJSON = true
 end
 
 function flags.list()
-	askedForList = true
+  askedForList = true
 end
 
 function flags.outdir( flag, dir )
-	if not dir then return nil, "missing output directory" end
-	compiler.outDir = dir
-	return 1
+  if not dir then return nil, "missing output directory" end
+  compiler.outDir = dir
+  return 1
 end
 
 function flags.mappingsdir( flag, dir )
-	if not dir then return nil, "missing mappings directory" end
-	mappingsDir = dir
-	return 1
+  if not dir then return nil, "missing mappings directory" end
+  mappingsDir = dir
+  return 1
 end
 
 function flags.version()
-	print( "Coral Compiler v" .. co.version .. " (" .. co.buildKey .. ")" )
-	askedForVersion = true
+  print( "Coral Compiler v" .. co.version .. " (" .. co.buildKey .. ")" )
+  askedForVersion = true
 end
 
 function flags.help()
-	flags.version()
-	print [[
+  flags.version()
+  print [[
 Usage: coralc [options] [-g, --generate MODULE] [TYPE] ...
 Description:
   Generates mappings for the list of types passed as command-line arguments.
@@ -95,64 +95,64 @@ end
 local Component = co.Component( "co.compiler.Compile" )
 
 function Component:main( args )
-	if #args == 0 then
-		flags.help()
-		return 0
-	end
+  if #args == 0 then
+    flags.help()
+    return 0
+  end
 
-	local types, errorString = cmdline.process( args, flags )
-	if not types then
-		print( errorString )
-		return -2
-	end
+  local types, errorString = cmdline.process( args, flags )
+  if not types then
+    print( errorString )
+    return -2
+  end
 
-	if askedForVersion then
-		return 0
-	end
+  if askedForVersion then
+    return 0
+  end
 
-	if askedForJSON and askedForList then
-		print( "Error: --json and --list are mutually exclusive options." )
-		return -2
-	end
+  if askedForJSON and askedForList then
+    print( "Error: --json and --list are mutually exclusive options." )
+    return -2
+  end
 
-	if not moduleName and ( askedForJSON or askedForList ) then
-		print( "Error: use -g to specify the module you want to export to JSON." )
-		return -2
-	end
+  if not moduleName and ( askedForJSON or askedForList ) then
+    print( "Error: use -g to specify the module you want to export to JSON." )
+    return -2
+  end
 
-	if askedForList then
-		compiler.simulation = true
-	else
-		compiler.log = print
-	end
+  if askedForList then
+    compiler.simulation = true
+  else
+    compiler.log = print
+  end
 
-	local ok, err = xpcall( function()
-		for i = 1, #types do
-			compiler:addType( types[i] )
-		end
+  local ok, err = xpcall( function()
+    for i = 1, #types do
+      compiler:addType( types[i] )
+    end
 
-		if moduleName then
-			if askedForJSON then
-				compiler:generateJSON( moduleName )
-			else
-				local moduleSources = compiler:generateModule( moduleName )
-				if askedForList then
-					for i, sourceFile in ipairs( moduleSources ) do
-						print( sourceFile )
-					end
-				end
-			end
-		else
-			compiler:generateMappings()
-		end
-	end, debug.traceback )
+    if moduleName then
+      if askedForJSON then
+        compiler:generateJSON( moduleName )
+      else
+        local moduleSources = compiler:generateModule( moduleName )
+        if askedForList then
+          for i, sourceFile in ipairs( moduleSources ) do
+            print( sourceFile )
+          end
+        end
+      end
+    else
+      compiler:generateMappings()
+    end
+  end, debug.traceback )
 
-	if not ok then
-		print( "*** Error ***" )
-		local exceptionType, exceptionMsg = co.getException( err )
-		print( exceptionMsg )
-		return -1
-	end
+  if not ok then
+    print( "*** Error ***" )
+    local exceptionType, exceptionMsg = co.getException( err )
+    print( exceptionMsg )
+    return -1
+  end
 
-	return 0
+  return 0
 end

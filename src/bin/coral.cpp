@@ -2,7 +2,7 @@
 #include <core/utils/Properties.h>
 #include <core/utils/StringTokenizer.h>
 
-#if defined(CORAL_OS_WIN)
+#if defined(CORAL_OS_WINDOWS)
 #define EXE_SUFFIX ".exe"
 #else
 #define EXE_SUFFIX
@@ -45,11 +45,11 @@ int main(int argc, char* argv[]) {
   std::string libDir =
       properties.getProperty("libdir", rootDir + CORAL_OS_DIR_SEP_STR "lib");
   libDir.append(CORAL_OS_PATH_SEP_STR);
-#if defined(CORAL_OS_WIN)
+#if defined(CORAL_OS_WINDOWS)
   prependToEnvVar("PATH", libDir);
 #elif defined(CORAL_OS_LINUX)
   prependToEnvVar("LD_LIBRARY_PATH", libDir);
-#elif defined(CORAL_OS_MAC)
+#elif defined(CORAL_OS_DARWIN)
   prependToEnvVar("DYLD_LIBRARY_PATH", libDir);
 #else
 #error Unknown or unsupported platform.

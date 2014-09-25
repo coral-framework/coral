@@ -7,7 +7,7 @@
 #include <co/Slice.h>
 #include <string>
 
-#if defined(CORAL_OS_WIN)
+#if defined(CORAL_OS_WINDOWS)
 	#define CORAL_OS_DIR_SEP '\\'
 	#define CORAL_OS_DIR_SEP_STR "\\"
 	#define CORAL_OS_PATH_SEP ';'

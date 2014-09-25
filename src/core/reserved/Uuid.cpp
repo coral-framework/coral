@@ -3,7 +3,7 @@
 #include <cstdio>
 #include <ostream>
 
-#ifdef CORAL_OS_WIN
+#ifdef CORAL_OS_WINDOWS
 	#define WIN32_LEAN_AND_MEAN
 	#include <windows.h>
 	#include <wincrypt.h>
@@ -13,7 +13,7 @@ namespace co {
 
 inline void generateRandomBytes( uint8* data )
 {
-#if defined(CORAL_OS_WIN)
+#if defined(CORAL_OS_WINDOWS)
 	HCRYPTPROV cryptProvider;
 	if( CryptAcquireContext( &cryptProvider, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT ) )
 		if( CryptGenRandom( cryptProvider, 16, data ) )

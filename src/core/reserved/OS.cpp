@@ -14,7 +14,7 @@
 #define _LARGEFILE64_SOURCE
 #endif
 
-#ifdef CORAL_OS_WIN
+#ifdef CORAL_OS_WINDOWS
 #if _INTEGRAL_MAX_BITS >= 64
 #define CORAL_STAT_STRUCT struct _stati64
 #define CORAL_STAT_FUNC _stati64
@@ -27,7 +27,7 @@
 #define CORAL_STAT_FUNC stat
 #endif
 
-#ifdef CORAL_OS_WIN
+#ifdef CORAL_OS_WINDOWS
 #ifndef S_ISDIR
 #define S_ISDIR(mode) (mode & _S_IFDIR)
 #endif
@@ -36,7 +36,7 @@
 #endif
 #endif
 
-#if defined(CORAL_OS_WIN)
+#if defined(CORAL_OS_WINDOWS)
 #include <direct.h>
 #define getCWD _getcwd
 #else
@@ -45,17 +45,17 @@
 #define getCWD getcwd
 #endif
 
-#if defined(CORAL_OS_WIN)
+#if defined(CORAL_OS_WINDOWS)
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
-#elif defined(CORAL_OS_MAC)
+#elif defined(CORAL_OS_DARWIN)
 #include <mach-o/dyld.h>
 #endif
 
 bool co::OS::getApplicationDir(std::string& path) {
   char buffer[FILENAME_MAX];
 
-#if defined(CORAL_OS_WIN)
+#if defined(CORAL_OS_WINDOWS)
   DWORD count;
   if ((count = GetModuleFileNameA(NULL, buffer, sizeof(buffer))) == 0)
     return false;
@@ -64,7 +64,7 @@ bool co::OS::getApplicationDir(std::string& path) {
   ssize_t count = readlink("/proc/self/exe", buffer, sizeof(buffer) - 1);
   if (count == -1) return false;
   path.assign(buffer, count);
-#elif defined(CORAL_OS_MAC)
+#elif defined(CORAL_OS_DARWIN)
   uint32_t count = sizeof(buffer);
   if (_NSGetExecutablePath(buffer, &count) != 0) return false;
   char* realPath = realpath(buffer, NULL);
@@ -96,7 +96,7 @@ bool co::OS::getCurrentWorkingDir(std::string& path) {
 }
 
 bool co::OS::isAbs(const std::string& path) {
-#if defined(CORAL_OS_WIN)
+#if defined(CORAL_OS_WINDOWS)
   return path.size() > 2 && path[1] == ':';
 #else
   return !path.empty() && path[0] == '/';
@@ -125,7 +125,7 @@ void co::OS::convertDotsToDirSeps(std::string& dotSeparatedPath) {
 void co::OS::normalizePath(std::string& path) {
   if (path.empty()) return;
 
-#if defined(CORAL_OS_WIN)
+#if defined(CORAL_OS_WINDOWS)
   size_t len = path.length();
   for (size_t i = 0; i < len; ++i)
     if (path[i] == '/') path[i] = CORAL_OS_DIR_SEP;

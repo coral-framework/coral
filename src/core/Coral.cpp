@@ -10,7 +10,7 @@
 
 namespace co {
 
-#ifdef CORAL_OS_WIN
+#ifdef CORAL_OS_WINDOWS
 static const char* PATH_SEPARATORS = ";,";
 #else
 static const char* PATH_SEPARATORS = ";:,";

@@ -45,7 +45,7 @@ void Library::unload()
 /* Load                                                                     */
 /****************************************************************************/
 
-#ifdef CORAL_OS_WIN
+#ifdef CORAL_OS_WINDOWS
 
 // Windows implementation
 void Library::doLoad()
@@ -104,7 +104,7 @@ void* Library::doResolve( const char* symbolName )
 {
 	load();
 
-#ifdef CORAL_OS_WIN
+#ifdef CORAL_OS_WINDOWS
 	void* address = (void*)GetProcAddress( static_cast<HINSTANCE>( _handle ), symbolName );
 #else
 	void* address = dlsym( _handle, symbolName );
@@ -119,7 +119,7 @@ void* Library::doResolve( const char* symbolName )
 
 void Library::doUnload()
 {
-#ifdef CORAL_OS_WIN
+#ifdef CORAL_OS_WINDOWS
 	bool unloaded = ( FreeLibrary( static_cast<HINSTANCE>( _handle ) ) != FALSE );
 #else
 	bool unloaded = ( _noDlClose || ( dlclose( _handle ) == 0 ) );
@@ -141,7 +141,7 @@ void Library::doUnload()
 
 void Library::getLastErrorMessage( std::string& message )
 {
-#ifdef CORAL_OS_WIN
+#ifdef CORAL_OS_WINDOWS
 	LPVOID lpMsgBuf;
 	FormatMessageA(
 		FORMAT_MESSAGE_ALLOCATE_BUFFER |

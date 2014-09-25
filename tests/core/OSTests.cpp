@@ -35,7 +35,7 @@ TEST( OSTests, getApplicationDir )
 	appPath.append( "_debug" );
 #endif
 
-#if defined(CORAL_OS_WIN)
+#if defined(CORAL_OS_WINDOWS)
 	appPath.append( ".exe" );
 #endif
 

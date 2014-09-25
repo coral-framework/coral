@@ -78,7 +78,7 @@ IModulePart* ModulePartLoader::loadModulePart(const std::string& moduleName) {
   return part;
 }
 
-#if defined(CORAL_OS_WIN)
+#if defined(CORAL_OS_WINDOWS)
 #define MODULE_LIB_EXT ".dll"
 #else
 #define MODULE_LIB_EXT ".so"

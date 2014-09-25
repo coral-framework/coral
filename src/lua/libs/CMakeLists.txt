@@ -2,31 +2,33 @@
 # Lua Libraries
 ###############################################################################
 
-PROJECT( LUALIBS C )
+project( LUALIBS C )
 
-FILE( GLOB LUA_SOURCES lua/*.c )
-FILE( GLOB LFS_SOURCES lfs/*.c )
-FILE( GLOB LUASOCKET_SOURCES socket/*.c )
+file( GLOB LUA_SOURCES lua/*.c )
+file( GLOB LFS_SOURCES lfs/*.c )
+file( GLOB LPEG_SOURCES lpeg/*.c )
+file( GLOB LUASOCKET_SOURCES socket/*.c )
 
-IF( WIN32 )
-	LIST( APPEND LUASOCKET_SOURCES socket/win32/wsocket.c )
-ELSE()
-	LIST( APPEND LUASOCKET_SOURCES socket/unix/usocket.c )
-	ADD_DEFINITIONS( -fPIC -DLUA_USE_LINUX )
-ENDIF()
+if( WIN32 )
+	list( APPEND LUASOCKET_SOURCES socket/win32/wsocket.c )
+else()
+	list( APPEND LUASOCKET_SOURCES socket/unix/usocket.c )
+	add_definitions( -fPIC -DLUA_USE_LINUX )
+endif()
 
-INCLUDE_DIRECTORIES( lua )
+include_directories( lua )
 
-ADD_LIBRARY( lualibs STATIC EXCLUDE_FROM_ALL ${LUA_SOURCES} ${LFS_SOURCES} ${LUASOCKET_SOURCES} )
+add_library( lualibs STATIC EXCLUDE_FROM_ALL ${LUA_SOURCES}
+  ${LFS_SOURCES} ${LPEG_SOURCES} ${LUASOCKET_SOURCES} )
 
-SET_TARGET_PROPERTIES( lualibs PROPERTIES
+set_target_properties( lualibs PROPERTIES
 	PROJECT_LABEL				"Lua Libraries"
 	COMPILE_DEFINITIONS	$<$<CONFIG:Debug>:LUASOCKET_DEBUG>
 )
 
-IF( WIN32 )
-	TARGET_LINK_LIBRARIES( lualibs ws2_32.lib )
-ENDIF()
+if( WIN32 )
+	target_link_libraries( lualibs ws2_32.lib )
+endif()
 
 CORAL_TARGET( lualibs )
 
@@ -34,6 +36,7 @@ CORAL_TARGET( lualibs )
 # Source Groups
 ########################################################################
 
-SOURCE_GROUP( "Lua" FILES ${LUA_SOURCES} )
-SOURCE_GROUP( "LFS" FILES ${LFS_SOURCES} )
-SOURCE_GROUP( "LuaSocket" FILES ${LUASOCKET_SOURCES} )
+source_group( "Lua" FILES ${LUA_SOURCES} )
+source_group( "LFS" FILES ${LFS_SOURCES} )
+source_group( "LPeg" FILES ${LPEG_SOURCES} )
+source_group( "LuaSocket" FILES ${LUASOCKET_SOURCES} )

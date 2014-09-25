@@ -3,9 +3,10 @@ Lua Libraries
 
 This directory contains copies of the following Lua libraries:
 
-- lua: [Lua 5.2](http://www.lua.org/) (stripped of lua.c, luac.c and print.c)
-- lfs: [LuaFileSystem](http://www.keplerproject.org/luafilesystem/)
-- socket: [LuaSocket](http://w3.impa.br/~diego/software/luasocket/)
+- lfs: [LuaFileSystem](http://keplerproject.github.io/luafilesystem/)
+- lpeg: [LPeg](http://www.inf.puc-rio.br/~roberto/lpeg/)
+- lua: [Lua 5.2](http://www.lua.org/) (stripped of lua.c and luac.c)
+- socket: [LuaSocket](https://github.com/diegonehab/luasocket)
 
 All these libraries are licensed under the MIT license (same as Coral).
-They are compiled into a static library and linked with the Lua Module.
+They are compiled into a static library and linked into the Lua Module.

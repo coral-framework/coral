@@ -13,7 +13,7 @@ public:
 
 	TestData()
 	{
-#if defined(CORAL_OS_WIN)
+#if defined(CORAL_OS_WINDOWS)
 
 		libcPath = ""; // the libc test is not performed on Windows
 

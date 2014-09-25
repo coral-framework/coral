@@ -32,20 +32,20 @@
 
 //---- Recognized Operating Systems (CORAL_OS_x) -------------------------------
 
-#if defined(__APPLE__) && defined(__GNUC__)
-#define CORAL_OS_MAC
-#define CORAL_OS_NAME "OSX"
+#if defined(__APPLE__)
+#define CORAL_OS_DARWIN
+#define CORAL_OS_NAME "Darwin"
 #elif defined(__linux__) || defined(__linux)
 #define CORAL_OS_LINUX
 #define CORAL_OS_NAME "Linux"
 #elif defined(_WIN32) || defined(__WIN32__)
-#define CORAL_OS_WIN
+#define CORAL_OS_WINDOWS
 #define CORAL_OS_NAME "Windows"
 #else
 #error Oops - unknown or unsupported OS!
 #endif
 
-#if !defined(CORAL_OS_WIN)
+#if !defined(CORAL_OS_WINDOWS)
 #define CORAL_OS_UNIX
 #endif
 
@@ -106,7 +106,7 @@
 #if defined(CORAL_NO_EXPORT)
 #define CORAL_EXPORT
 #define CORAL_DLL_EXPORT
-#elif defined(CORAL_OS_WIN)
+#elif defined(CORAL_OS_WINDOWS)
 #define CORAL_DLL_EXPORT __declspec(dllexport)
 #if defined(BUILDING_CORAL_CORE)
 #define CORAL_EXPORT CORAL_DLL_EXPORT
@@ -118,7 +118,7 @@
 #define CORAL_EXPORT CORAL_DLL_EXPORT
 #endif
 
-#if defined(CORAL_OS_WIN)
+#if defined(CORAL_OS_WINDOWS)
 #define CORAL_EXPORT_EXCEPTION
 #else
 #define CORAL_EXPORT_EXCEPTION CORAL_DLL_EXPORT

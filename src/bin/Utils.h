@@ -8,7 +8,7 @@
 #include <cassert>
 #include <sstream>
 
-#if defined(CORAL_OS_WIN)
+#if defined(CORAL_OS_WINDOWS)
 	#define WIN32_LEAN_AND_MEAN
 	#include <Windows.h>
 	#define strCaseComp _strcmpi
@@ -26,7 +26,7 @@
 inline void setEnvVar( const char* name, const std::string& value )
 {
 	int ok;
-#if defined(CORAL_OS_WIN)
+#if defined(CORAL_OS_WINDOWS)
 	ok = SetEnvironmentVariableA( name, value.c_str() );
 #else
 	ok = !setenv( name, value.c_str(), 1 );
@@ -52,7 +52,7 @@ inline void prependToEnvVar( const char* name, const std::string& prefix )
  */
 inline int executeProgram( char* const* argv )
 {
-#if defined(CORAL_OS_WIN)
+#if defined(CORAL_OS_WINDOWS)
 	STARTUPINFO         si;
     PROCESS_INFORMATION pi;
     memset( &si, 0, sizeof(si) );
