@@ -1,6 +1,5 @@
 -------------------------------------------------------------------------------
--- Module for portable path/directory operations.
--- Requires LuaFileSystem.
+-- Portable path and directory operations. Requires LuaFileSystem.
 -------------------------------------------------------------------------------
 
 local lfs = require "lfs"

@@ -4,7 +4,7 @@
 -- methods, useful when writing template scripts.
 -------------------------------------------------------------------------------
 
-local utils = require "co.compiler.utils"
+local utils = require "co.compiler.v1.utils"
 
 local TypeWrapper = {}	-- the TypeWrapper class
 local autoFields = {}	-- table of auto-field handlers

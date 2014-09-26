@@ -3,26 +3,27 @@
 -------------------------------------------------------------------------------
 
 local lfs = require "lfs"
-local path = require "lua.path"
-local utils = require "co.compiler.utils"
-local dependencies = require "co.compiler.dependencies"
-local TypeWrapper = require "co.compiler.TypeWrapper"
+local path = require "co.compiler.path"
 
-local json = require "co.compiler.json"
-local mapping = require "co.compiler.mapping"
+local utils = require "co.compiler.v1.utils"
+local dependencies = require "co.compiler.v1.dependencies"
+local TypeWrapper = require "co.compiler.v1.TypeWrapper"
 
-local componentBaseHeader = require "co.compiler.module.componentBaseHeader"
-local componentBaseSource = require "co.compiler.module.componentBaseSource"
-local componentTemplate = require "co.compiler.module.componentTemplate"
-local nativeClassAdapter = require "co.compiler.module.nativeClassAdapter"
-local nativeClassTemplate = require "co.compiler.module.nativeClassTemplate"
-local reflector = require "co.compiler.module.reflector"
+local json = require "co.compiler.v1.json"
+local mapping = require "co.compiler.v1.mapping"
 
-local moduleAllInOne = require "co.compiler.module.allInOne"
-local moduleBootstrap = require "co.compiler.module.bootstrap"
-local moduleInstallerHeader = require "co.compiler.module.installerHeader"
-local moduleInstallerSource = require "co.compiler.module.installerSource"
-local moduleDefaultPart = require "co.compiler.module.defaultPart"
+local componentBaseHeader = require "co.compiler.v1.module.componentBaseHeader"
+local componentBaseSource = require "co.compiler.v1.module.componentBaseSource"
+local componentTemplate = require "co.compiler.v1.module.componentTemplate"
+local nativeClassAdapter = require "co.compiler.v1.module.nativeClassAdapter"
+local nativeClassTemplate = require "co.compiler.v1.module.nativeClassTemplate"
+local reflector = require "co.compiler.v1.module.reflector"
+
+local moduleAllInOne = require "co.compiler.v1.module.allInOne"
+local moduleBootstrap = require "co.compiler.v1.module.bootstrap"
+local moduleInstallerHeader = require "co.compiler.v1.module.installerHeader"
+local moduleInstallerSource = require "co.compiler.v1.module.installerSource"
+local moduleDefaultPart = require "co.compiler.v1.module.defaultPart"
 
 -- Compiler Class
 local Compiler = {
@@ -31,9 +32,9 @@ local Compiler = {
 	log = function( ... ) end,	-- function called to print misc. info (stats, etc.)
 
 	------ Easy access to re-usable modules/templates ------
-	utils = require "co.compiler.utils",
-	header = require "co.compiler.header",
-	revisionCheck = require "co.compiler.module.revisionCheck",
+	utils = require "co.compiler.v1.utils",
+	header = require "co.compiler.v1.header",
+	revisionCheck = require "co.compiler.v1.module.revisionCheck",
 }
 
 Compiler.__index = Compiler
