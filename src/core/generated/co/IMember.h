@@ -1,3 +1,4 @@
+
 #ifndef _CO_IMEMBER_H_
 #define _CO_IMEMBER_H_
 
@@ -19,7 +20,7 @@ class IMember : public co::IAnnotated
 public:
 	virtual ~IMember() {;}
 
-	virtual co::uint16 getIndex() = 0;
+	virtual co::int16 getIndex() = 0;
 
 	virtual co::MemberKind getKind() = 0;
 

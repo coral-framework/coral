@@ -26,19 +26,19 @@ public:
 	{
 		_owner = owner;
 
-		assert( index < UINT32_MAX );
-		_index = static_cast<uint16>( index );
+		assert( index < INT16_MAX );
+		_index = static_cast<int16>( index );
 	}
 
 	// co::IMember methods:
 	std::string getName() { return _name; }
 	ICompositeType* getOwner() { return _owner; }
-	uint16 getIndex() { return _index; }
+	int16 getIndex() { return _index; }
 
 private:
 	std::string _name;
 	ICompositeType* _owner;
-	uint16 _index;
+	int16 _index;
 };
 
 } // namespace co

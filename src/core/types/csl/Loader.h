@@ -140,7 +140,7 @@ private:
 	RefPtr<ITypeBuilder> _typeBuilder;
 	RefPtr<IMethodBuilder> _methodBuilder;
 
-	co::uint8 _cslFlags;
+	int8 _cslFlags;
 
 	bool _lastDeclTypeIsArray;
 	location _lastDeclTypeLocation;

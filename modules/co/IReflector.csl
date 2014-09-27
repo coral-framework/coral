@@ -25,11 +25,11 @@ interface IReflector
 	readonly IType type;
 
 	// Number of bytes occupied by instances of this type.
-	readonly uint32 size;
+	readonly int32 size;
 
 	/*
 		Instantiates a component.
-		
+
 		Raises co.NotSupportedException if #type is not a co.IComponent.
 	 */
 	IObject newInstance() raises NotSupportedException;

@@ -1,3 +1,4 @@
+
 #ifndef _CO_ITYPEMANAGER_H_
 #define _CO_ITYPEMANAGER_H_
 
@@ -34,7 +35,7 @@ public:
 
 	virtual co::INamespace* getNamespace( const std::string& fullName ) = 0;
 
-	virtual co::IType* getType( const std::string& typeName ) = 0;
+	virtual co::IType* getType( const std::string& fullName ) = 0;
 
 	virtual co::IType* loadType( const std::string& typeName, std::vector<co::CSLError>& errorStack ) = 0;
 };

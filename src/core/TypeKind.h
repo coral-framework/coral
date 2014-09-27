@@ -1,6 +1,8 @@
 #ifndef _CO_TYPEKIND_H_
 #define _CO_TYPEKIND_H_
 
+#include <cstdint>
+
 namespace co {
 
 enum TypeKind {
@@ -9,10 +11,7 @@ enum TypeKind {
   TK_INT8,
   TK_INT16,
   TK_INT32,
-  TK_UINT8,
-  TK_UINT16,
-  TK_UINT32,
-  TK_FLOAT,
+  TK_INT64,
   TK_DOUBLE,
   TK_ENUM,
   TK_STRING,
@@ -23,7 +22,8 @@ enum TypeKind {
   TK_INTERFACE,
   TK_COMPONENT,
   TK_EXCEPTION,
-  TK_COUNT
+  TK_COUNT,
+  TK__FORCE_SIZEOF_INT32 = INT32_MAX
 };
 
 }  // namespace co

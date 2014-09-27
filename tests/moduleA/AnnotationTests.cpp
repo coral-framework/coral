@@ -13,8 +13,8 @@ TEST( AnnotationTests, tonsOfDataTests )
 	EXPECT_EQ( 5.5, ta->getValue() );
 	EXPECT_TRUE( ta->getB() );
 	EXPECT_EQ( 0, ta->getI8() );
-	EXPECT_EQ( co::uint8( 300 ), ta->getU8() );
-	EXPECT_EQ( -0.00075f, ta->getFlt() );
+	EXPECT_EQ( co::int16( 123456 ), ta->getI16() );
+	EXPECT_EQ( -0.00075, ta->getDbl() );
 	EXPECT_EQ( std::string( "Hello\nWorld\0This is awesome! More.", 34 ), ta->getStr() );
 	EXPECT_EQ( 9, ta->getI32() );
 }

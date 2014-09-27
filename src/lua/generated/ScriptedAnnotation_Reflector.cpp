@@ -1,10 +1,11 @@
+
 #include <co/reserved/ReflectorBase.h>
 #include <memory>
 
 namespace lua {
 
 // The following two functions are implemented by CORAL_EXPORT_COMPONENT()
-co::uint32 __ScriptedAnnotation_getSize();
+co::int32 __ScriptedAnnotation_getSize();
 co::IObject* __ScriptedAnnotation_newInstance();
 
 void moduleRetain();
@@ -30,7 +31,7 @@ public:
 		return co::getType( "lua.ScriptedAnnotation" );
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return __ScriptedAnnotation_getSize();
 	}

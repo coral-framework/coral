@@ -1,3 +1,4 @@
+
 #ifndef _LUA_EXCEPTION_H_
 #define _LUA_EXCEPTION_H_
 

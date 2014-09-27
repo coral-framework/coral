@@ -1,3 +1,4 @@
+
 #ifndef _CO_IMODULEPART_H_
 #define _CO_IMODULEPART_H_
 

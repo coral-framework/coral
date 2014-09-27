@@ -1,6 +1,7 @@
 #ifndef _CO_SHA1_H_
 #define _CO_SHA1_H_
 
+#include <cstddef>
 #include <cstdint>
 
 namespace sha1 {
@@ -22,8 +23,16 @@ struct Context {
 const uint8_t DIGEST_SIZE = 20;
 
 void init(Context* context);
-void update(Context* context, const uint8_t* data, uint32_t length);
+
+// Run your data through this.
+void update(Context* context, const uint8_t* data, size_t length);
+
+// Add padding and return the message digest.
 void final(Context* context, uint8_t digest[DIGEST_SIZE]);
+
+inline void update(Context* context, const char* data, size_t length) {
+  update(context, reinterpret_cast<const uint8_t*>(data), length);
+}
 
 }  // namespace sha1
 

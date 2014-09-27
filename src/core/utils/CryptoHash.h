@@ -11,83 +11,79 @@ namespace co {
 class CryptoHashAlgorithm;
 
 /*!
-	The CryptoHash class provides a way to generate cryptographic hashes.
-	CryptoHash can be used to generate cryptographic hashes of binary or text data.
-	Currently only SHA1 is supported.
+  The CryptoHash class provides a way to generate cryptographic hashes.
+  CryptoHash can be used to generate cryptographic hashes of binary or text
+  data.
+  Currently only SHA1 is supported.
  */
-class CORAL_EXPORT CryptoHash
-{
-public:
-	enum Algorithm
-	{
-		Sha1
-	};
+class CORAL_EXPORT CryptoHash {
+ public:
+  enum Algorithm { Sha1 };
 
-	struct CORAL_EXPORT Result
-	{
-		Algorithm algorithm;
-		int8 numBytes;
-		union
-		{
-			uint8  bytes[20];
-			uint32 dwords[5];
-		}
-		data;
+  struct CORAL_EXPORT Result {
+    Algorithm algorithm;
+    int8 numBytes;
+    union {
+      std::uint8_t bytes[20];
+      std::uint32_t dwords[5];
+    } data;
 
-		//! Writes the hash result to 'str' in hexadecimal.
-		void toString( std::string& str );
+    //! Writes the hash result to 'str' in hexadecimal.
+    void toString(std::string& str);
 
-		//! Uses the hash result to create a co::Uuid.
-		void toUuid( Uuid& uuid );
-	};
+    //! Uses the hash result to create a co::Uuid.
+    void toUuid(Uuid& uuid);
+  };
 
-public:
-	//! Constructs an object that uses the specified 'method' to create cryptographic hashes.
-	CryptoHash( Algorithm method );
+ public:
+  //! Constructs an object that uses the specified 'method' to create
+  //cryptographic hashes.
+  CryptoHash(Algorithm method);
 
-	//! Destructor.
-	~CryptoHash();
+  //! Destructor.
+  ~CryptoHash();
 
-	/*!
-		Adds the first length chars of data to the cryptographic hash.
-		\throw IllegalStateException if the hash result was already calculated.
-	 */
-	void addData( const uint8* data, size_t length );
+  /*!
+    Adds the first length chars of data to the cryptographic hash.
+    \throw IllegalStateException if the hash result was already calculated.
+   */
+  void addData(const char* data, size_t length);
 
-	//! This is an overloaded member function, provided for convenience. See addData().
-	//@{
-	inline void addData( const char* cstr )
-	{ 
-		addData( reinterpret_cast<const uint8*>( cstr ), strlen( cstr ) );
-	}
+  inline void addData(const std::uint8_t* data, size_t length) {
+    addData(reinterpret_cast<const char*>(data), length);
+  }
 
-	inline void addData( const std::string& str )
-	{ 
-		addData( reinterpret_cast<const uint8*>( str.data() ), str.length() );
-	}
+  //! This is an overloaded member function, provided for convenience. See
+  //addData().
+  //@{
+  inline void addData(const char* cstr) {
+    addData(cstr, strlen(cstr));
+  }
 
-	template<typename T>
-	inline void addData( const T& data )
-	{ 
-		addData( reinterpret_cast<const uint8*>( &data ), sizeof(data) );
-	}
-	//@}
+  inline void addData(const std::string& str) {
+    addData(str.data(), str.length());
+  }
 
-	//! Calculates/retrieves the final hash result.
-	void getResult( Result& res ) const;
+  template <typename T> inline void addData(const T& data) {
+    addData(reinterpret_cast<const char*>(&data), sizeof(data));
+  }
+  //@}
 
-	//! Resets the object.
-	void reset();
+  //! Calculates/retrieves the final hash result.
+  void getResult(Result& res) const;
 
-private:
-	// forbid copies.
-	CryptoHash( const CryptoHash& other );
-	CryptoHash& operator=( const CryptoHash& other );
+  //! Resets the object.
+  void reset();
 
-private:
-	CryptoHashAlgorithm* _algorithm;
+ private:
+  // forbid copies.
+  CryptoHash(const CryptoHash& other);
+  CryptoHash& operator=(const CryptoHash& other);
+
+ private:
+  CryptoHashAlgorithm* _algorithm;
 };
 
-} // namespace co
+}  // namespace co
 
-#endif // _CO_CRYPTOHASH_H_
+#endif  // _CO_CRYPTOHASH_H_

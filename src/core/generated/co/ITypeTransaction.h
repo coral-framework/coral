@@ -1,3 +1,4 @@
+
 #ifndef _CO_ITYPETRANSACTION_H_
 #define _CO_ITYPETRANSACTION_H_
 

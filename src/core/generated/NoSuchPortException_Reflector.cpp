@@ -1,3 +1,4 @@
+
 #include <co/NoSuchPortException.h>
 #include <co/reserved/ReflectorBase.h>
 #include <memory>
@@ -24,7 +25,7 @@ public:
 		return co::typeOf<co::NoSuchPortException>::get();
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return sizeof(co::NoSuchPortException);
 	}

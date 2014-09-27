@@ -1,3 +1,4 @@
+
 #ifndef _LUA_ISCRIPTED_H_
 #define _LUA_ISCRIPTED_H_
 

@@ -1,3 +1,4 @@
+
 #ifndef _CO_ICOMPOSITETYPE_H_
 #define _CO_ICOMPOSITETYPE_H_
 

@@ -18,5 +18,5 @@ interface IMember extends IAnnotated
 	readonly ICompositeType owner;
 
 	// Index of the member within its type's co.ICompositeType#members array.
-	readonly uint16 index;
+	readonly int16 index;
 };

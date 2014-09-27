@@ -192,17 +192,8 @@ void LuaState::push(lua_State* L, co::Any var) {
     case co::TK_INT32:
       lua_pushinteger(L, s.data.i32);
       break;
-    case co::TK_UINT8:
-      lua_pushinteger(L, s.data.u8);
-      break;
-    case co::TK_UINT16:
-      lua_pushinteger(L, s.data.u16);
-      break;
-    case co::TK_UINT32:
-      lua_pushinteger(L, s.data.u32);
-      break;
-    case co::TK_FLOAT:
-      lua_pushnumber(L, s.data.f);
+    case co::TK_INT64:
+      lua_pushinteger(L, s.data.i64);
       break;
     case co::TK_DOUBLE:
       lua_pushnumber(L, s.data.d);
@@ -210,8 +201,8 @@ void LuaState::push(lua_State* L, co::Any var) {
     case co::TK_ENUM: {
       co::TSlice<std::string> ids =
           static_cast<co::IEnum*>(s.type)->getIdentifiers();
-      co::uint32 id = s.data.u32;
-      if (id < ids.getSize())
+      co::int16 id = s.data.i16;
+      if (id >= 0 && id < static_cast<co::int16>(ids.getSize()))
         push(L, ids[id]);
       else {
         // enum value is out of bounds

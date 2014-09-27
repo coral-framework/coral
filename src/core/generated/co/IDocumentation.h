@@ -1,3 +1,4 @@
+
 #ifndef _CO_IDOCUMENTATION_H_
 #define _CO_IDOCUMENTATION_H_
 
@@ -16,9 +17,9 @@ public:
 
 	virtual void setValue( const std::string& value ) = 0;
 
-	virtual void addDocFor( const std::string& element, const std::string& text ) = 0;
+	virtual void addDocFor( const std::string& member, const std::string& doc ) = 0;
 
-	virtual std::string getDocFor( const std::string& element ) = 0;
+	virtual std::string getDocFor( const std::string& member ) = 0;
 };
 
 typedef co::RefPtr<IDocumentation> IDocumentationRef;

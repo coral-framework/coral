@@ -1,3 +1,4 @@
+
 #ifndef _CO_IMETHODBUILDER_H_
 #define _CO_IMETHODBUILDER_H_
 
@@ -28,7 +29,7 @@ public:
 
 	virtual void defineException( co::IException* exceptionType ) = 0;
 
-	virtual void defineParameter( const std::string& name, co::IType* type, bool input, bool output ) = 0;
+	virtual void defineParameter( const std::string& name, co::IType* type, bool isIn, bool isOut ) = 0;
 
 	virtual void defineReturnType( co::IType* type ) = 0;
 };

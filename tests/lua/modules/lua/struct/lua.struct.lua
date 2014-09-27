@@ -35,8 +35,8 @@ function M:initialize( module )
 	-- test setting some fields
 	testStruct.testEnum = "Third"
 	ASSERT_EQ( testStruct.testEnum, "Third" )
-	testStruct.aType = co.Type.uint16
-	ASSERT_EQ( testStruct.aType.fullName, "uint16" )
+	testStruct.aType = co.Type.int16
+	ASSERT_EQ( testStruct.aType.fullName, "int16" )
 
 	-- test setting 'testEnum' with an invalid identifier
 	ASSERT_ERROR( function() testStruct.testEnum = "Fourth" end,
@@ -59,13 +59,13 @@ function M:initialize( module )
 
 	-- test gettin/setting several array fields in a modulaA.TestStruct
 	local ts = co.new "moduleA.TestStruct"
-	ASSERT_EQ( 0, #ts.floatArray )
+	ASSERT_EQ( 0, #ts.doubleArray )
 	ASSERT_EQ( 0, #ts.enumArray )
 	ASSERT_EQ( 0, #ts.typeArray )
 
-	ts.floatArray = { 1.5, 2.5, 3.5 }
-	ASSERT_EQ( 3, #ts.floatArray )
-	ASSERT_EQ( 2.5, ts.floatArray[2] )
+	ts.doubleArray = { 1.5, 2.5, 3.5 }
+	ASSERT_EQ( 3, #ts.doubleArray )
+	ASSERT_EQ( 2.5, ts.doubleArray[2] )
 
 	ts.enumArray = { 'Second', 'Third', 'First' }
 	ASSERT_EQ( 3, #ts.enumArray )

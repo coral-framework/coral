@@ -1,6 +1,6 @@
 struct Date {
-	uint32 ticks;
-	uint8 hours;
-	uint8 minutes;
-	uint8 seconds;
+	int32 ticks;
+	int8 hours;
+	int8 minutes;
+	int8 seconds;
 };

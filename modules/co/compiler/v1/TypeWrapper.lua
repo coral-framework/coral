@@ -94,12 +94,9 @@ local typeKindToCpp = {
 	TK_ANY		= "co::Any",
 	TK_BOOL		= "bool",
 	TK_INT8		= "co::int8",
-	TK_UINT8	= "co::uint8",
 	TK_INT16	= "co::int16",
-	TK_UINT16	= "co::uint16",
 	TK_INT32	= "co::int32",
-	TK_UINT32	= "co::uint32",
-	TK_FLOAT	= "float",
+	TK_INT64	= "co::int64",
 	TK_DOUBLE	= "double",
 	TK_STRING	= "std::string",
 }
@@ -114,11 +111,11 @@ end
 
 local typeKindNames = {
 	TK_ENUM			= "enum",
-	TK_EXCEPTION	= "exception",
 	TK_STRUCT		= "struct",
 	TK_NATIVECLASS	= "native class",
 	TK_INTERFACE	= "interface",
 	TK_COMPONENT	= "component",
+	TK_EXCEPTION	= "exception",
 }
 
 function autoFields.kindName( t )
@@ -138,11 +135,11 @@ end
 local typeKindToInterfaceName = {
 	TK_ARRAY		= "IArray",
 	TK_ENUM			= "IEnum",
-	TK_EXCEPTION	= "IException",
 	TK_STRUCT		= "IStruct",
 	TK_NATIVECLASS	= "INativeClass",
 	TK_INTERFACE	= "IInterface",
 	TK_COMPONENT	= "IComponent",
+	TK_EXCEPTION	= "IException",
 }
 
 function autoFields.typeInterfaceName( t )

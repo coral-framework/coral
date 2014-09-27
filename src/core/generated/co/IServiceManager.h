@@ -1,3 +1,4 @@
+
 #ifndef _CO_ISERVICEMANAGER_H_
 #define _CO_ISERVICEMANAGER_H_
 
@@ -22,17 +23,17 @@ public:
 
 	virtual void setIsLazy( bool isLazy ) = 0;
 
-	virtual void addService( co::IInterface* serviceType, co::IService* service ) = 0;
+	virtual void addService( co::IInterface* serviceType, co::IService* global ) = 0;
 
-	virtual void addServiceForType( co::IInterface* serviceType, co::IInterface* clientType, co::IService* service ) = 0;
+	virtual void addServiceForType( co::IInterface* serviceType, co::IInterface* type, co::IService* specialized ) = 0;
 
 	virtual void addServiceProvider( co::IInterface* serviceType, const std::string& componentName ) = 0;
 
-	virtual void addServiceProviderForType( co::IInterface* serviceType, co::IInterface* clientType, const std::string& componentName ) = 0;
+	virtual void addServiceProviderForType( co::IInterface* serviceType, co::IInterface* type, const std::string& componentName ) = 0;
 
 	virtual co::IService* getService( co::IInterface* serviceType ) = 0;
 
-	virtual co::IService* getServiceForInstance( co::IInterface* serviceType, co::IService* client ) = 0;
+	virtual co::IService* getServiceForInstance( co::IInterface* serviceType, co::IService* instance ) = 0;
 
 	virtual co::IService* getServiceForType( co::IInterface* serviceType, co::IInterface* clientType ) = 0;
 

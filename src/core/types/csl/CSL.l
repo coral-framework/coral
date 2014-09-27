@@ -95,14 +95,11 @@ void				return TK::VOID;
 any					SET_CSTR( "any" ) return TK::PRIMITIVE_TYPE;
 bool				SET_CSTR( "bool" ) return TK::PRIMITIVE_TYPE;
 double				SET_CSTR( "double" ) return TK::PRIMITIVE_TYPE;
-float				SET_CSTR( "float" ) return TK::PRIMITIVE_TYPE;
 int16				SET_CSTR( "int16" ) return TK::PRIMITIVE_TYPE;
 int32				SET_CSTR( "int32" ) return TK::PRIMITIVE_TYPE;
+int64				SET_CSTR( "int64" ) return TK::PRIMITIVE_TYPE;
 int8				SET_CSTR( "int8" ) return TK::PRIMITIVE_TYPE;
 string				SET_CSTR( "string" ) return TK::PRIMITIVE_TYPE;
-uint16				SET_CSTR( "uint16" ) return TK::PRIMITIVE_TYPE;
-uint32				SET_CSTR( "uint32" ) return TK::PRIMITIVE_TYPE;
-uint8				SET_CSTR( "uint8" ) return TK::PRIMITIVE_TYPE;
 
 {ID}				SET_STRING( yytext ) return TK::ID;
 {QUALID}			SET_STRING( yytext ) return TK::QUALIFIED_ID;

@@ -1,13 +1,14 @@
+
 #include <co/IComponent.h>
 #include <co/IDynamicServiceProvider.h>
-#include <co/IMember.h>
-#include <co/IInterface.h>
-#include <co/IType.h>
 #include <co/Uuid.h>
-#include <co/IReflector.h>
 #include <co/INamespace.h>
+#include <co/IInterface.h>
+#include <co/IMember.h>
 #include <co/IPort.h>
+#include <co/IType.h>
 #include <co/IAnnotation.h>
+#include <co/IReflector.h>
 #include <co/IMethod.h>
 #include <co/IField.h>
 #include <co/IllegalCastException.h>
@@ -133,9 +134,9 @@ public:
 		_provider->dynamicSetField( _cookie, getField<co::IType>( 7 ), reflector_ );
 	}
 
-	bool isA( co::IType* type_ )
+	bool isA( co::IType* super_ )
 	{
-		co::Any args[] = { type_ };
+		co::Any args[] = { super_ };
 		bool res;
 		_provider->dynamicInvoke( _cookie, getMethod<co::IType>( 0 ), args, res );
 		return res;
@@ -183,20 +184,20 @@ public:
 
 protected:
 	template<typename T>
-	co::IField* getField( co::uint32 index )
+	co::IField* getField( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getFields()[index];
 	}
 
 	template<typename T>
-	co::IMethod* getMethod( co::uint32 index )
+	co::IMethod* getMethod( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getMethods()[index];
 	}
 
 private:
 	co::IDynamicServiceProvider* _provider;
-	co::uint32 _cookie;
+	co::int32 _cookie;
 };
 
 //------ Reflector Component ------//
@@ -219,7 +220,7 @@ public:
 		return co::typeOf<co::IComponent>::get();
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return sizeof(void*);
 	}

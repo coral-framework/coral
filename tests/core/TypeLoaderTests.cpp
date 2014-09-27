@@ -99,7 +99,7 @@ TEST( TypeLoaderTests, enumDocs )
 	EXPECT_THROW( getDoc( "TypeLoaderTests.Documented.SpareEnum", NULL ), co::NotSupportedException );
 
 	// enable documentation
-	co::uint8 originalFlags = co::getCSLFlags();
+	co::int8 originalFlags = co::getCSLFlags();
 	co::setCSLFlags( co::CSL_DOCUMENTATION );
 
 	CSL_TEST( "TypeLoaderTests.Documented.Enum" );
@@ -119,7 +119,7 @@ TEST( TypeLoaderTests, enumDocs )
 
 TEST( TypeLoaderTests, structDocs )
 {
-	co::uint8 originalFlags = co::getCSLFlags();
+	co::int8 originalFlags = co::getCSLFlags();
 	co::setCSLFlags( co::CSL_DOCUMENTATION );
 
 	CSL_TEST( "TypeLoaderTests.Documented.Struct" );
@@ -137,7 +137,7 @@ TEST( TypeLoaderTests, structDocs )
 
 TEST( TypeLoaderTests, interfaceDocs )
 {
-	co::uint8 originalFlags = co::getCSLFlags();
+	co::int8 originalFlags = co::getCSLFlags();
 	co::setCSLFlags( co::CSL_DOCUMENTATION );
 	
 	CSL_TEST( "TypeLoaderTests.Documented.Interface" );
@@ -155,7 +155,7 @@ TEST( TypeLoaderTests, interfaceDocs )
 
 TEST( TypeLoaderTests, componentDocs )
 {
-	co::uint8 originalFlags = co::getCSLFlags();
+	co::int8 originalFlags = co::getCSLFlags();
 	co::setCSLFlags( co::CSL_DOCUMENTATION );
 
 	CSL_TEST( "TypeLoaderTests.Documented.Component" );
@@ -238,7 +238,7 @@ TEST( TypeLoaderTests, singleCppBlock )
 	ASSERT_TRUE( it->findAnnotation<co::ICppBlock>() == NULL );
 
 	// enable C++ blocks
-	co::uint8 originalFlags = co::getCSLFlags();
+	co::int8 originalFlags = co::getCSLFlags();
 	co::setCSLFlags( co::CSL_CPPBLOCKS );
 
 	CSL_TEST( "TypeLoaderTests.CppBlocks.Single" );
@@ -258,7 +258,7 @@ TEST( TypeLoaderTests, singleCppBlock )
 
 TEST( TypeLoaderTests, multipleCppBlocks )
 {
-	co::uint8 originalFlags = co::getCSLFlags();
+	co::int8 originalFlags = co::getCSLFlags();
 	co::setCSLFlags( co::CSL_CPPBLOCKS );
 
 	CSL_TEST( "TypeLoaderTests.CppBlocks.Multiple" );

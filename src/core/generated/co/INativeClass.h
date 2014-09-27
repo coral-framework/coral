@@ -1,3 +1,4 @@
+
 #ifndef _CO_INATIVECLASS_H_
 #define _CO_INATIVECLASS_H_
 

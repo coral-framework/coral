@@ -5,12 +5,12 @@ bool moduleA::File_Adapter::getIsOpen( moduleA::File& file )
 	return file != NULL;
 }
 
-co::uint32 moduleA::File_Adapter::getPos( moduleA::File& file )
+co::int64 moduleA::File_Adapter::getPos( moduleA::File& file )
 {
-	return static_cast<co::uint32>( ftell( file ) );
+	return ftell( file );
 }
 
-void moduleA::File_Adapter::setPos( moduleA::File& file, co::uint32 pos )
+void moduleA::File_Adapter::setPos( moduleA::File& file, co::int64 pos )
 {
 	fseek( file, pos, SEEK_SET );
 }

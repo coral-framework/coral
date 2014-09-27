@@ -1,3 +1,4 @@
+
 #ifndef _CO_ICPPBLOCK_H_
 #define _CO_ICPPBLOCK_H_
 

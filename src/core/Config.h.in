@@ -15,16 +15,8 @@
 // Equivalent to <tt>sizeof(void*)</tt>.
 #define CORAL_POINTER_SIZE ${CORAL_POINTER_SIZE}
 
-// Possible values for CORAL_BYTE_ORDER:
-#define CORAL_BIG_ENDIAN 		4321	//!< Identifies a big-endian memory format.
-#define CORAL_LITTLE_ENDIAN 	1234	//!< Identifies a little-endian memory format.
-
-// Detected machine byte order (either CORAL_BIG_ENDIAN or CORAL_LITTLE_ENDIAN).
-#define CORAL_BYTE_ORDER	${CORAL_BYTE_ORDER}
-
 // Sanity check all settings:
-#if ( CORAL_POINTER_SIZE != 4 && CORAL_POINTER_SIZE != 8 ) || \
-	( CORAL_BYTE_ORDER != CORAL_BIG_ENDIAN && CORAL_BYTE_ORDER != CORAL_LITTLE_ENDIAN )
+#if ( CORAL_POINTER_SIZE != 4 && CORAL_POINTER_SIZE != 8 )
 	#error Coral was not properly configured.
 #endif
 

@@ -12,18 +12,16 @@
 namespace co {
 
 const std::string TK_STRINGS[] = {
-    "null",         "bool",      "int8",      "int16",     "int32",
-    "uint8",        "uint16",    "uint32",    "float",     "double",
-    "enum",         "string",    "any",       "array",     "struct",
-    "native class", "interface", "component", "exception", "<off by one!>"};
+    "null",      "bool",         "int8",         "int16",     "int32",
+    "int64",     "double",       "enum",         "string",    "any",
+    "array",     "struct",       "native class", "interface", "component",
+    "exception", "<off by one!>"};
 
 RefPtr<IType> BASIC_TYPES[] = {
     new TypeComponent(TK_NULL),   new TypeComponent(TK_BOOL),
     new TypeComponent(TK_INT8),   new TypeComponent(TK_INT16),
-    new TypeComponent(TK_INT32),  new TypeComponent(TK_UINT8),
-    new TypeComponent(TK_UINT16), new TypeComponent(TK_UINT32),
-    new TypeComponent(TK_FLOAT),  new TypeComponent(TK_DOUBLE),
-    NULL,  // TK_ENUM
+    new TypeComponent(TK_INT32),  new TypeComponent(TK_INT64),
+    new TypeComponent(TK_DOUBLE), NULL,  // TK_ENUM
     new TypeComponent(TK_STRING), new TypeComponent(TK_ANY),
     NULL,  // TK_ARRAY
     NULL,  // TK_STRUCT

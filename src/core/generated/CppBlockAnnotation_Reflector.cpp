@@ -1,10 +1,11 @@
+
 #include <co/reserved/ReflectorBase.h>
 #include <memory>
 
 namespace co {
 
 // The following two functions are implemented by CORAL_EXPORT_COMPONENT()
-co::uint32 __CppBlockAnnotation_getSize();
+co::int32 __CppBlockAnnotation_getSize();
 co::IObject* __CppBlockAnnotation_newInstance();
 
 //------ Reflector Component ------//
@@ -27,7 +28,7 @@ public:
 		return co::getType( "co.CppBlockAnnotation" );
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return __CppBlockAnnotation_getSize();
 	}

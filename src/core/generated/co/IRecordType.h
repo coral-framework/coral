@@ -1,3 +1,4 @@
+
 #ifndef _CO_IRECORDTYPE_H_
 #define _CO_IRECORDTYPE_H_
 

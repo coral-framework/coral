@@ -1,3 +1,4 @@
+
 #include <co/NotSupportedException.h>
 #include <co/reserved/ReflectorBase.h>
 #include <memory>
@@ -24,7 +25,7 @@ public:
 		return co::typeOf<co::NotSupportedException>::get();
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return sizeof(co::NotSupportedException);
 	}

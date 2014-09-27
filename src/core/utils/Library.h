@@ -52,13 +52,13 @@ public:
 	inline void* getHandle() const { return _handle; }
 
 	//! Returns the currently set load hints (see LoadHint).
-	inline co::uint8 getLoadHints() const { return _loadHints; }
+	inline int8 getLoadHints() const { return _loadHints; }
 
 	/*!
 		Sets the current load hints (any of the constants in LoadHint, \c OR'ed).
 		This method must be called before any call to load() or resolve().
 	 */
-	inline void setLoadHints( co::uint8 hints ) { _loadHints = hints; }
+	inline void setLoadHints( int8 hints ) { _loadHints = hints; }
 
 	/*!
 		If this is set to true, dlclose() will not be called to unload the
@@ -108,7 +108,7 @@ private:
 private:
 	std::string _fileName;
 	void* _handle;
-	co::uint8 _loadHints;
+	int8 _loadHints;
 	bool _noDlClose; // if true, won't call dlclose() on UNIX (default = false)
 };
 

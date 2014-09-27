@@ -167,8 +167,7 @@ void init(Context* context) {
   context->count[0] = context->count[1] = 0;
 }
 
-// Run your data through this.
-void update(Context* context, const uint8_t* data, uint32_t length) {
+void update(Context* context, const uint8_t* data, size_t length) {
   uint32_t j = (context->count[0] >> 3) & 63;
 
   if ((context->count[0] += length << 3) < (length << 3)) context->count[1]++;
@@ -193,7 +192,6 @@ void update(Context* context, const uint8_t* data, uint32_t length) {
   std::copy(data + i, data + length, &context->buffer.c[j]);
 }
 
-// Add padding and return the message digest.
 void final(Context* context, uint8_t digest[DIGEST_SIZE]) {
   uint8_t finalCount[8];
   for (uint8_t i = 0; i < 8; ++i) {
@@ -202,10 +200,10 @@ void final(Context* context, uint8_t digest[DIGEST_SIZE]) {
         (context->count[i >= 4 ? 0 : 1] >> ((3 - (i & 3)) * 8)) & 255);
   }
 
-  update(context, reinterpret_cast<const uint8_t*>("\200"), 1);
+  update(context, "\200", 1);
 
   while ((context->count[0] & 504) != 448) {
-    update(context, reinterpret_cast<const uint8_t*>("\0"), 1);
+    update(context, "\0", 1);
   }
 
   update(context, finalCount, 8);

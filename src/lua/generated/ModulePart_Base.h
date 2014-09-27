@@ -1,3 +1,4 @@
+
 #ifndef _LUA_MODULEPART_BASE_H_
 #define _LUA_MODULEPART_BASE_H_
 

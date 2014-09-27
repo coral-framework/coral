@@ -1,3 +1,4 @@
+
 #ifndef _CO_IREFLECTOR_H_
 #define _CO_IREFLECTOR_H_
 
@@ -25,47 +26,45 @@ public:
 
 	// Code From <c++ Block:
 	
-		//------ Manipulation of Values (only available from C++) ------//
+	/*
+		Constructs an array of values in memory starting at `ptr`.
+		The memory area should be at least `numValues * size` bytes long.
+		Raises co.NotSupportedException if #type cannot be cast to a value.
+	 */
+	virtual void createValues( void* ptr, size_t numValues ) = 0;
 
-		/*!
-			Constructs an array of values in the memory area starting at \a ptr.
-			\pre The memory area at \a ptr should be at least \a numValues * \a size bytes big.
-			\throw NotSupportedException if this \a type does not have a value form.
-		 */
-		virtual void createValues( void* ptr, size_t numValues ) = 0;
+	/*
+		Copies the array of values at `fromPtr` to `toPtr`.
+		Both arrays must contain `numValues` properly constructed values.
+		Each copy is done using the value's assignment operator.
+		Raises co.NotSupportedException if #type cannot be cast to a value.
+	 */
+	virtual void copyValues( const void* fromPtr, void* toPtr, size_t numValues ) = 0;
 
-		/*!
-			Copies an array of \a numValues values from \a fromPtr to \a toPtr.
-			\note Each copy is done using the value's assignment operator.
-			\pre Both arrays must contain at least \a numValues properly constructed values of this type.
-			\throw NotSupportedException if this \a type does not have a value form.
-		 */
-		virtual void copyValues( const void* fromPtr, void* toPtr, size_t numValues ) = 0;
+	/*
+		Destructs an array of `numValues` values starting at `ptr`.
+		All values must have been constructed with createValues().
+		Raises co.NotSupportedException if #type cannot be cast to a value.
+	 */
+	virtual void destroyValues( void* ptr, size_t numValues ) = 0;
 
-		/*!
-			Destructs an array of \a numValues values starting at \a ptr.
-			\pre The array must contain at least \a numValues values constructed with createValues().
-			\throw NotSupportedException if this \a type does not have a value form.
-		 */
-		virtual void destroyValues( void* ptr, size_t numValues ) = 0;
-
-		/*!
-			Returns true if and only if a0 == b0, a1 == b1, ... aN == bN.
-			\throw NotSupportedException if this \a type does not have a value form.
-		 */
-		virtual bool compareValues( const void* a, const void* b, size_t numValues ) = 0;
+	/*
+		Returns true if and only if a0 == b0, a1 == b1, ... aN == bN.
+		Raises co.NotSupportedException if #type cannot be cast to a value.
+	 */
+	virtual bool compareValues( const void* a, const void* b, size_t numValues ) = 0;
 	
 	// End Of c++> Block
 
-	virtual co::uint32 getSize() = 0;
+	virtual co::int32 getSize() = 0;
 
 	virtual co::IType* getType() = 0;
 
-	virtual void getField( const co::Any& instance, co::IField* field, const co::Any& value ) = 0;
+	virtual void getField( const co::Any& instance, co::IField* field, const co::Any& var ) = 0;
 
-	virtual void invoke( const co::Any& instance, co::IMethod* method, co::Slice<co::Any> args, const co::Any& returnValue ) = 0;
+	virtual void invoke( const co::Any& instance, co::IMethod* method, co::Slice<co::Any> args, const co::Any& retVal ) = 0;
 
-	virtual co::IService* newDynamicProxy( co::IDynamicServiceProvider* dynamicProvider ) = 0;
+	virtual co::IService* newDynamicProxy( co::IDynamicServiceProvider* provider ) = 0;
 
 	virtual co::IObject* newInstance() = 0;
 

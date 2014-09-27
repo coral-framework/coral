@@ -1,3 +1,4 @@
+
 #ifndef _CO_ISYSTEM_H_
 #define _CO_ISYSTEM_H_
 
@@ -23,10 +24,10 @@ public:
 
 	// Code From <c++ Block:
 	
-		//! Convenience method to setup the entire system without requiring any module.
+		// Sets the system up and running without loading any modules.
 		inline void setup() { setup( Slice<std::string>() ); }
 
-		//! Convenience method to setup the entire system.
+		// Sets the system up and running with the specified modules.
 		inline void setup( Slice<std::string> requiredModules )
 		{
 			setupBase( requiredModules );

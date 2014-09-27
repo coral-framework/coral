@@ -10,7 +10,7 @@ struct TestStruct
 
 	co.CSLError innerStruct;
 
-	float[] floatArray;
+	double[] doubleArray;
 	TestEnum[] enumArray;
 	co.IType[] typeArray;
 };

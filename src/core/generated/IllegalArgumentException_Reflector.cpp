@@ -1,3 +1,4 @@
+
 #include <co/IllegalArgumentException.h>
 #include <co/reserved/ReflectorBase.h>
 #include <memory>
@@ -24,7 +25,7 @@ public:
 		return co::typeOf<co::IllegalArgumentException>::get();
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return sizeof(co::IllegalArgumentException);
 	}

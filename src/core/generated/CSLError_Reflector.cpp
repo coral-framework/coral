@@ -1,3 +1,4 @@
+
 #include <co/CSLError.h>
 #include <co/IField.h>
 #include <co/MissingInputException.h>
@@ -28,7 +29,7 @@ public:
 		return co::typeOf<co::CSLError>::get();
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return sizeof(co::CSLError);
 	}

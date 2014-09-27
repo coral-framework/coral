@@ -19,7 +19,7 @@ class NullReflector : public BasicReflector
 public:
 	NullReflector( IType* t ) : BasicReflector( t ) {;}
 
-	uint32 getSize() { return 0; }
+	int32 getSize() { return 0; }
 };
 
 //------ PODReflector ---------------------------------------------------------
@@ -30,7 +30,7 @@ class PODReflector : public BasicReflector
 public:
 	PODReflector( IType* t ) : BasicReflector( t ) {;}
 
-	uint32 getSize() { return sizeof(T); }
+	int32 getSize() { return sizeof(T); }
 
 	void createValues( void* ptr, size_t numValues )
 	{
@@ -66,7 +66,7 @@ class ClassReflector : public BasicReflector
 public:
 	ClassReflector( IType* t ) : BasicReflector( t ) {;}
 
-	uint32 getSize() { return sizeof(T); }
+	int32 getSize() { return sizeof(T); }
 
 	void createValues( void* ptr, size_t numValues )
 	{
@@ -100,7 +100,7 @@ public:
 class ArrayReflector : public BasicReflector
 {
 public:
-	typedef std::vector<uint8> PseudoVector;
+	typedef std::vector<int8> PseudoVector;
 
 	ArrayReflector( IType* t ) : BasicReflector( t )
 	{
@@ -109,7 +109,7 @@ public:
 		_elemSize = _elemReflector->getSize();
 	}
 
-	uint32 getSize() { return sizeof(PseudoVector); }
+	int32 getSize() { return sizeof(PseudoVector); }
 
 	void createValues( void* ptr, size_t numValues )
 	{
@@ -188,7 +188,7 @@ class InternalComponentReflector : public BasicReflector
 public:
 	InternalComponentReflector( IType* t ) : BasicReflector( t ) {;}
 	
-	uint32 getSize() { return 0; }
+	int32 getSize() { return 0; }
 
 	IObject* newInstance()
 	{
@@ -207,13 +207,10 @@ IReflector* BasicReflector::create( IType* t )
 	case TK_BOOL:		return new PODReflector<bool>( t );
 	case TK_INT8:		return new PODReflector<int8>( t );
 	case TK_INT16:		return new PODReflector<int16>( t );
-	case TK_INT32:		return new PODReflector<int32>( t );
-	case TK_UINT8:		return new PODReflector<uint8>( t );
-	case TK_UINT16:		return new PODReflector<uint16>( t );
-	case TK_UINT32:		return new PODReflector<uint32>( t );
-	case TK_FLOAT:		return new PODReflector<float>( t );
+    case TK_INT32:		return new PODReflector<int32>( t );
+    case TK_INT64:		return new PODReflector<int64>( t );
 	case TK_DOUBLE:		return new PODReflector<double>( t );
-	case TK_ENUM:		return new PODReflector<uint32>( t );
+	case TK_ENUM:		return new PODReflector<int32>( t );
 	case TK_STRING:		return new ClassReflector<std::string>( t );
 	case TK_ANY:		return new ClassReflector<AnyValue>( t );
 	case TK_ARRAY:		return new ArrayReflector( t );

@@ -1,3 +1,4 @@
+
 #ifndef _CO_ITYPE_H_
 #define _CO_ITYPE_H_
 
@@ -40,7 +41,7 @@ public:
 
 	virtual void setReflector( co::IReflector* reflector ) = 0;
 
-	virtual bool isA( co::IType* type ) = 0;
+	virtual bool isA( co::IType* super ) = 0;
 };
 
 typedef co::RefPtr<IType> ITypeRef;

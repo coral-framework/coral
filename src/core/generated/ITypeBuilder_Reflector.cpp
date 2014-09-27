@@ -1,9 +1,10 @@
+
 #include <co/ITypeBuilder.h>
 #include <co/IDynamicServiceProvider.h>
-#include <co/INamespace.h>
-#include <co/IInterface.h>
 #include <co/IType.h>
 #include <co/IMethodBuilder.h>
+#include <co/IInterface.h>
+#include <co/INamespace.h>
 #include <co/IMethod.h>
 #include <co/IField.h>
 #include <co/IllegalCastException.h>
@@ -95,28 +96,28 @@ public:
 		return res.get();
 	}
 
-	void definePort( const std::string& name_, co::IInterface* type_, bool isFacet_ )
+	void definePort( const std::string& name_, co::IInterface* itf_, bool isFacet_ )
 	{
-		co::Any args[] = { name_, type_, isFacet_ };
+		co::Any args[] = { name_, itf_, isFacet_ };
 		_provider->dynamicInvoke( _cookie, getMethod<co::ITypeBuilder>( 5 ), args, co::Any() );
 	}
 
 protected:
 	template<typename T>
-	co::IField* getField( co::uint32 index )
+	co::IField* getField( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getFields()[index];
 	}
 
 	template<typename T>
-	co::IMethod* getMethod( co::uint32 index )
+	co::IMethod* getMethod( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getMethods()[index];
 	}
 
 private:
 	co::IDynamicServiceProvider* _provider;
-	co::uint32 _cookie;
+	co::int32 _cookie;
 };
 
 //------ Reflector Component ------//
@@ -139,7 +140,7 @@ public:
 		return co::typeOf<co::ITypeBuilder>::get();
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return sizeof(void*);
 	}
@@ -223,10 +224,10 @@ public:
 			case 8:
 				{
 					const std::string& name_ = args[++argIndex].get< const std::string& >();
-					co::IInterface* type_ = args[++argIndex].get< co::IInterface* >();
+					co::IInterface* itf_ = args[++argIndex].get< co::IInterface* >();
 					bool isFacet_ = args[++argIndex].get< bool >();
 					argIndex = -1;
-					p->definePort( name_, type_, isFacet_ );
+					p->definePort( name_, itf_, isFacet_ );
 				}
 				break;
 			default:

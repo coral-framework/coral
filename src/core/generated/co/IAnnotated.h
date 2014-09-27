@@ -1,3 +1,4 @@
+
 #ifndef _CO_IANNOTATED_H_
 #define _CO_IANNOTATED_H_
 
@@ -21,7 +22,7 @@ public:
 
 	// Code From <c++ Block:
 	
-		// T must extend co.IAnnotation
+		// T isA co.IAnnotation
 		template<typename T> inline T* findAnnotation()
 		{
 			return static_cast<T*>( findAnnotation( co::typeOf<T>::get() ) );

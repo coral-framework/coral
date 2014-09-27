@@ -1,8 +1,9 @@
+
 #include <co/INamespace.h>
 #include <co/IDynamicServiceProvider.h>
+#include <co/ITypeBuilder.h>
 #include <co/IModule.h>
 #include <co/IType.h>
-#include <co/ITypeBuilder.h>
 #include <co/IMethod.h>
 #include <co/IField.h>
 #include <co/IllegalCastException.h>
@@ -115,20 +116,20 @@ public:
 
 protected:
 	template<typename T>
-	co::IField* getField( co::uint32 index )
+	co::IField* getField( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getFields()[index];
 	}
 
 	template<typename T>
-	co::IMethod* getMethod( co::uint32 index )
+	co::IMethod* getMethod( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getMethods()[index];
 	}
 
 private:
 	co::IDynamicServiceProvider* _provider;
-	co::uint32 _cookie;
+	co::int32 _cookie;
 };
 
 //------ Reflector Component ------//
@@ -151,7 +152,7 @@ public:
 		return co::typeOf<co::INamespace>::get();
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return sizeof(void*);
 	}

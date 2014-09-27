@@ -1,8 +1,9 @@
+
 #include <co/IMethodBuilder.h>
 #include <co/IDynamicServiceProvider.h>
-#include <co/IException.h>
-#include <co/IType.h>
 #include <co/ITypeBuilder.h>
+#include <co/IType.h>
+#include <co/IException.h>
 #include <co/IMethod.h>
 #include <co/IField.h>
 #include <co/IllegalCastException.h>
@@ -65,9 +66,9 @@ public:
 		_provider->dynamicInvoke( _cookie, getMethod<co::IMethodBuilder>( 1 ), args, co::Any() );
 	}
 
-	void defineParameter( const std::string& name_, co::IType* type_, bool input_, bool output_ )
+	void defineParameter( const std::string& name_, co::IType* type_, bool isIn_, bool isOut_ )
 	{
-		co::Any args[] = { name_, type_, input_, output_ };
+		co::Any args[] = { name_, type_, isIn_, isOut_ };
 		_provider->dynamicInvoke( _cookie, getMethod<co::IMethodBuilder>( 2 ), args, co::Any() );
 	}
 
@@ -79,20 +80,20 @@ public:
 
 protected:
 	template<typename T>
-	co::IField* getField( co::uint32 index )
+	co::IField* getField( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getFields()[index];
 	}
 
 	template<typename T>
-	co::IMethod* getMethod( co::uint32 index )
+	co::IMethod* getMethod( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getMethods()[index];
 	}
 
 private:
 	co::IDynamicServiceProvider* _provider;
-	co::uint32 _cookie;
+	co::int32 _cookie;
 };
 
 //------ Reflector Component ------//
@@ -115,7 +116,7 @@ public:
 		return co::typeOf<co::IMethodBuilder>::get();
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return sizeof(void*);
 	}
@@ -175,10 +176,10 @@ public:
 				{
 					const std::string& name_ = args[++argIndex].get< const std::string& >();
 					co::IType* type_ = args[++argIndex].get< co::IType* >();
-					bool input_ = args[++argIndex].get< bool >();
-					bool output_ = args[++argIndex].get< bool >();
+					bool isIn_ = args[++argIndex].get< bool >();
+					bool isOut_ = args[++argIndex].get< bool >();
 					argIndex = -1;
-					p->defineParameter( name_, type_, input_, output_ );
+					p->defineParameter( name_, type_, isIn_, isOut_ );
 				}
 				break;
 			case 5:

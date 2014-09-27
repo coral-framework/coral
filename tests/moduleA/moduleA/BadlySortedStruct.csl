@@ -11,13 +11,10 @@ struct BadlySortedStruct
     int8 myInt8;		// 7 bytes of padding
     double myDouble;
     int16 myInt16;		// 2 bytes of padding
-    float myFloat;
     TestEnum myEnum;
-    bool myBool;
-    uint8 myUInt8;		// 2 bytes of padding
+    bool myBool;        // 3 bytes of padding
     int32 myInt32;
-    uint16 myUInt16;
 
     // without rearranging the fields, and with 8-byte alingment, this struct
-    // would take 40 bytes (13 bytes of padding); sorting would reduce its size to 32 bytes.
+    // would take 32 bytes (12 bytes of padding); sorting would reduce its size to 20 bytes.
 };

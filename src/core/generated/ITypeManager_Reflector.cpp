@@ -1,10 +1,11 @@
+
 #include <co/ITypeManager.h>
 #include <co/IDynamicServiceProvider.h>
-#include <co/ITypeTransaction.h>
+#include <co/IArray.h>
+#include <co/CSLError.h>
 #include <co/IType.h>
 #include <co/INamespace.h>
-#include <co/CSLError.h>
-#include <co/IArray.h>
+#include <co/ITypeTransaction.h>
 #include <co/IMethod.h>
 #include <co/IField.h>
 #include <co/IllegalCastException.h>
@@ -87,9 +88,9 @@ public:
 		return res.get();
 	}
 
-	co::IType* getType( const std::string& typeName_ )
+	co::IType* getType( const std::string& fullName_ )
 	{
-		co::Any args[] = { typeName_ };
+		co::Any args[] = { fullName_ };
 		co::ITypeRef res;
 		_provider->dynamicInvoke( _cookie, getMethod<co::ITypeManager>( 4 ), args, res );
 		return res.get();
@@ -105,20 +106,20 @@ public:
 
 protected:
 	template<typename T>
-	co::IField* getField( co::uint32 index )
+	co::IField* getField( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getFields()[index];
 	}
 
 	template<typename T>
-	co::IMethod* getMethod( co::uint32 index )
+	co::IMethod* getMethod( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getMethods()[index];
 	}
 
 private:
 	co::IDynamicServiceProvider* _provider;
-	co::uint32 _cookie;
+	co::int32 _cookie;
 };
 
 //------ Reflector Component ------//
@@ -141,7 +142,7 @@ public:
 		return co::typeOf<co::ITypeManager>::get();
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return sizeof(void*);
 	}
@@ -215,9 +216,9 @@ public:
 				break;
 			case 6:
 				{
-					const std::string& typeName_ = args[++argIndex].get< const std::string& >();
+					const std::string& fullName_ = args[++argIndex].get< const std::string& >();
 					argIndex = -1;
-					res.put( p->getType( typeName_ ) );
+					res.put( p->getType( fullName_ ) );
 				}
 				break;
 			case 7:

@@ -256,7 +256,7 @@ void LuaComponent::dynamicInvoke( co::int32 cookie, co::IMethod* mi, co::Slice<c
 	__END_LUA_API_CODE__
 }
 
-co::uint32 LuaComponent::getSize()
+co::int32 LuaComponent::getSize()
 {
 	return sizeof(LuaComponent);
 }

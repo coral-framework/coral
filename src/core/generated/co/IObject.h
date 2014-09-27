@@ -1,3 +1,4 @@
+
 #ifndef _CO_IOBJECT_H_
 #define _CO_IOBJECT_H_
 
@@ -21,50 +22,48 @@ public:
 
 	// Code From <c++ Block:
 	
-		/*!
-			Attempts to retrieve a service of a certain type from this object.
-			\tparam T interface type of the requested service.
-			\return NULL if this object does not provide the requested service.
-		 */
-		template<typename T> inline T* findService()
-		{
-			return static_cast<T*>( findServiceByType( this, typeOf<T>::get() ) );
-		}
+	/*
+		Returns the first service of type `T` provided by this object;
+		or NULL if there is no service of type `T`.
+	 */
+	template<typename T> inline T* findService()
+	{
+		return static_cast<T*>( findServiceByType( this, typeOf<T>::get() ) );
+	}
 
-		/*!
-			Retrieves a service of a certain type from this object.
-			\tparam T interface type of the requested service.
-			\throw NoSuchPortException if this object does not provide the requested service.
-		 */
-		template<typename T> inline T* getService()
-		{
-			return static_cast<T*>( getServiceByType( this, typeOf<T>::get() ) );
-		}
+	/*
+		Returns the first service of type T provided by this object.
+		Raises co.NoSuchPortException if there is no service of type `T`.
+	 */
+	template<typename T> inline T* getService()
+	{
+		return static_cast<T*>( getServiceByType( this, typeOf<T>::get() ) );
+	}
 
-		/*!
-			Attempts to retrieve the service at port \a portName in this object.
-			\return NULL if this object has no port named \a portName
-					(note that NULL can also be returned for receptacles).
-		 */
-		inline IService* findService( const std::string& portName )
-		{
-			return findServiceByName( this, portName );
-		}
+	/*
+		Returns the service at port `portName` in this object;
+		or NULL if there's no port named `portName`.
+		__Note__ that NULL is also a valid value for a receptacle.
+	 */
+	inline IService* findService( const std::string& portName )
+	{
+		return findServiceByName( this, portName );
+	}
 
-		/*!
-			Retrieve the service at port \a portName in this object.
-			\throw NoSuchPortException if this object has no port named \a portName.
-		 */
-		inline IService* getService( const std::string& portName )
-		{
-			return getServiceByName( this, portName );
-		}
+	/*
+		Returns the service at port `portName` in this object;
+		Raises co.NoSuchPortException if there's no port named `portName`.
+	 */
+	inline IService* getService( const std::string& portName )
+	{
+		return getServiceByName( this, portName );
+	}
 
-		// Binds a \a service to the receptacle named \a receptacleName.
-		inline void setService( const std::string& receptacleName, IService* service )
-		{
-			setServiceByName( this, receptacleName, service );
-		}
+	// Binds a `service` to the receptacle named `receptacleName`.
+	inline void setService( const std::string& receptacleName, IService* service )
+	{
+		setServiceByName( this, receptacleName, service );
+	}
 	
 	// End Of c++> Block
 

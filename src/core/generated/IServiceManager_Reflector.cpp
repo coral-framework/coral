@@ -1,3 +1,4 @@
+
 #include <co/IServiceManager.h>
 #include <co/IDynamicServiceProvider.h>
 #include <co/IInterface.h>
@@ -49,15 +50,15 @@ public:
 		_provider->dynamicSetField( _cookie, getField<co::IServiceManager>( 0 ), isLazy_ );
 	}
 
-	void addService( co::IInterface* serviceType_, co::IService* service_ )
+	void addService( co::IInterface* serviceType_, co::IService* global_ )
 	{
-		co::Any args[] = { serviceType_, service_ };
+		co::Any args[] = { serviceType_, global_ };
 		_provider->dynamicInvoke( _cookie, getMethod<co::IServiceManager>( 0 ), args, co::Any() );
 	}
 
-	void addServiceForType( co::IInterface* serviceType_, co::IInterface* clientType_, co::IService* service_ )
+	void addServiceForType( co::IInterface* serviceType_, co::IInterface* type_, co::IService* specialized_ )
 	{
-		co::Any args[] = { serviceType_, clientType_, service_ };
+		co::Any args[] = { serviceType_, type_, specialized_ };
 		_provider->dynamicInvoke( _cookie, getMethod<co::IServiceManager>( 1 ), args, co::Any() );
 	}
 
@@ -67,9 +68,9 @@ public:
 		_provider->dynamicInvoke( _cookie, getMethod<co::IServiceManager>( 2 ), args, co::Any() );
 	}
 
-	void addServiceProviderForType( co::IInterface* serviceType_, co::IInterface* clientType_, const std::string& componentName_ )
+	void addServiceProviderForType( co::IInterface* serviceType_, co::IInterface* type_, const std::string& componentName_ )
 	{
-		co::Any args[] = { serviceType_, clientType_, componentName_ };
+		co::Any args[] = { serviceType_, type_, componentName_ };
 		_provider->dynamicInvoke( _cookie, getMethod<co::IServiceManager>( 3 ), args, co::Any() );
 	}
 
@@ -81,9 +82,9 @@ public:
 		return res.get();
 	}
 
-	co::IService* getServiceForInstance( co::IInterface* serviceType_, co::IService* client_ )
+	co::IService* getServiceForInstance( co::IInterface* serviceType_, co::IService* instance_ )
 	{
-		co::Any args[] = { serviceType_, client_ };
+		co::Any args[] = { serviceType_, instance_ };
 		co::IServiceRef res;
 		_provider->dynamicInvoke( _cookie, getMethod<co::IServiceManager>( 5 ), args, res );
 		return res.get();
@@ -111,20 +112,20 @@ public:
 
 protected:
 	template<typename T>
-	co::IField* getField( co::uint32 index )
+	co::IField* getField( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getFields()[index];
 	}
 
 	template<typename T>
-	co::IMethod* getMethod( co::uint32 index )
+	co::IMethod* getMethod( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getMethods()[index];
 	}
 
 private:
 	co::IDynamicServiceProvider* _provider;
-	co::uint32 _cookie;
+	co::int32 _cookie;
 };
 
 //------ Reflector Component ------//
@@ -147,7 +148,7 @@ public:
 		return co::typeOf<co::IServiceManager>::get();
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return sizeof(void*);
 	}
@@ -192,18 +193,18 @@ public:
 			case 1:
 				{
 					co::IInterface* serviceType_ = args[++argIndex].get< co::IInterface* >();
-					co::IService* service_ = args[++argIndex].get< co::IService* >();
+					co::IService* global_ = args[++argIndex].get< co::IService* >();
 					argIndex = -1;
-					p->addService( serviceType_, service_ );
+					p->addService( serviceType_, global_ );
 				}
 				break;
 			case 2:
 				{
 					co::IInterface* serviceType_ = args[++argIndex].get< co::IInterface* >();
-					co::IInterface* clientType_ = args[++argIndex].get< co::IInterface* >();
-					co::IService* service_ = args[++argIndex].get< co::IService* >();
+					co::IInterface* type_ = args[++argIndex].get< co::IInterface* >();
+					co::IService* specialized_ = args[++argIndex].get< co::IService* >();
 					argIndex = -1;
-					p->addServiceForType( serviceType_, clientType_, service_ );
+					p->addServiceForType( serviceType_, type_, specialized_ );
 				}
 				break;
 			case 3:
@@ -217,10 +218,10 @@ public:
 			case 4:
 				{
 					co::IInterface* serviceType_ = args[++argIndex].get< co::IInterface* >();
-					co::IInterface* clientType_ = args[++argIndex].get< co::IInterface* >();
+					co::IInterface* type_ = args[++argIndex].get< co::IInterface* >();
 					const std::string& componentName_ = args[++argIndex].get< const std::string& >();
 					argIndex = -1;
-					p->addServiceProviderForType( serviceType_, clientType_, componentName_ );
+					p->addServiceProviderForType( serviceType_, type_, componentName_ );
 				}
 				break;
 			case 5:
@@ -233,9 +234,9 @@ public:
 			case 6:
 				{
 					co::IInterface* serviceType_ = args[++argIndex].get< co::IInterface* >();
-					co::IService* client_ = args[++argIndex].get< co::IService* >();
+					co::IService* instance_ = args[++argIndex].get< co::IService* >();
 					argIndex = -1;
-					res.put( p->getServiceForInstance( serviceType_, client_ ) );
+					res.put( p->getServiceForInstance( serviceType_, instance_ ) );
 				}
 				break;
 			case 7:

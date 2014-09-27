@@ -1,3 +1,4 @@
+
 #ifndef _CO_TYPEBUILDER_BASE_H_
 #define _CO_TYPEBUILDER_BASE_H_
 

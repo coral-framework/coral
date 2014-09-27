@@ -1,3 +1,4 @@
+
 #include <co/RefPtr.h>
 #include <co/IModulePart.h>
 #include <co/reserved/LibraryManager.h>
@@ -6,7 +7,7 @@ extern "C" CORAL_DLL_EXPORT
 const char* coral_module_query_verification_data()
 {
 	return  "pattern=CORAL_MODULE_VERIFICATION_DATA\n"
-			"version=0.8.0\n"
+			"version=0.8.1\n"
 			"buildkey=" CORAL_BUILD_KEY "\n"
 			"buildmode=" CORAL_BUILD_MODE "\n";
 }
@@ -21,36 +22,32 @@ extern "C" CORAL_DLL_EXPORT
 const TypeDependency* coral_module_query_dependencies()
 {
 	static const TypeDependency s_dependencies[] = {
-		{ "lua.Universe", "9CDB6763-A7BD-F50D-70BD8BC6AD9A9F2C" },
-		{ "lua.Launcher", "7F834A71-EAAB-D59E-B3033EF5A65E5039" },
-		{ "lua.lua", "01D65DFD-7AA0-052B-DD549599474CDA86" },
-		{ "co.IModulePartLoader", "8B980092-72DF-55EC-62E80071B0C8F068" },
-		{ "co.IObject", "3D4B59E2-C5B2-853B-A6CCCDAB8623F1D5" },
-		{ "co.ISystem", "CB0DACE2-D193-3523-559D84D4449BFC23" },
-		{ "co.IArray", "FCA4443F-B957-450A-5A1023C9D0107A9C" },
-		{ "lua.IInterceptor", "DDD3E015-D99A-7514-8AD032842617EFFA" },
-		{ "lua.Component", "E497DE0A-29D3-751C-AE3781ABED8FF944" },
-		{ "co.IPort", "AEC40CE7-1408-B51F-BB806FDB2462BD87" },
-		{ "co.IMethod", "44B63D27-C983-A52D-C753EEED1B0E8BFE" },
-		{ "co.IComponent", "D18EC513-AD23-F507-77ED6A93870ED06F" },
-		{ "co.IDynamicTypeProvider", "F28777B9-4350-A550-56A76D2AB610247D" },
-		{ "co.INamespace", "B8D7E517-710A-65B0-C2F038DEAE33D03C" },
-		{ "co.IField", "6AB731E3-2DB4-0598-1BCAD486513C6848" },
-		{ "lua.IState", "EFAF47D2-645C-75F5-CF472FB7BE502604" },
-		{ "lua.ILauncher", "23A662E5-3C8C-8557-87D2FE9D63065340" },
-		{ "co.IReflector", "0C8E90FF-D9DB-259F-EACD322FE8FC2322" },
-		{ "co.INativeClass", "0DC8B4B4-CF31-65DD-24B3C5908D6E753B" },
-		{ "co.IException", "B98A3083-6BE3-E589-8B062D3DF1D27D73" },
-		{ "lua.IScripted", "83A12D1D-7486-A5A4-91AB2CD71C3C73B4" },
-		{ "co.IInterface", "AF1AA505-F84E-D538-20A03A480574DA71" },
-		{ "co.IStruct", "8BCD67AF-6A9E-A5CE-9B6F064422A7749E" },
-		{ "co.IModulePart", "B9E33D80-2B2C-8569-8DCF30F02B0FA556" },
-		{ "co.IDynamicServiceProvider", "0551D753-11FE-55B8-18F2586276A17951" },
-		{ "lua.ModulePartLoader", "DDF98C90-C138-35CD-E18539A3465C9798" },
-		{ "co.IEnum", "2DAA0A2A-E74E-25C3-5D692724983DE421" },
-		{ "lua.ModulePart", "01D65DFD-7AA0-052B-DD549599474CDA86" },
-		{ "lua.Exception", "E494AEF9-CB92-959B-260612E42B651281" },
-		{ "lua.ScriptedAnnotation", "5F5A08CA-6992-25AD-BE3668A0DE92ED66" },
+		{ "co.ISystem", "C013961B-C619-5ADE-4099585B87793227" },
+		{ "co.IReflector", "3486D717-3C62-1264-E055C9262B5C1807" },
+		{ "lua.IInterceptor", "1C54379C-1DCE-B0BA-AA965AE2E4236B86" },
+		{ "lua.Component", "A36A742D-7FE2-E1DF-35248B7FD70BA610" },
+		{ "lua.Exception", "72C713E7-D28F-7B48-17CEFABE287A12A5" },
+		{ "co.IDynamicTypeProvider", "3D3DC782-8317-AA58-D6F995A33C5F58CA" },
+		{ "co.IPort", "434EBDBB-27F2-1468-134A13B744743C04" },
+		{ "co.IModulePartLoader", "684AA3C3-6259-B315-45ADE2FC7A7997D6" },
+		{ "co.INamespace", "26669318-19CB-C96C-CE00D0302AAA04A1" },
+		{ "lua.ILauncher", "AB5BCC33-77F8-BA66-89B5D572DE5D7409" },
+		{ "co.IArray", "DE7AD38C-41BB-CCFD-13F42B94DB8319C6" },
+		{ "co.INativeClass", "7A83D645-62F7-876C-B45D1433A14ED38F" },
+		{ "co.IComponent", "CF4D0334-D002-520C-10D225319B386E2C" },
+		{ "co.IInterface", "1393D9C9-F753-FFB8-26B38239AA4F6971" },
+		{ "lua.Launcher", "0128854A-082B-5996-49B01DD65F652593" },
+		{ "lua.ModulePartLoader", "A82CAF30-EF73-EA16-60037E5245E4DBB7" },
+		{ "co.IStruct", "2FD6C6C0-12ED-3A37-D56734BD20AC248C" },
+		{ "lua.ModulePart", "3588D0DB-0233-E7A4-AACA553A3C684549" },
+		{ "co.IModulePart", "9AAF5D48-EB66-9BE7-80458A992D636279" },
+		{ "co.IEnum", "F0F4A131-38C8-C274-DBB5F0C786D829D2" },
+		{ "lua.IScripted", "9B34BCD4-E7C6-5153-C44367E4E38C9AFC" },
+		{ "lua.ScriptedAnnotation", "C99281FA-929A-C827-7AFAD170E44E864B" },
+		{ "co.IException", "7CE9E958-31B9-FCD4-9FAEA95716FE0311" },
+		{ "lua.lua", "3588D0DB-0233-E7A4-AACA553A3C684549" },
+		{ "lua.Universe", "F44BDB76-B3D4-F4D5-5CDDBB8C86E853D2" },
+		{ "lua.IState", "94D3AEAA-BB3A-CEFD-03C57AD3CA9C798B" },
 		{ NULL, NULL }
 	};
 	return s_dependencies;

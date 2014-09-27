@@ -1,3 +1,4 @@
+
 #ifndef _LUA_ISTATE_H_
 #define _LUA_ISTATE_H_
 

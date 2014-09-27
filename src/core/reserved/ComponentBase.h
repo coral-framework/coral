@@ -67,7 +67,7 @@ private:
 	\note Both the class and the macro call should be within the module's namespace.
  */
 #define CORAL_EXPORT_COMPONENT( ClassName, ComponentName ) \
-	co::uint32 __##ComponentName##_getSize() { return sizeof(ClassName); } \
+	co::int32 __##ComponentName##_getSize() { return sizeof(ClassName); } \
 	co::IObject* __##ComponentName##_newInstance() { return new ClassName; }
 
 /*!

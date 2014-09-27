@@ -1,3 +1,4 @@
+
 #ifndef _CO_ITYPEBUILDER_H_
 #define _CO_ITYPEBUILDER_H_
 
@@ -38,7 +39,7 @@ public:
 
 	virtual co::IMethodBuilder* defineMethod( const std::string& name ) = 0;
 
-	virtual void definePort( const std::string& name, co::IInterface* type, bool isFacet ) = 0;
+	virtual void definePort( const std::string& name, co::IInterface* itf, bool isFacet ) = 0;
 };
 
 typedef co::RefPtr<ITypeBuilder> ITypeBuilderRef;

@@ -1,3 +1,4 @@
+
 #ifndef _CO_IDYNAMICSERVICEPROVIDER_H_
 #define _CO_IDYNAMICSERVICEPROVIDER_H_
 
@@ -21,15 +22,15 @@ class IDynamicServiceProvider : public co::IService
 public:
 	virtual ~IDynamicServiceProvider() {;}
 
-	virtual co::IPort* dynamicGetFacet( co::int32 dynFacetId ) = 0;
+	virtual co::IPort* dynamicGetFacet( co::int32 proxyId ) = 0;
 
-	virtual void dynamicGetField( co::int32 dynFacetId, co::IField* field, const co::Any& value ) = 0;
+	virtual void dynamicGetField( co::int32 proxyId, co::IField* field, const co::Any& var ) = 0;
 
-	virtual void dynamicInvoke( co::int32 dynFacetId, co::IMethod* method, co::Slice<co::Any> args, const co::Any& result ) = 0;
+	virtual void dynamicInvoke( co::int32 proxyId, co::IMethod* method, co::Slice<co::Any> args, const co::Any& retVal ) = 0;
 
-	virtual co::int32 dynamicRegisterService( co::IService* dynamicServiceProxy ) = 0;
+	virtual co::int32 dynamicRegisterService( co::IService* proxy ) = 0;
 
-	virtual void dynamicSetField( co::int32 dynFacetId, co::IField* field, const co::Any& value ) = 0;
+	virtual void dynamicSetField( co::int32 proxyId, co::IField* field, const co::Any& value ) = 0;
 };
 
 typedef co::RefPtr<IDynamicServiceProvider> IDynamicServiceProviderRef;

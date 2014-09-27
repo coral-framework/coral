@@ -143,7 +143,7 @@ TEST( ModuleTests, crossModuleReflection )
 	co::IReflector* reflector = type->getReflector();
 	ASSERT_TRUE( reflector != NULL );
 
-	std::vector<co::uint8> instanceMemory( reflector->getSize() );
+	std::vector<co::int8> instanceMemory( reflector->getSize() );
 	void* instancePtr = &instanceMemory.front();
 	co::Any instanceAny( true, type, instancePtr );
 
@@ -169,7 +169,7 @@ TEST( ModuleTests, crossModuleReflection )
 	EXPECT_EQ( 7, a1.get<int>() );
 
 	// test exception catching
-	instanceAny = -0.1f;
+	instanceAny = -0.1;
 	try
 	{
 		reflector->getField( instanceAny, anInt8Field, a1 );
@@ -177,7 +177,7 @@ TEST( ModuleTests, crossModuleReflection )
 	}
 	catch( co::IllegalArgumentException& e )
 	{
-		EXPECT_EQ( "illegal instance (moduleA.TestStruct expected, got float)", e.getMessage() );
+		EXPECT_EQ( "illegal instance (moduleA.TestStruct expected, got double)", e.getMessage() );
 	}
 
 	reflector->destroyValues( instancePtr, 1 );

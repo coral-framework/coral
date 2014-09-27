@@ -1,3 +1,4 @@
+
 #ifndef _CO_MEMBERKIND_H_
 #define _CO_MEMBERKIND_H_
 

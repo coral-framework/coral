@@ -153,7 +153,7 @@ int main( int argc, char* argv[] )
 				std::cerr << "Error: expected FLAGS after option '--csl'.";
 				return EXIT_FAILURE;
 			}
-			co::uint8 flags = 0;
+			co::int8 flags = 0;
 			const char* args = argv[index];
 			while( char c = *args++ )
 			{
@@ -299,7 +299,7 @@ int main( int argc, char* argv[] )
 			// if the result is a number, use it as the return status; otherwise, print it
 			if( res.isValid() )
 			{
-				if( co::isNumeric( res.getType()->getKind() ) )
+				if( co::isNumber( res.getType()->getKind() ) )
 					exitStatus = res.get<int>();
 				else
 					std::cout << "Method returned " << res;

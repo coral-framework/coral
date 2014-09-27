@@ -1,49 +1,56 @@
-/* A Bison parser, made by GNU Bison 2.6.  */
+// A Bison parser, made by GNU Bison 3.0.2.
 
-/* Skeleton implementation for Bison LALR(1) parsers in C++
-   
-      Copyright (C) 2002-2012 Free Software Foundation, Inc.
-   
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-   
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-   
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+// Skeleton implementation for Bison LALR(1) parsers in C++
 
-/* As a special exception, you may create a larger work that contains
-   part or all of the Bison parser skeleton and distribute that work
-   under terms of your choice, so long as that work isn't itself a
-   parser generator using the skeleton or a modified version thereof
-   as a parser skeleton.  Alternatively, if you modify or redistribute
-   the parser skeleton itself, you may (at your option) remove this
-   special exception, which will cause the skeleton and the resulting
-   Bison output files to be licensed under the GNU General Public
-   License without this special exception.
-   
-   This special exception was added by the Free Software Foundation in
-   version 2.2 of Bison.  */
+// Copyright (C) 2002-2013 Free Software Foundation, Inc.
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+// As a special exception, you may create a larger work that contains
+// part or all of the Bison parser skeleton and distribute that work
+// under terms of your choice, so long as that work isn't itself a
+// parser generator using the skeleton or a modified version thereof
+// as a parser skeleton.  Alternatively, if you modify or redistribute
+// the parser skeleton itself, you may (at your option) remove this
+// special exception, which will cause the skeleton and the resulting
+// Bison output files to be licensed under the GNU General Public
+// License without this special exception.
+
+// This special exception was added by the Free Software Foundation in
+// version 2.2 of Bison.
 
 // Take the name prefix into account.
 #define yylex   csl_lex
 
-/* First part of user declarations.  */
+// First part of user declarations.
 
 
 
+# ifndef YY_NULLPTR
+#  if defined __cplusplus && 201103L <= __cplusplus
+#   define YY_NULLPTR nullptr
+#  else
+#   define YY_NULLPTR 0
+#  endif
+# endif
 
 #include "parser.hh"
 
-/* User implementation prologue.  */
+// User implementation prologue.
 
 
-/* Unqualified %code blocks.  */
+// Unqualified %code blocks.
 
 
 	#include "scanner.hh"
@@ -57,19 +64,10 @@
 
 
 
-
-# ifndef YY_NULL
-#  if defined __cplusplus && 201103L <= __cplusplus
-#   define YY_NULL nullptr
-#  else
-#   define YY_NULL 0
-#  endif
-# endif
-
 #ifndef YY_
 # if defined YYENABLE_NLS && YYENABLE_NLS
 #  if ENABLE_NLS
-#   include <libintl.h> /* FIXME: INFRINGES ON USER NAME SPACE */
+#   include <libintl.h> // FIXME: INFRINGES ON USER NAME SPACE.
 #   define YY_(msgid) dgettext ("bison-runtime", msgid)
 #  endif
 # endif
@@ -78,7 +76,7 @@
 # endif
 #endif
 
-#define YYRHSLOC(Rhs, K) ((Rhs)[K])
+#define YYRHSLOC(Rhs, K) ((Rhs)[K].location)
 /* YYLLOC_DEFAULT -- Set CURRENT to span from RHS[1] to RHS[N].
    If N is 0, then set CURRENT to the empty location which ends
    the previous symbol: RHS[0] (always defined).  */
@@ -99,52 +97,52 @@
 # endif
 
 
-/* Suppress unused-variable warnings by "using" E.  */
-#define YYUSE(e) ((void) (e))
+// Suppress unused-variable warnings by "using" E.
+#define YYUSE(E) ((void) (E))
 
-/* Enable debugging if requested.  */
+// Enable debugging if requested.
 #if YYDEBUG
 
-/* A pseudo ostream that takes yydebug_ into account.  */
+// A pseudo ostream that takes yydebug_ into account.
 # define YYCDEBUG if (yydebug_) (*yycdebug_)
 
-# define YY_SYMBOL_PRINT(Title, Type, Value, Location)	\
-do {							\
-  if (yydebug_)						\
-    {							\
-      *yycdebug_ << Title << ' ';			\
-      yy_symbol_print_ ((Type), (Value), (Location));	\
-      *yycdebug_ << std::endl;				\
-    }							\
-} while (false)
+# define YY_SYMBOL_PRINT(Title, Symbol)         \
+  do {                                          \
+    if (yydebug_)                               \
+    {                                           \
+      *yycdebug_ << Title << ' ';               \
+      yy_print_ (*yycdebug_, Symbol);           \
+      *yycdebug_ << std::endl;                  \
+    }                                           \
+  } while (false)
 
-# define YY_REDUCE_PRINT(Rule)		\
-do {					\
-  if (yydebug_)				\
-    yy_reduce_print_ (Rule);		\
-} while (false)
+# define YY_REDUCE_PRINT(Rule)          \
+  do {                                  \
+    if (yydebug_)                       \
+      yy_reduce_print_ (Rule);          \
+  } while (false)
 
-# define YY_STACK_PRINT()		\
-do {					\
-  if (yydebug_)				\
-    yystack_print_ ();			\
-} while (false)
+# define YY_STACK_PRINT()               \
+  do {                                  \
+    if (yydebug_)                       \
+      yystack_print_ ();                \
+  } while (false)
 
-#else /* !YYDEBUG */
+#else // !YYDEBUG
 
 # define YYCDEBUG if (false) std::cerr
-# define YY_SYMBOL_PRINT(Title, Type, Value, Location)
-# define YY_REDUCE_PRINT(Rule)
-# define YY_STACK_PRINT()
+# define YY_SYMBOL_PRINT(Title, Symbol)  YYUSE(Symbol)
+# define YY_REDUCE_PRINT(Rule)           static_cast<void>(0)
+# define YY_STACK_PRINT()                static_cast<void>(0)
 
-#endif /* !YYDEBUG */
+#endif // !YYDEBUG
 
-#define yyerrok		(yyerrstatus_ = 0)
-#define yyclearin	(yychar = yyempty_)
+#define yyerrok         (yyerrstatus_ = 0)
+#define yyclearin       (yyempty = true)
 
-#define YYACCEPT	goto yyacceptlab
-#define YYABORT		goto yyabortlab
-#define YYERROR		goto yyerrorlab
+#define YYACCEPT        goto yyacceptlab
+#define YYABORT         goto yyabortlab
+#define YYERROR         goto yyerrorlab
 #define YYRECOVERING()  (!!yyerrstatus_)
 
 
@@ -160,71 +158,213 @@ namespace co { namespace csl {
 #endif
       loader (loader_yyarg),
       scanner (scanner_yyarg)
+  {}
+
+  Parser::~Parser ()
+  {}
+
+
+  /*---------------.
+  | Symbol types.  |
+  `---------------*/
+
+  inline
+  Parser::syntax_error::syntax_error (const location_type& l, const std::string& m)
+    : std::runtime_error (m)
+    , location (l)
+  {}
+
+  // basic_symbol.
+  template <typename Base>
+  inline
+  Parser::basic_symbol<Base>::basic_symbol ()
+    : value ()
+  {}
+
+  template <typename Base>
+  inline
+  Parser::basic_symbol<Base>::basic_symbol (const basic_symbol& other)
+    : Base (other)
+    , value ()
+    , location (other.location)
+  {
+    value = other.value;
+  }
+
+
+  template <typename Base>
+  inline
+  Parser::basic_symbol<Base>::basic_symbol (typename Base::kind_type t, const semantic_type& v, const location_type& l)
+    : Base (t)
+    , value (v)
+    , location (l)
+  {}
+
+
+  /// Constructor for valueless symbols.
+  template <typename Base>
+  inline
+  Parser::basic_symbol<Base>::basic_symbol (typename Base::kind_type t, const location_type& l)
+    : Base (t)
+    , value ()
+    , location (l)
+  {}
+
+  template <typename Base>
+  inline
+  Parser::basic_symbol<Base>::~basic_symbol ()
   {
   }
 
-  Parser::~Parser ()
+  template <typename Base>
+  inline
+  void
+  Parser::basic_symbol<Base>::move (basic_symbol& s)
   {
+    super_type::move(s);
+    value = s.value;
+    location = s.location;
+  }
+
+  // by_type.
+  inline
+  Parser::by_type::by_type ()
+     : type (empty)
+  {}
+
+  inline
+  Parser::by_type::by_type (const by_type& other)
+    : type (other.type)
+  {}
+
+  inline
+  Parser::by_type::by_type (token_type t)
+    : type (yytranslate_ (t))
+  {}
+
+  inline
+  void
+  Parser::by_type::move (by_type& that)
+  {
+    type = that.type;
+    that.type = empty;
+  }
+
+  inline
+  int
+  Parser::by_type::type_get () const
+  {
+    return type;
+  }
+
+
+  // by_state.
+  inline
+  Parser::by_state::by_state ()
+    : state (empty)
+  {}
+
+  inline
+  Parser::by_state::by_state (const by_state& other)
+    : state (other.state)
+  {}
+
+  inline
+  void
+  Parser::by_state::move (by_state& that)
+  {
+    state = that.state;
+    that.state = empty;
+  }
+
+  inline
+  Parser::by_state::by_state (state_type s)
+    : state (s)
+  {}
+
+  inline
+  Parser::symbol_number_type
+  Parser::by_state::type_get () const
+  {
+    return state == empty ? 0 : yystos_[state];
+  }
+
+  inline
+  Parser::stack_symbol_type::stack_symbol_type ()
+  {}
+
+
+  inline
+  Parser::stack_symbol_type::stack_symbol_type (state_type s, symbol_type& that)
+    : super_type (s, that.location)
+  {
+    value = that.value;
+    // that is emptied.
+    that.type = empty;
+  }
+
+  inline
+  Parser::stack_symbol_type&
+  Parser::stack_symbol_type::operator= (const stack_symbol_type& that)
+  {
+    state = that.state;
+    value = that.value;
+    location = that.location;
+    return *this;
+  }
+
+
+  template <typename Base>
+  inline
+  void
+  Parser::yy_destroy_ (const char* yymsg, basic_symbol<Base>& yysym) const
+  {
+    if (yymsg)
+      YY_SYMBOL_PRINT (yymsg, yysym);
+
+    // User destructor.
+    YYUSE (yysym.type_get ());
   }
 
 #if YYDEBUG
-  /*--------------------------------.
-  | Print this symbol on YYOUTPUT.  |
-  `--------------------------------*/
-
-  inline void
-  Parser::yy_symbol_value_print_ (int yytype,
-			   const semantic_type* yyvaluep, const location_type* yylocationp)
+  template <typename Base>
+  void
+  Parser::yy_print_ (std::ostream& yyo,
+                                     const basic_symbol<Base>& yysym) const
   {
-    YYUSE (yylocationp);
-    YYUSE (yyvaluep);
-    std::ostream& yyo = debug_stream ();
     std::ostream& yyoutput = yyo;
     YYUSE (yyoutput);
-    switch (yytype)
-      {
-         default:
-	  break;
-      }
-  }
-
-
-  void
-  Parser::yy_symbol_print_ (int yytype,
-			   const semantic_type* yyvaluep, const location_type* yylocationp)
-  {
-    *yycdebug_ << (yytype < yyntokens_ ? "token" : "nterm")
-	       << ' ' << yytname_[yytype] << " ("
-	       << *yylocationp << ": ";
-    yy_symbol_value_print_ (yytype, yyvaluep, yylocationp);
-    *yycdebug_ << ')';
+    symbol_number_type yytype = yysym.type_get ();
+    yyo << (yytype < yyntokens_ ? "token" : "nterm")
+        << ' ' << yytname_[yytype] << " ("
+        << yysym.location << ": ";
+    YYUSE (yytype);
+    yyo << ')';
   }
 #endif
 
+  inline
   void
-  Parser::yydestruct_ (const char* yymsg,
-			   int yytype, semantic_type* yyvaluep, location_type* yylocationp)
+  Parser::yypush_ (const char* m, state_type s, symbol_type& sym)
   {
-    YYUSE (yylocationp);
-    YYUSE (yymsg);
-    YYUSE (yyvaluep);
-
-    YY_SYMBOL_PRINT (yymsg, yytype, yyvaluep, yylocationp);
-
-    switch (yytype)
-      {
-  
-	default:
-	  break;
-      }
+    stack_symbol_type t (s, sym);
+    yypush_ (m, t);
   }
 
+  inline
+  void
+  Parser::yypush_ (const char* m, stack_symbol_type& s)
+  {
+    if (m)
+      YY_SYMBOL_PRINT (m, s);
+    yystack_.push (s);
+  }
+
+  inline
   void
   Parser::yypop_ (unsigned int n)
   {
-    yystate_stack_.pop (n);
-    yysemantic_stack_.pop (n);
-    yylocation_stack_.pop (n);
+    yystack_.pop (n);
   }
 
 #if YYDEBUG
@@ -252,7 +392,17 @@ namespace co { namespace csl {
   {
     yydebug_ = l;
   }
-#endif
+#endif // YYDEBUG
+
+  inline Parser::state_type
+  Parser::yy_lr_goto_state_ (state_type yystate, int yysym)
+  {
+    int yyr = yypgoto_[yysym - yyntokens_] + yystate;
+    if (0 <= yyr && yyr <= yylast_ && yycheck_[yyr] == yystate)
+      return yytable_[yyr];
+    else
+      return yydefgoto_[yysym - yyntokens_];
+  }
 
   inline bool
   Parser::yy_pact_value_is_default_ (int yyvalue)
@@ -269,130 +419,116 @@ namespace co { namespace csl {
   int
   Parser::parse ()
   {
-    /// Lookahead and lookahead in internal form.
-    int yychar = yyempty_;
-    int yytoken = 0;
+    /// Whether yyla contains a lookahead.
+    bool yyempty = true;
 
-    /* State.  */
+    // State.
     int yyn;
+    /// Length of the RHS of the rule being reduced.
     int yylen = 0;
-    int yystate = 0;
 
-    /* Error handling.  */
+    // Error handling.
     int yynerrs_ = 0;
     int yyerrstatus_ = 0;
 
-    /// Semantic value of the lookahead.
-    semantic_type yylval;
-    /// Location of the lookahead.
-    location_type yylloc;
+    /// The lookahead symbol.
+    symbol_type yyla;
+
     /// The locations where the error started and ended.
-    location_type yyerror_range[3];
+    stack_symbol_type yyerror_range[3];
 
-    /// $$.
-    semantic_type yyval;
-    /// @$.
-    location_type yyloc;
-
+    /// The return value of parse ().
     int yyresult;
 
+    // FIXME: This shoud be completely indented.  It is not yet to
+    // avoid gratuitous conflicts when merging into the master branch.
+    try
+      {
     YYCDEBUG << "Starting parse" << std::endl;
 
 
-    /* User initialization code.  */
+    // User initialization code.
     
 {
-	yylloc.begin.filename = yylloc.end.filename = loader.getCurrentFileName();
+	yyla.location.begin.filename = yyla.location.end.filename = loader.getCurrentFileName();
 }
 
 
-    /* Initialize the stacks.  The initial state will be pushed in
+
+    /* Initialize the stack.  The initial state will be set in
        yynewstate, since the latter expects the semantical and the
        location values to have been already stored, initialize these
        stacks with a primary value.  */
-    yystate_stack_ = state_stack_type (0);
-    yysemantic_stack_ = semantic_stack_type (0);
-    yylocation_stack_ = location_stack_type (0);
-    yysemantic_stack_.push (yylval);
-    yylocation_stack_.push (yylloc);
+    yystack_.clear ();
+    yypush_ (YY_NULLPTR, 0, yyla);
 
-    /* New state.  */
+    // A new symbol was pushed on the stack.
   yynewstate:
-    yystate_stack_.push (yystate);
-    YYCDEBUG << "Entering state " << yystate << std::endl;
+    YYCDEBUG << "Entering state " << yystack_[0].state << std::endl;
 
-    /* Accept?  */
-    if (yystate == yyfinal_)
+    // Accept?
+    if (yystack_[0].state == yyfinal_)
       goto yyacceptlab;
 
     goto yybackup;
 
-    /* Backup.  */
+    // Backup.
   yybackup:
 
-    /* Try to take a decision without lookahead.  */
-    yyn = yypact_[yystate];
+    // Try to take a decision without lookahead.
+    yyn = yypact_[yystack_[0].state];
     if (yy_pact_value_is_default_ (yyn))
       goto yydefault;
 
-    /* Read a lookahead token.  */
-    if (yychar == yyempty_)
+    // Read a lookahead token.
+    if (yyempty)
       {
-	YYCDEBUG << "Reading a token: ";
-	yychar = yylex (&yylval, &yylloc, loader, scanner);
+        YYCDEBUG << "Reading a token: ";
+        try
+          {
+            yyla.type = yytranslate_ (yylex (&yyla.value, &yyla.location, loader, scanner));
+          }
+        catch (const syntax_error& yyexc)
+          {
+            error (yyexc);
+            goto yyerrlab1;
+          }
+        yyempty = false;
       }
+    YY_SYMBOL_PRINT ("Next token is", yyla);
 
-
-    /* Convert token to internal form.  */
-    if (yychar <= yyeof_)
-      {
-	yychar = yytoken = yyeof_;
-	YYCDEBUG << "Now at end of input." << std::endl;
-      }
-    else
-      {
-	yytoken = yytranslate_ (yychar);
-	YY_SYMBOL_PRINT ("Next token is", yytoken, &yylval, &yylloc);
-      }
-
-    /* If the proper action on seeing token YYTOKEN is to reduce or to
-       detect an error, take that action.  */
-    yyn += yytoken;
-    if (yyn < 0 || yylast_ < yyn || yycheck_[yyn] != yytoken)
+    /* If the proper action on seeing token YYLA.TYPE is to reduce or
+       to detect an error, take that action.  */
+    yyn += yyla.type_get ();
+    if (yyn < 0 || yylast_ < yyn || yycheck_[yyn] != yyla.type_get ())
       goto yydefault;
 
-    /* Reduce or error.  */
+    // Reduce or error.
     yyn = yytable_[yyn];
     if (yyn <= 0)
       {
-	if (yy_table_value_is_error_ (yyn))
-	  goto yyerrlab;
-	yyn = -yyn;
-	goto yyreduce;
+        if (yy_table_value_is_error_ (yyn))
+          goto yyerrlab;
+        yyn = -yyn;
+        goto yyreduce;
       }
 
-    /* Shift the lookahead token.  */
-    YY_SYMBOL_PRINT ("Shifting", yytoken, &yylval, &yylloc);
+    // Discard the token being shifted.
+    yyempty = true;
 
-    /* Discard the token being shifted.  */
-    yychar = yyempty_;
-
-    yysemantic_stack_.push (yylval);
-    yylocation_stack_.push (yylloc);
-
-    /* Count tokens shifted since error; after three, turn off error
-       status.  */
+    // Count tokens shifted since error; after three, turn off error status.
     if (yyerrstatus_)
       --yyerrstatus_;
 
-    yystate = yyn;
+    // Shift the lookahead token.
+    yypush_ ("Shifting", yyn, yyla);
     goto yynewstate;
 
   /*-----------------------------------------------------------.
   | yydefault -- do the default action for the current state.  |
   `-----------------------------------------------------------*/
   yydefault:
-    yyn = yydefact_[yystate];
+    yyn = yydefact_[yystack_[0].state];
     if (yyn == 0)
       goto yyerrlab;
     goto yyreduce;
@@ -402,25 +538,33 @@ namespace co { namespace csl {
   `-----------------------------*/
   yyreduce:
     yylen = yyr2_[yyn];
-    /* If YYLEN is nonzero, implement the default value of the action:
-       `$$ = $1'.  Otherwise, use the top of the stack.
-
-       Otherwise, the following line sets YYVAL to garbage.
-       This behavior is undocumented and Bison
-       users should not rely upon it.  */
-    if (yylen)
-      yyval = yysemantic_stack_[yylen - 1];
-    else
-      yyval = yysemantic_stack_[0];
-
     {
-      slice<location_type, location_stack_type> slice (yylocation_stack_, yylen);
-      YYLLOC_DEFAULT (yyloc, slice, yylen);
-    }
-    YY_REDUCE_PRINT (yyn);
-    switch (yyn)
+      stack_symbol_type yylhs;
+      yylhs.state = yy_lr_goto_state_(yystack_[yylen].state, yyr1_[yyn]);
+      /* If YYLEN is nonzero, implement the default value of the
+         action: '$$ = $1'.  Otherwise, use the top of the stack.
+
+         Otherwise, the following line sets YYLHS.VALUE to garbage.
+         This behavior is undocumented and Bison users should not rely
+         upon it.  */
+      if (yylen)
+        yylhs.value = yystack_[yylen - 1].value;
+      else
+        yylhs.value = yystack_[0].value;
+
+      // Compute the default @$.
       {
-	  case 3:
+        slice<stack_symbol_type, stack_type> slice (yystack_, yylen);
+        YYLLOC_DEFAULT (yylhs.location, slice, yylen);
+      }
+
+      // Perform the reduction.
+      YY_REDUCE_PRINT (yyn);
+      try
+        {
+          switch (yyn)
+            {
+  case 3:
 
     {
 			if( loader.getError() )
@@ -429,327 +573,354 @@ namespace co { namespace csl {
 			}
 			else
 			{
-				PUSH_ERROR( yylloc, "syntax error near '" << csl_get_text( scanner ) << "'" )
+				PUSH_ERROR( yyla.location, "syntax error near '" << csl_get_text( scanner ) << "'" )
 			}
 			YYABORT;
 		}
+
     break;
 
   case 16:
 
-    { PARSE_EV( onImport( (yylocation_stack_[(2) - (1)]), *(yysemantic_stack_[(2) - (2)].str) ) ) }
+    { PARSE_EV( onImport( yystack_[1].location, *(yystack_[0].value.str) ) ) }
+
     break;
 
   case 17:
 
-    { PARSE_EV( onComment( (yylocation_stack_[(1) - (1)]), *(yysemantic_stack_[(1) - (1)].str) ) ) }
+    { PARSE_EV( onComment( yystack_[0].location, *(yystack_[0].value.str) ) ) }
+
     break;
 
   case 22:
 
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); }
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+
     break;
 
   case 23:
 
-    { static std::string sComponent( "component" ); (yyval.str) = &sComponent; }
+    { static std::string sComponent( "component" ); (yylhs.value.str) = &sComponent; }
+
     break;
 
   case 24:
 
-    { static std::string sInterface( "interface" ); (yyval.str) = &sInterface; }
+    { static std::string sInterface( "interface" ); (yylhs.value.str) = &sInterface; }
+
     break;
 
   case 27:
 
-    { PARSE_EV( onAnnotation( (yylocation_stack_[(1) - (1)]), *(yysemantic_stack_[(1) - (1)].str), false ) ) }
+    { PARSE_EV( onAnnotation( yystack_[0].location, *(yystack_[0].value.str), false ) ) }
+
     break;
 
   case 28:
 
-    { PARSE_EV( onAnnotation( (yylocation_stack_[(2) - (1)]), *(yysemantic_stack_[(2) - (1)].str), true ) ) }
+    { PARSE_EV( onAnnotation( yystack_[1].location, *(yystack_[1].value.str), true ) ) }
+
     break;
 
   case 30:
 
-    { PARSE_EV( onAnnotationData( (yylocation_stack_[(1) - (1)]), "value", *(yysemantic_stack_[(1) - (1)].any) ) ) }
+    { PARSE_EV( onAnnotationData( yystack_[0].location, "value", *(yystack_[0].value.any) ) ) }
+
     break;
 
   case 37:
 
-    { PARSE_EV( onAnnotationData( (yyloc), *(yysemantic_stack_[(3) - (1)].str), *(yysemantic_stack_[(3) - (3)].any) ) ) }
+    { PARSE_EV( onAnnotationData( yylhs.location, *(yystack_[2].value.str), *(yystack_[0].value.any) ) ) }
+
     break;
 
   case 38:
 
-    { PARSE_EV( onTypeSpec( (yylocation_stack_[(2) - (1)]), co::TK_ENUM, (yylocation_stack_[(2) - (2)]), *(yysemantic_stack_[(2) - (2)].str) ) ) }
+    { PARSE_EV( onTypeSpec( yystack_[1].location, co::TK_ENUM, yystack_[0].location, *(yystack_[0].value.str) ) ) }
+
     break;
 
   case 40:
 
-    { PARSE_EV( onEnumIdentifier( (yylocation_stack_[(2) - (2)]), *(yysemantic_stack_[(2) - (2)].str) ) ) }
+    { PARSE_EV( onEnumIdentifier( yystack_[0].location, *(yystack_[0].value.str) ) ) }
+
     break;
 
   case 44:
 
-    { PARSE_EV( onTypeSpec( (yylocation_stack_[(2) - (1)]), co::TK_EXCEPTION, (yylocation_stack_[(2) - (2)]), *(yysemantic_stack_[(2) - (2)].str) ) ) }
+    { PARSE_EV( onTypeSpec( yystack_[1].location, co::TK_EXCEPTION, yystack_[0].location, *(yystack_[0].value.str) ) ) }
+
     break;
 
   case 45:
 
-    { PARSE_EV( onTypeSpec( (yylocation_stack_[(2) - (1)]), co::TK_STRUCT, (yylocation_stack_[(2) - (2)]), *(yysemantic_stack_[(2) - (2)].str) ) ) }
+    { PARSE_EV( onTypeSpec( yystack_[1].location, co::TK_STRUCT, yystack_[0].location, *(yystack_[0].value.str) ) ) }
+
     break;
 
   case 54:
 
-    { PARSE_EV( onField( (yylocation_stack_[(3) - (2)]), *(yysemantic_stack_[(3) - (2)].str), false ) ) }
+    { PARSE_EV( onField( yystack_[1].location, *(yystack_[1].value.str), false ) ) }
+
     break;
 
   case 55:
 
-    { PARSE_EV( onField( (yylocation_stack_[(4) - (3)]), *(yysemantic_stack_[(4) - (3)].str), true ) ) }
+    { PARSE_EV( onField( yystack_[1].location, *(yystack_[1].value.str), true ) ) }
+
     break;
 
   case 56:
 
-    { PARSE_EV( onTypeSpec( (yylocation_stack_[(2) - (1)]), co::TK_NATIVECLASS, (yylocation_stack_[(2) - (2)]), *(yysemantic_stack_[(2) - (2)].str) ) ) }
+    { PARSE_EV( onTypeSpec( yystack_[1].location, co::TK_NATIVECLASS, yystack_[0].location, *(yystack_[0].value.str) ) ) }
+
     break;
 
   case 62:
 
-    { PARSE_EV( onCppBlock( (yylocation_stack_[(1) - (1)]), *(yysemantic_stack_[(1) - (1)].str) ) ) }
+    { PARSE_EV( onCppBlock( yystack_[0].location, *(yystack_[0].value.str) ) ) }
+
     break;
 
   case 66:
 
-    { PARSE_EV( onTypeDecl( (yylocation_stack_[(1) - (1)]), "void", false ) ) }
+    { PARSE_EV( onTypeDecl( yystack_[0].location, "void", false ) ) }
+
     break;
 
   case 68:
 
-    { PARSE_EV( onMethod( (yylocation_stack_[(1) - (0)]), *(yysemantic_stack_[(1) - (0)].str) ) ) }
+    { PARSE_EV( onMethod( yystack_[1].location, *(yystack_[1].value.str) ) ) }
+
     break;
 
   case 69:
 
-    { PARSE_EV( onMethodEnd( (yylocation_stack_[(6) - (0)])) ) }
+    { PARSE_EV( onMethodEnd( yystack_[6].location) ) }
+
     break;
 
   case 74:
 
-    { int v = (yysemantic_stack_[(3) - (1)].i32);
-		PARSE_EV( onParameter( (yylocation_stack_[(3) - (3)]), ( v & 1 ) != 0, ( v & 2 ) != 0, *(yysemantic_stack_[(3) - (3)].str) ) ) }
+    { int v = (yystack_[2].value.i32);
+		PARSE_EV( onParameter( yystack_[0].location, ( v & 1 ) != 0, ( v & 2 ) != 0, *(yystack_[0].value.str) ) ) }
+
     break;
 
   case 75:
 
-    { (yyval.i32) = 1; }
+    { (yylhs.value.i32) = 1; }
+
     break;
 
   case 76:
 
-    { (yyval.i32) = 2; }
+    { (yylhs.value.i32) = 2; }
+
     break;
 
   case 77:
 
-    { (yyval.i32) = 3; }
+    { (yylhs.value.i32) = 3; }
+
     break;
 
   case 78:
 
-    { PUSH_ERROR( (yyloc), "expected 'in', 'out' or 'inout' before '"
+    { PUSH_ERROR( yylhs.location, "expected 'in', 'out' or 'inout' before '"
 		<< csl_get_text( scanner ) << "'" ); YYABORT; }
+
     break;
 
   case 83:
 
-    { PARSE_EV( onRaises( (yylocation_stack_[(1) - (1)]), *(yysemantic_stack_[(1) - (1)].str) ) ) }
+    { PARSE_EV( onRaises( yystack_[0].location, *(yystack_[0].value.str) ) ) }
+
     break;
 
   case 84:
 
-    { PARSE_EV( onTypeDecl( (yyloc), (yysemantic_stack_[(2) - (1)].cstr), (yysemantic_stack_[(2) - (2)].b) ) ) }
+    { PARSE_EV( onTypeDecl( yylhs.location, (yystack_[1].value.cstr), (yystack_[0].value.b) ) ) }
+
     break;
 
   case 85:
 
-    { PARSE_EV( onTypeDecl( (yyloc), *(yysemantic_stack_[(2) - (1)].str), (yysemantic_stack_[(2) - (2)].b) ) ) }
+    { PARSE_EV( onTypeDecl( yylhs.location, *(yystack_[1].value.str), (yystack_[0].value.b) ) ) }
+
     break;
 
   case 86:
 
-    { (yyval.b) = false; }
+    { (yylhs.value.b) = false; }
+
     break;
 
   case 87:
 
-    { (yyval.b) = true; }
+    { (yylhs.value.b) = true; }
+
     break;
 
   case 88:
 
-    { PARSE_EV( onTypeSpec( (yylocation_stack_[(2) - (1)]), co::TK_INTERFACE, (yylocation_stack_[(2) - (2)]), *(yysemantic_stack_[(2) - (2)].str) ) ) }
+    { PARSE_EV( onTypeSpec( yystack_[1].location, co::TK_INTERFACE, yystack_[0].location, *(yystack_[0].value.str) ) ) }
+
     break;
 
   case 91:
 
-    { PARSE_EV( onBaseType( (yylocation_stack_[(2) - (2)]), *(yysemantic_stack_[(2) - (2)].str) ) ) }
+    { PARSE_EV( onBaseType( yystack_[0].location, *(yystack_[0].value.str) ) ) }
+
     break;
 
   case 92:
 
-    { PARSE_EV( onTypeSpec( (yylocation_stack_[(2) - (1)]), co::TK_COMPONENT, (yylocation_stack_[(2) - (2)]), *(yysemantic_stack_[(2) - (2)].str) ) ) }
+    { PARSE_EV( onTypeSpec( yystack_[1].location, co::TK_COMPONENT, yystack_[0].location, *(yystack_[0].value.str) ) ) }
+
     break;
 
   case 101:
 
-    { PARSE_EV( onTypeDecl( (yylocation_stack_[(2) - (2)]), *(yysemantic_stack_[(2) - (2)].str), false ) ) }
+    { PARSE_EV( onTypeDecl( yystack_[0].location, *(yystack_[0].value.str), false ) ) }
+
     break;
 
   case 102:
 
-    { PARSE_EV( onPort( (yylocation_stack_[(5) - (4)]), (yysemantic_stack_[(5) - (1)].b), *(yysemantic_stack_[(5) - (4)].str) ) ) }
+    { PARSE_EV( onPort( yystack_[1].location, (yystack_[4].value.b), *(yystack_[1].value.str) ) ) }
+
     break;
 
   case 103:
 
-    { (yyval.b) = true; }
+    { (yylhs.value.b) = true; }
+
     break;
 
   case 104:
 
-    { (yyval.b) = false; }
+    { (yylhs.value.b) = false; }
+
     break;
 
   case 105:
 
-    { (yyval.any) = loader.newAny(); (yyval.any)->set( (yysemantic_stack_[(1) - (1)].b) ); }
+    { (yylhs.value.any) = loader.newAny(); (yylhs.value.any)->set( (yystack_[0].value.b) ); }
+
     break;
 
   case 106:
 
-    { (yyval.any) = loader.newAny(); (yyval.any)->set( *(yysemantic_stack_[(1) - (1)].str) ); }
+    { (yylhs.value.any) = loader.newAny(); (yylhs.value.any)->set( *(yystack_[0].value.str) ); }
+
     break;
 
   case 107:
 
-    { (yyval.any) = loader.newAny(); (yyval.any)->set( *(yysemantic_stack_[(1) - (1)].str) ); }
+    { (yylhs.value.any) = loader.newAny(); (yylhs.value.any)->set( *(yystack_[0].value.str) ); }
+
     break;
 
   case 108:
 
-    { (yyval.any) = loader.newAny(); (yyval.any)->set( (yysemantic_stack_[(1) - (1)].num) ); }
+    { (yylhs.value.any) = loader.newAny(); (yylhs.value.any)->set( (yystack_[0].value.num) ); }
+
     break;
 
   case 109:
 
-    { (yyval.num) = (yysemantic_stack_[(1) - (1)].num); }
+    { (yylhs.value.num) = (yystack_[0].value.num); }
+
     break;
 
   case 110:
 
-    { (yyval.num) = (yysemantic_stack_[(3) - (2)].num); }
+    { (yylhs.value.num) = (yystack_[1].value.num); }
+
     break;
 
   case 111:
 
-    { (yyval.num) = (yysemantic_stack_[(3) - (1)].num) + (yysemantic_stack_[(3) - (3)].num); }
+    { (yylhs.value.num) = (yystack_[2].value.num) + (yystack_[0].value.num); }
+
     break;
 
   case 112:
 
-    { (yyval.num) = (yysemantic_stack_[(3) - (1)].num) - (yysemantic_stack_[(3) - (3)].num); }
+    { (yylhs.value.num) = (yystack_[2].value.num) - (yystack_[0].value.num); }
+
     break;
 
   case 113:
 
-    { (yyval.num) = (yysemantic_stack_[(3) - (1)].num) * (yysemantic_stack_[(3) - (3)].num); }
+    { (yylhs.value.num) = (yystack_[2].value.num) * (yystack_[0].value.num); }
+
     break;
 
   case 114:
 
-    { (yyval.num) = (yysemantic_stack_[(3) - (1)].num) / (yysemantic_stack_[(3) - (3)].num); }
+    { (yylhs.value.num) = (yystack_[2].value.num) / (yystack_[0].value.num); }
+
     break;
 
   case 115:
 
-    { (yyval.num) = -(yysemantic_stack_[(2) - (2)].num); }
+    { (yylhs.value.num) = -(yystack_[0].value.num); }
+
     break;
 
 
 
-	default:
-          break;
-      }
-    /* User semantic actions sometimes alter yychar, and that requires
-       that yytoken be updated with the new translation.  We take the
-       approach of translating immediately before every use of yytoken.
-       One alternative is translating here after every semantic action,
-       but that translation would be missed if the semantic action
-       invokes YYABORT, YYACCEPT, or YYERROR immediately after altering
-       yychar.  In the case of YYABORT or YYACCEPT, an incorrect
-       destructor might then be invoked immediately.  In the case of
-       YYERROR, subsequent parser actions might lead to an incorrect
-       destructor call or verbose syntax error message before the
-       lookahead is translated.  */
-    YY_SYMBOL_PRINT ("-> $$ =", yyr1_[yyn], &yyval, &yyloc);
+            default:
+              break;
+            }
+        }
+      catch (const syntax_error& yyexc)
+        {
+          error (yyexc);
+          YYERROR;
+        }
+      YY_SYMBOL_PRINT ("-> $$ =", yylhs);
+      yypop_ (yylen);
+      yylen = 0;
+      YY_STACK_PRINT ();
 
-    yypop_ (yylen);
-    yylen = 0;
-    YY_STACK_PRINT ();
-
-    yysemantic_stack_.push (yyval);
-    yylocation_stack_.push (yyloc);
-
-    /* Shift the result of the reduction.  */
-    yyn = yyr1_[yyn];
-    yystate = yypgoto_[yyn - yyntokens_] + yystate_stack_[0];
-    if (0 <= yystate && yystate <= yylast_
-	&& yycheck_[yystate] == yystate_stack_[0])
-      yystate = yytable_[yystate];
-    else
-      yystate = yydefgoto_[yyn - yyntokens_];
+      // Shift the result of the reduction.
+      yypush_ (YY_NULLPTR, yylhs);
+    }
     goto yynewstate;
 
-  /*------------------------------------.
-  | yyerrlab -- here on detecting error |
-  `------------------------------------*/
+  /*--------------------------------------.
+  | yyerrlab -- here on detecting error.  |
+  `--------------------------------------*/
   yyerrlab:
-    /* Make sure we have latest lookahead translation.  See comments at
-       user semantic actions for why this is necessary.  */
-    yytoken = yytranslate_ (yychar);
-
-    /* If not already recovering from an error, report this error.  */
+    // If not already recovering from an error, report this error.
     if (!yyerrstatus_)
       {
-	++yynerrs_;
-	if (yychar == yyempty_)
-	  yytoken = yyempty_;
-	error (yylloc, yysyntax_error_ (yystate, yytoken));
+        ++yynerrs_;
+        error (yyla.location, yysyntax_error_ (yystack_[0].state,
+                                           yyempty ? yyempty_ : yyla.type_get ()));
       }
 
-    yyerror_range[1] = yylloc;
+
+    yyerror_range[1].location = yyla.location;
     if (yyerrstatus_ == 3)
       {
-	/* If just tried and failed to reuse lookahead token after an
-	 error, discard it.  */
+        /* If just tried and failed to reuse lookahead token after an
+           error, discard it.  */
 
-	if (yychar <= yyeof_)
-	  {
-	  /* Return failure if at end of input.  */
-	  if (yychar == yyeof_)
-	    YYABORT;
-	  }
-	else
-	  {
-	    yydestruct_ ("Error: discarding", yytoken, &yylval, &yylloc);
-	    yychar = yyempty_;
-	  }
+        // Return failure if at end of input.
+        if (yyla.type_get () == yyeof_)
+          YYABORT;
+        else if (!yyempty)
+          {
+            yy_destroy_ ("Error: discarding", yyla);
+            yyempty = true;
+          }
       }
 
-    /* Else will try to reuse lookahead token after shifting the error
-       token.  */
+    // Else will try to reuse lookahead token after shifting the error token.
     goto yyerrlab1;
 
 
@@ -763,112 +934,118 @@ namespace co { namespace csl {
        code.  */
     if (false)
       goto yyerrorlab;
-
-    yyerror_range[1] = yylocation_stack_[yylen - 1];
-    /* Do not reclaim the symbols of the rule which action triggered
+    yyerror_range[1].location = yystack_[yylen - 1].location;
+    /* Do not reclaim the symbols of the rule whose action triggered
        this YYERROR.  */
     yypop_ (yylen);
     yylen = 0;
-    yystate = yystate_stack_[0];
     goto yyerrlab1;
 
   /*-------------------------------------------------------------.
   | yyerrlab1 -- common code for both syntax error and YYERROR.  |
   `-------------------------------------------------------------*/
   yyerrlab1:
-    yyerrstatus_ = 3;	/* Each real token shifted decrements this.  */
+    yyerrstatus_ = 3;   // Each real token shifted decrements this.
+    {
+      stack_symbol_type error_token;
+      for (;;)
+        {
+          yyn = yypact_[yystack_[0].state];
+          if (!yy_pact_value_is_default_ (yyn))
+            {
+              yyn += yyterror_;
+              if (0 <= yyn && yyn <= yylast_ && yycheck_[yyn] == yyterror_)
+                {
+                  yyn = yytable_[yyn];
+                  if (0 < yyn)
+                    break;
+                }
+            }
 
-    for (;;)
-      {
-	yyn = yypact_[yystate];
-	if (!yy_pact_value_is_default_ (yyn))
-	{
-	  yyn += yyterror_;
-	  if (0 <= yyn && yyn <= yylast_ && yycheck_[yyn] == yyterror_)
-	    {
-	      yyn = yytable_[yyn];
-	      if (0 < yyn)
-		break;
-	    }
-	}
+          // Pop the current state because it cannot handle the error token.
+          if (yystack_.size () == 1)
+            YYABORT;
 
-	/* Pop the current state because it cannot handle the error token.  */
-	if (yystate_stack_.height () == 1)
-	YYABORT;
+          yyerror_range[1].location = yystack_[0].location;
+          yy_destroy_ ("Error: popping", yystack_[0]);
+          yypop_ ();
+          YY_STACK_PRINT ();
+        }
 
-	yyerror_range[1] = yylocation_stack_[0];
-	yydestruct_ ("Error: popping",
-		     yystos_[yystate],
-		     &yysemantic_stack_[0], &yylocation_stack_[0]);
-	yypop_ ();
-	yystate = yystate_stack_[0];
-	YY_STACK_PRINT ();
-      }
+      yyerror_range[2].location = yyla.location;
+      YYLLOC_DEFAULT (error_token.location, yyerror_range, 2);
 
-    yyerror_range[2] = yylloc;
-    // Using YYLLOC is tempting, but would change the location of
-    // the lookahead.  YYLOC is available though.
-    YYLLOC_DEFAULT (yyloc, yyerror_range, 2);
-    yysemantic_stack_.push (yylval);
-    yylocation_stack_.push (yyloc);
-
-    /* Shift the error token.  */
-    YY_SYMBOL_PRINT ("Shifting", yystos_[yyn],
-		     &yysemantic_stack_[0], &yylocation_stack_[0]);
-
-    yystate = yyn;
+      // Shift the error token.
+      error_token.state = yyn;
+      yypush_ ("Shifting", error_token);
+    }
     goto yynewstate;
 
-    /* Accept.  */
+    // Accept.
   yyacceptlab:
     yyresult = 0;
     goto yyreturn;
 
-    /* Abort.  */
+    // Abort.
   yyabortlab:
     yyresult = 1;
     goto yyreturn;
 
   yyreturn:
-    if (yychar != yyempty_)
-      {
-        /* Make sure we have latest lookahead translation.  See comments
-           at user semantic actions for why this is necessary.  */
-        yytoken = yytranslate_ (yychar);
-        yydestruct_ ("Cleanup: discarding lookahead", yytoken, &yylval,
-                     &yylloc);
-      }
+    if (!yyempty)
+      yy_destroy_ ("Cleanup: discarding lookahead", yyla);
 
-    /* Do not reclaim the symbols of the rule which action triggered
+    /* Do not reclaim the symbols of the rule whose action triggered
        this YYABORT or YYACCEPT.  */
     yypop_ (yylen);
-    while (yystate_stack_.height () != 1)
+    while (1 < yystack_.size ())
       {
-	yydestruct_ ("Cleanup: popping",
-		   yystos_[yystate_stack_[0]],
-		   &yysemantic_stack_[0],
-		   &yylocation_stack_[0]);
-	yypop_ ();
+        yy_destroy_ ("Cleanup: popping", yystack_[0]);
+        yypop_ ();
       }
 
     return yyresult;
   }
+    catch (...)
+      {
+        YYCDEBUG << "Exception caught: cleaning lookahead and stack"
+                 << std::endl;
+        // Do not try to display the values of the reclaimed symbols,
+        // as their printer might throw an exception.
+        if (!yyempty)
+          yy_destroy_ (YY_NULLPTR, yyla);
+
+        while (1 < yystack_.size ())
+          {
+            yy_destroy_ (YY_NULLPTR, yystack_[0]);
+            yypop_ ();
+          }
+        throw;
+      }
+  }
+
+  void
+  Parser::error (const syntax_error& yyexc)
+  {
+    error (yyexc.location, yyexc.what());
+  }
 
   // Generate an error message.
   std::string
-  Parser::yysyntax_error_ (int, int)
+  Parser::yysyntax_error_ (state_type, symbol_number_type) const
   {
     return YY_("syntax error");
   }
 
 
-  /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
-     STATE-NUM.  */
   const signed char Parser::yypact_ninf_ = -89;
+
+  const signed char Parser::yytable_ninf_ = -71;
+
   const short int
   Parser::yypact_[] =
   {
-        82,   -89,   -26,   -89,    10,    13,    22,     0,    23,    29,
+      82,   -89,   -26,   -89,    10,    13,    22,     0,    23,    29,
       31,    14,   119,   -89,    38,   -89,   -89,   -89,   -89,   -89,
      -89,   -89,   -89,   -89,   -89,   -89,   -89,   -89,   -89,   -89,
      -89,   -89,   -89,   -89,   -89,   -89,   -89,    25,    32,    35,
@@ -888,13 +1065,10 @@ namespace co { namespace csl {
      120,   -89,   -89,     0,   -89
   };
 
-  /* YYDEFACT[S] -- default reduction number in state S.  Performed when
-     YYTABLE doesn't specify something else to do.  Zero means the
-     default is an error.  */
   const unsigned char
   Parser::yydefact_[] =
   {
-         0,     3,    27,    17,     0,     0,     0,     0,     0,     0,
+       0,     3,    27,    17,     0,     0,     0,     0,     0,     0,
        0,     0,     2,     4,     0,     9,     6,     7,    10,    11,
       12,    13,    14,    15,    28,    92,    38,    44,    25,    26,
       16,    88,    56,    45,     1,     5,     8,     0,     0,     0,
@@ -914,11 +1088,10 @@ namespace co { namespace csl {
       80,    81,    69,     0,    82
   };
 
-  /* YYPGOTO[NTERM-NUM].  */
   const short int
   Parser::yypgoto_[] =
   {
-       -89,   -89,   -89,   145,   -89,   -89,     1,   -89,    20,   -88,
+     -89,   -89,   -89,   145,   -89,   -89,     1,   -89,    20,   -88,
       -7,     3,   -89,   -89,   -89,   -89,    51,    98,   -89,   -89,
       42,   -89,   -89,   -89,   -89,   -89,   -89,   -89,   -56,   -89,
      -89,   -89,    75,   -89,    67,   -89,   -89,    21,   -89,   -89,
@@ -927,11 +1100,10 @@ namespace co { namespace csl {
       85
   };
 
-  /* YYDEFGOTO[NTERM-NUM].  */
   const short int
   Parser::yydefgoto_[] =
   {
-        -1,    11,    12,    13,    14,    15,    91,    81,    82,   133,
+      -1,    11,    12,    13,    14,    15,    91,    81,    82,   133,
       92,    93,    37,    50,    66,   110,    51,    52,    18,    39,
       83,   139,    84,    19,    20,    42,   101,   102,    94,    95,
       21,    41,    96,    97,    98,    99,   126,   147,   152,   158,
@@ -940,14 +1112,10 @@ namespace co { namespace csl {
       54
   };
 
-  /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
-     positive, shift that token.  If negative, reduce the rule which
-     number is the opposite.  If YYTABLE_NINF_, syntax error.  */
-  const signed char Parser::yytable_ninf_ = -71;
   const short int
   Parser::yytable_[] =
   {
-        30,    16,   104,    17,   103,   154,   120,   154,    24,   121,
+      30,    16,   104,    17,   103,   154,   120,   154,    24,   121,
        2,    28,     3,    16,    34,    17,   136,   155,   156,   155,
      156,    25,    29,   157,    26,   157,    69,    70,    71,    43,
       49,   125,    72,    27,    31,    46,    44,   143,   144,   -70,
@@ -967,11 +1135,10 @@ namespace co { namespace csl {
      116,   105
   };
 
-  /* YYCHECK.  */
   const unsigned char
   Parser::yycheck_[] =
   {
-         7,     0,    60,     0,    60,     1,    36,     1,    34,    39,
+       7,     0,    60,     0,    60,     1,    36,     1,    34,    39,
        3,    11,     5,    12,     0,    12,   104,    13,    14,    13,
       14,    11,    22,    19,    11,    19,    30,    31,    21,     4,
       37,    89,    25,    11,    11,    18,    11,   125,   126,    35,
@@ -991,12 +1158,10 @@ namespace co { namespace csl {
       76,    61
   };
 
-  /* STOS_[STATE-NUM] -- The (internal number of the) accessing
-     symbol of state STATE-NUM.  */
   const unsigned char
   Parser::yystos_[] =
   {
-         0,     1,     3,     5,     6,     8,     9,    12,    15,    17,
+       0,     1,     3,     5,     6,     8,     9,    12,    15,    17,
       26,    43,    44,    45,    46,    47,    48,    53,    60,    65,
       66,    72,    90,    93,    34,    11,    11,    11,    11,    22,
       52,    11,    11,    11,     0,    45,    33,    54,    94,    61,
@@ -1016,25 +1181,10 @@ namespace co { namespace csl {
       86,    87,    33,    36,    87
   };
 
-#if YYDEBUG
-  /* TOKEN_NUMBER_[YYLEX-NUM] -- Internal symbol number corresponding
-     to YYLEX-NUM.  */
-  const unsigned short int
-  Parser::yytoken_number_[] =
-  {
-         0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
-     265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
-     275,   276,   277,   278,   279,   280,   281,   282,    45,    43,
-      42,    47,   283,    59,    40,    41,    44,    61,   123,   125,
-      91,    93
-  };
-#endif
-
-  /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
   const unsigned char
   Parser::yyr1_[] =
   {
-         0,    42,    43,    43,    44,    44,    45,    45,    45,    46,
+       0,    42,    43,    43,    44,    44,    45,    45,    45,    46,
       46,    46,    46,    46,    46,    46,    47,    48,    49,    49,
       50,    50,    51,    51,    51,    52,    52,    53,    54,    53,
       56,    55,    55,    57,    57,    58,    58,    59,    61,    60,
@@ -1048,11 +1198,10 @@ namespace co { namespace csl {
      102,   102,   102,   102,   102,   102
   };
 
-  /* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
   const unsigned char
   Parser::yyr2_[] =
   {
-         0,     2,     1,     1,     1,     2,     1,     1,     2,     1,
+       0,     2,     1,     1,     1,     2,     1,     1,     2,     1,
        1,     1,     1,     1,     1,     1,     2,     1,     1,     2,
        0,     1,     1,     1,     1,     1,     1,     1,     0,     5,
        0,     3,     1,     0,     2,     1,     3,     3,     0,     6,
@@ -1066,13 +1215,14 @@ namespace co { namespace csl {
        3,     3,     3,     3,     3,     2
   };
 
+
 #if YYDEBUG
-  /* YYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
-     First, the terminals, then, starting at \a yyntokens_, nonterminals.  */
+  // YYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
+  // First, the terminals, then, starting at \a yyntokens_, nonterminals.
   const char*
   const Parser::yytname_[] =
   {
-    "\"end of file\"", "error", "$undefined", "\"annotation identifier\"",
+  "\"end of file\"", "error", "$undefined", "\"annotation identifier\"",
   "\"boolean value\"", "\"comment\"", "\"component\"", "\"C++ block\"",
   "\"enum\"", "\"exception\"", "\"extends\"", "\"identifier\"",
   "\"import\"", "\"in\"", "\"inout\"", "\"interface\"",
@@ -1094,71 +1244,14 @@ namespace co { namespace csl {
   "type_decl", "opt_array", "interface_spec", "$@9",
   "opt_inheritance_decl", "component_spec", "$@10",
   "opt_component_member_list", "component_member_list", "component_member",
-  "port_decl", "$@11", "port_kind", "exp", "num_exp", YY_NULL
+  "port_decl", "$@11", "port_kind", "exp", "num_exp", YY_NULLPTR
   };
 
 
-  /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
-  const Parser::rhs_number_type
-  Parser::yyrhs_[] =
-  {
-        43,     0,    -1,    44,    -1,     1,    -1,    45,    -1,    44,
-      45,    -1,    48,    -1,    53,    -1,    46,    33,    -1,    47,
-      -1,    60,    -1,    65,    -1,    66,    -1,    72,    -1,    90,
-      -1,    93,    -1,    12,    52,    -1,     5,    -1,    48,    -1,
-      49,    48,    -1,    -1,    49,    -1,    11,    -1,     6,    -1,
-      15,    -1,    11,    -1,    22,    -1,     3,    -1,    -1,     3,
-      34,    54,    55,    35,    -1,    -1,   101,    56,    57,    -1,
-      58,    -1,    -1,    36,    58,    -1,    59,    -1,    58,    36,
-      59,    -1,    11,    37,   101,    -1,    -1,     8,    11,    61,
-      38,    64,    39,    -1,    -1,    50,    11,    63,    50,    -1,
-      62,    -1,    64,    36,    62,    -1,     9,    11,    -1,    -1,
-      26,    11,    67,    38,    68,    39,    -1,    -1,    69,    -1,
-      70,    -1,    69,    70,    -1,    48,    -1,    53,    -1,    71,
-      -1,    88,    51,    33,    -1,    24,    88,    51,    33,    -1,
-      -1,    17,    11,    73,    38,    74,    39,    -1,    -1,    75,
-      -1,    76,    -1,    75,    76,    -1,     7,    -1,    77,    -1,
-      70,    -1,    88,    51,    79,    -1,    -1,    27,    78,    51,
-      79,    -1,    -1,    34,    80,    81,    35,    85,    33,    -1,
-      -1,    82,    -1,    83,    -1,    82,    36,    83,    -1,    84,
-      88,    11,    -1,    13,    -1,    19,    -1,    14,    -1,     1,
-      -1,    -1,    23,    86,    -1,    87,    -1,    86,    36,    87,
-      -1,    52,    -1,    20,    89,    -1,    52,    89,    -1,    -1,
-      40,    41,    -1,    -1,    15,    11,    91,    92,    38,    74,
-      39,    -1,    -1,    10,    52,    -1,    -1,     6,    11,    94,
-      38,    95,    39,    -1,    -1,    96,    -1,    97,    -1,    96,
-      97,    -1,    48,    -1,    53,    -1,    98,    -1,    -1,   100,
-      52,    99,    11,    33,    -1,    21,    -1,    25,    -1,     4,
-      -1,    16,    -1,    52,    -1,   102,    -1,    18,    -1,    34,
-     102,    35,    -1,   102,    29,   102,    -1,   102,    28,   102,
-      -1,   102,    30,   102,    -1,   102,    31,   102,    -1,    28,
-     102,    -1
-  };
-
-  /* YYPRHS[YYN] -- Index of the first RHS symbol of rule number YYN in
-     YYRHS.  */
-  const unsigned short int
-  Parser::yyprhs_[] =
-  {
-         0,     0,     3,     5,     7,     9,    12,    14,    16,    19,
-      21,    23,    25,    27,    29,    31,    33,    36,    38,    40,
-      43,    44,    46,    48,    50,    52,    54,    56,    58,    59,
-      65,    66,    70,    72,    73,    76,    78,    82,    86,    87,
-      94,    95,   100,   102,   106,   109,   110,   117,   118,   120,
-     122,   125,   127,   129,   131,   135,   140,   141,   148,   149,
-     151,   153,   156,   158,   160,   162,   166,   167,   172,   173,
-     180,   181,   183,   185,   189,   193,   195,   197,   199,   201,
-     202,   205,   207,   211,   213,   216,   219,   220,   223,   224,
-     232,   233,   236,   237,   244,   245,   247,   249,   252,   254,
-     256,   258,   259,   265,   267,   269,   271,   273,   275,   277,
-     279,   283,   287,   291,   295,   299
-  };
-
-  /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
   const unsigned short int
   Parser::yyrline_[] =
   {
-         0,   110,   110,   111,   125,   126,   130,   131,   132,   136,
+       0,   110,   110,   111,   125,   126,   130,   131,   132,   136,
      137,   138,   139,   140,   141,   142,   146,   150,   154,   155,
      158,   160,   164,   165,   166,   170,   171,   175,   176,   176,
      180,   180,   181,   184,   186,   190,   191,   195,   199,   199,
@@ -1177,9 +1270,11 @@ namespace co { namespace csl {
   Parser::yystack_print_ ()
   {
     *yycdebug_ << "Stack now";
-    for (state_stack_type::const_iterator i = yystate_stack_.begin ();
-	 i != yystate_stack_.end (); ++i)
-      *yycdebug_ << ' ' << *i;
+    for (stack_type::const_iterator
+           i = yystack_.begin (),
+           i_end = yystack_.end ();
+         i != i_end; ++i)
+      *yycdebug_ << ' ' << i->state;
     *yycdebug_ << std::endl;
   }
 
@@ -1189,19 +1284,18 @@ namespace co { namespace csl {
   {
     unsigned int yylno = yyrline_[yyrule];
     int yynrhs = yyr2_[yyrule];
-    /* Print the symbols being reduced, and their result.  */
+    // Print the symbols being reduced, and their result.
     *yycdebug_ << "Reducing stack by rule " << yyrule - 1
-	       << " (line " << yylno << "):" << std::endl;
-    /* The symbols being reduced.  */
+               << " (line " << yylno << "):" << std::endl;
+    // The symbols being reduced.
     for (int yyi = 0; yyi < yynrhs; yyi++)
       YY_SYMBOL_PRINT ("   $" << yyi + 1 << " =",
-		       yyrhs_[yyprhs_[yyrule] + yyi],
-		       &(yysemantic_stack_[(yynrhs) - (yyi + 1)]),
-		       &(yylocation_stack_[(yynrhs) - (yyi + 1)]));
+                       yystack_[(yynrhs) - (yyi + 1)]);
   }
 #endif // YYDEBUG
 
-  /* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
+  // Symbol number corresponding to token number t.
+  inline
   Parser::token_number_type
   Parser::yytranslate_ (int t)
   {
@@ -1209,7 +1303,7 @@ namespace co { namespace csl {
     const token_number_type
     translate_table[] =
     {
-           0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+     0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -1239,23 +1333,16 @@ namespace co { namespace csl {
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
       25,    26,    27,    32
     };
-    if ((unsigned int) t <= yyuser_token_number_max_)
+    const unsigned int user_token_number_max_ = 283;
+    const token_number_type undef_token_ = 2;
+
+    if (static_cast<int>(t) <= yyeof_)
+      return yyeof_;
+    else if (static_cast<unsigned int> (t) <= user_token_number_max_)
       return translate_table[t];
     else
-      return yyundef_token_;
+      return undef_token_;
   }
-
-  const int Parser::yyeof_ = 0;
-  const int Parser::yylast_ = 171;
-  const int Parser::yynnts_ = 61;
-  const int Parser::yyempty_ = -2;
-  const int Parser::yyfinal_ = 34;
-  const int Parser::yyterror_ = 1;
-  const int Parser::yyerrcode_ = 256;
-  const int Parser::yyntokens_ = 42;
-
-  const unsigned int Parser::yyuser_token_number_max_ = 283;
-  const Parser::token_number_type Parser::yyundef_token_ = 2;
 
 
 } } // co::csl
@@ -1267,4 +1354,3 @@ void co::csl::Parser::error( const location_type&, const std::string& )
 {
 	// ignore
 }
-

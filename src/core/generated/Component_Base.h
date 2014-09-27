@@ -1,3 +1,4 @@
+
 #ifndef _CO_COMPONENT_BASE_H_
 #define _CO_COMPONENT_BASE_H_
 

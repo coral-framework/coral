@@ -1,3 +1,4 @@
+
 #ifndef _CO_ICLASSTYPE_H_
 #define _CO_ICLASSTYPE_H_
 

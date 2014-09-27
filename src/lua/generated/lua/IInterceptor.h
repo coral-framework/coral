@@ -1,3 +1,4 @@
+
 #ifndef _LUA_IINTERCEPTOR_H_
 #define _LUA_IINTERCEPTOR_H_
 

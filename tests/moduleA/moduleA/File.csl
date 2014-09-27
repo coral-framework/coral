@@ -14,7 +14,7 @@ native class File
 	readonly bool isOpen;
 
 	// Current position within the file stream.
-	uint32 pos;
+	int64 pos;
 
 	// Creates a file with the given name.
 	void open( in string filename, in string mode );

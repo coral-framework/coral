@@ -41,10 +41,10 @@ TEST( MappingTests, structFields )
 	ASSERT_TRUE( dummyStruct.testEnum == moduleA::First );
 	ASSERT_FALSE( dummyStruct.testEnum == moduleA::Third );
 
-	dummyStruct.floatArray.push_back( 1.01234f );
-	ASSERT_FALSE( dummyStruct.floatArray.empty() );
-	ASSERT_EQ( 1, dummyStruct.floatArray.size() );
-	ASSERT_EQ( 1.01234f, dummyStruct.floatArray[0] );
+	dummyStruct.doubleArray.push_back( 1.01234f );
+	ASSERT_FALSE( dummyStruct.doubleArray.empty() );
+	ASSERT_EQ( 1, dummyStruct.doubleArray.size() );
+	ASSERT_EQ( 1.01234f, dummyStruct.doubleArray[0] );
 
 	dummyStruct.enumArray.push_back( moduleA::Second );
 	ASSERT_FALSE( dummyStruct.enumArray.empty() );
@@ -64,19 +64,16 @@ TEST( MappingTests, structAlignment )
 	EXPECT_EQ( 1, sizeof(bss.myInt8) );
 	EXPECT_EQ( 8, sizeof(bss.myDouble) );
 	EXPECT_EQ( 2, sizeof(bss.myInt16) );
-	EXPECT_EQ( 4, sizeof(bss.myFloat) );
 	EXPECT_EQ( 4, sizeof(bss.myEnum) );
 	EXPECT_EQ( 1, sizeof(bss.myBool) );
-	EXPECT_EQ( 1, sizeof(bss.myUInt8) );
 	EXPECT_EQ( 4, sizeof(bss.myInt32) );
-	EXPECT_EQ( 2, sizeof(bss.myUInt16) );
 
 #if defined(CORAL_OS_UNIX) && CORAL_POINTER_SIZE == 4
 	// double alignment on 32-bit Linuxses is 4-byte aligned
-	EXPECT_EQ( 28, sizeof(moduleA::BadlySortedStruct) );
+	EXPECT_EQ( 20, sizeof(moduleA::BadlySortedStruct) );
 #else
 	// double alignment is 8-byte aligned on 64-bit systems and on Win32
-	EXPECT_EQ( 32, sizeof(moduleA::BadlySortedStruct) );
+	EXPECT_EQ( 24, sizeof(moduleA::BadlySortedStruct) );
 #endif
 
 }
@@ -111,7 +108,7 @@ TEST( MappingTests, interface )
 
 	ASSERT_EQ( NULL, ti->getDummyInterfaceField() );
 
-	float size = 1;
+	double d = 1;
 	std::string text = "VALUE";
 	moduleA::TestEnum enumValue = moduleA::Second;
 	moduleA::TestStruct testStruct;
@@ -128,9 +125,9 @@ TEST( MappingTests, interface )
 	co::Slice<moduleA::IDummy*> interfaceList( interfaceVector );
 
 	// Callling this method should NOT alter the parameters
-	ti->testInParameters( size, enumValue, text, testStruct, NULL, intList, interfaceList );
+	ti->testInParameters( d, enumValue, text, testStruct, NULL, intList, interfaceList );
 
-	ASSERT_EQ( 1, size );
+	ASSERT_EQ( 1, d );
 	ASSERT_EQ( "VALUE", text );
 	ASSERT_EQ( moduleA::Second, enumValue );
 	ASSERT_EQ( 42, testStruct.anInt16 );
@@ -138,9 +135,9 @@ TEST( MappingTests, interface )
 	co::RefPtr<moduleA::IDummy> dummyPtr;
 
 	// Callling this method should modify the parameters
-	ti->testOutParameters( size, enumValue, text, testStruct, dummyPtr, intVector, interfaceRefVector );
+	ti->testOutParameters( d, enumValue, text, testStruct, dummyPtr, intVector, interfaceRefVector );
 
-	ASSERT_NE( 1, size );
+	ASSERT_NE( 1, d );
 	ASSERT_NE( "VALUE", text );
 	ASSERT_NE( moduleA::Second, enumValue );
 	ASSERT_NE( 42, testStruct.anInt16 );

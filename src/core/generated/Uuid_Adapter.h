@@ -1,3 +1,4 @@
+
 #ifndef _CO_UUID_ADAPTER_H_
 #define _CO_UUID_ADAPTER_H_
 

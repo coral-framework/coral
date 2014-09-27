@@ -21,7 +21,6 @@ CORAL_EXPORT Slice<std::string> getPaths();
 // The passed string may contain a single directory or a list of directories,
 // separated by comma or semicolon (or colon, on UNIX systems).
 // This function will normalize and make all directory paths absolute.
-
 CORAL_EXPORT void addPath(const std::string& path);
 
 //---- CSL Flags ---------------------------------------------------------------
@@ -35,10 +34,10 @@ enum CSLFlags {
 
 // Returns the current state of the CSL flags.
 // Default is CSL_ANNOTATIONS (so comments and C++ blocks are ignored).
-CORAL_EXPORT uint8 getCSLFlags();
+CORAL_EXPORT int8 getCSLFlags();
 
 // Changes the state of the CSL flags.
-CORAL_EXPORT void setCSLFlags(uint8 flags);
+CORAL_EXPORT void setCSLFlags(int8 flags);
 
 //---- Bootstrap and Shutdown --------------------------------------------------
 

@@ -9,16 +9,6 @@ project( CORE )
 #########################################################################
 
 set( CORAL_POINTER_SIZE ${CMAKE_SIZEOF_VOID_P} )
-
-include( TestBigEndian )
-TEST_BIG_ENDIAN( IS_BIG_ENDIAN )
-
-if( IS_BIG_ENDIAN )
-	set( CORAL_BYTE_ORDER "CORAL_BIG_ENDIAN" )
-else()
-	set( CORAL_BYTE_ORDER "CORAL_LITTLE_ENDIAN" )
-endif()
-
 configure_file( Config.h.in "${CMAKE_BINARY_DIR}/include/co/Config.h" )
 
 #########################################################################
@@ -31,7 +21,6 @@ list( APPEND CORAL_PUBLIC_HEADERS
 	Any.h
 	Common.h
 	Coral.h
-	Endian.h
 	Exception.h
 	IService.h
 	Log.h

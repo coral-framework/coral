@@ -45,20 +45,20 @@ TEST( ReflectionTests, structGetSetInterfacesAndArrays )
 	EXPECT_EQ( sizeof(moduleA::TestStruct), reflector->getSize() );
 
 	// --- in-place allocation:
-	co::uint8 memoryArea[sizeof(moduleA::TestStruct)];
+	co::int8 memoryArea[sizeof(moduleA::TestStruct)];
 	moduleA::TestStruct& ts = *reinterpret_cast<moduleA::TestStruct*>( memoryArea );
 	reflector->createValues( &ts, 1 );
 
 	EXPECT_FALSE( ts.aType.isValid() );
-	EXPECT_EQ( 0, ts.floatArray.size() );
+	EXPECT_EQ( 0, ts.doubleArray.size() );
 	EXPECT_EQ( 0, ts.typeArray.size() );
 
 	// --- obtain the necessary fields:
 	co::IField* aTypeField = getField( type, "aType" );
 	ASSERT_TRUE( aTypeField != NULL );
 
-	co::IField* floatArrayField = getField( type, "floatArray" );
-	ASSERT_TRUE( floatArrayField != NULL );
+	co::IField* doubleArrayField = getField( type, "doubleArray" );
+	ASSERT_TRUE( doubleArrayField != NULL );
 
 	co::IField* typeArrayField = getField( type, "typeArray" );
 	ASSERT_TRUE( typeArrayField != NULL );
@@ -76,7 +76,7 @@ TEST( ReflectionTests, structGetSetInterfacesAndArrays )
 	co::Any typeVecAny;
 	typeVecAny.set<std::vector<co::IType*>&>( typeVec );
 
-	EXPECT_THROW( reflector->setField( ts, floatArrayField, typeVecAny ), co::IllegalCastException );
+	EXPECT_THROW( reflector->setField( ts, doubleArrayField, typeVecAny ), co::IllegalCastException );
 	EXPECT_NO_THROW( reflector->setField( ts, typeArrayField, typeVecAny ) );
 
 	ASSERT_EQ( 3, ts.typeArray.size() );
@@ -90,18 +90,18 @@ TEST( ReflectionTests, structGetSetInterfacesAndArrays )
 	reflector->getField( ts, aTypeField, res );
 	EXPECT_EQ( "co.IInterface", res.get<co::IService*>()->getInterface()->getFullName() );
 
-	reflector->getField( ts, floatArrayField, res );
-	EXPECT_EQ( 0, res.get< co::Slice<float> >().getSize() );
+	reflector->getField( ts, doubleArrayField, res );
+	EXPECT_EQ( 0, res.get< co::Slice<double> >().getSize() );
 
-	ts.floatArray.push_back( 1.1f );
-	ts.floatArray.push_back( 2.2f );
-	ts.floatArray.push_back( 3.3f );
+	ts.doubleArray.push_back( 1.1 );
+	ts.doubleArray.push_back( 2.2 );
+	ts.doubleArray.push_back( 3.3 );
 
-	reflector->getField( ts, floatArrayField, res );
-	ASSERT_EQ( 3, res.get< co::Slice<float> >().getSize() );
-	EXPECT_EQ( 1.1f, res.get< co::Slice<float> >()[0] );
-	EXPECT_EQ( 2.2f, res.get< co::Slice<float> >()[1] );
-	EXPECT_EQ( 3.3f, res.get< co::Slice<float> >()[2] );
+	reflector->getField( ts, doubleArrayField, res );
+	ASSERT_EQ( 3, res.get< co::Slice<double> >().getSize() );
+	EXPECT_EQ( 1.1, res.get< co::Slice<double> >()[0] );
+	EXPECT_EQ( 2.2, res.get< co::Slice<double> >()[1] );
+	EXPECT_EQ( 3.3, res.get< co::Slice<double> >()[2] );
 
 	// --- in-place destruction:
 	reflector->destroyValues( &ts, 1 );

@@ -3,14 +3,13 @@
 
 using namespace co;
 
-const uint8 BINARY_INPUT[] = {
+const std::uint8_t BINARY_INPUT[] = {
 	0x00, 0x83, 0xc4, 0x0c, 0xe8, 0x17, 0x06, 0x00,
 	0x00, 0xe8, 0x22, 0x07, 0x00, 0x00, 0x83, 0xec 
 };
 
 TEST( CryptoHashTests, sha1TextInput )
 {
-	// Test generation of cryptographic Sha1 hashes from text data.
 	CryptoHash::Result result;
 	std::string textResult;
 
@@ -18,37 +17,19 @@ TEST( CryptoHashTests, sha1TextInput )
 	sha1.addData( "The quick brown fox jumps over the lazy dog" );
 	sha1.getResult( result );
 	result.toString( textResult );
-
-	EXPECT_TRUE( textResult == "2fd4e1c67a2d28fced849ee1bb76e7391b93eb12" );
+	EXPECT_EQ( "2fd4e1c67a2d28fced849ee1bb76e7391b93eb12", textResult );
 
 	sha1.reset();
 	sha1.addData( "The quick brown fox jumps over the lazy cog" );
 	sha1.getResult( result );
 	result.toString( textResult );
+	EXPECT_EQ( "de9f2c7fd25e1b3afad3e85a0bd17d9b100db4b3", textResult );
 
-	EXPECT_TRUE( textResult == "de9f2c7fd25e1b3afad3e85a0bd17d9b100db4b3" );
-
-	// test the Zero Sha1 hash (empty)
 	sha1.reset();
 	sha1.addData( "" );
 	sha1.getResult( result );
 	result.toString( textResult );
-
-	EXPECT_TRUE( textResult == "da39a3ee5e6b4b0d3255bfef95601890afd80709" );
-
-	sha1.reset();
-	sha1.addData( "O rato roeu a roupa do rei de roma!" );
-	sha1.getResult( result );
-	result.toString( textResult );
-
-	EXPECT_TRUE( textResult == "1afdba2672374d713efe596edf1927fc6976bca3" );
-
-	sha1.reset();
-	sha1.addData( "Mr fanferson is nice guy! Sure he is!" );
-	sha1.getResult( result );
-	result.toString( textResult );
-
-	EXPECT_TRUE( textResult == "822ed20c81ed5ca3af71b3789766ccacebd15aac" );
+	EXPECT_EQ( "da39a3ee5e6b4b0d3255bfef95601890afd80709", textResult );
 }
 
 TEST( CryptoHashTests, binaryInput )
@@ -73,7 +54,7 @@ TEST( CryptoHashTests, convenienceMethods )
 	std::string textResultA, textResultB;
 
 	double PI = 3.14159265;
-	hashA.addData( reinterpret_cast<const co::uint8*>( &PI ), sizeof(double) );
+	hashA.addData( reinterpret_cast<const char*>( &PI ), sizeof(double) );
 	hashB.addData( PI );
 
 	hashA.getResult( resultA );
@@ -87,9 +68,9 @@ TEST( CryptoHashTests, convenienceMethods )
 	hashA.reset();
 	hashB.reset();
 
-	co::uint32 v = 798643;
+	int32 v = 798643;
 
-	hashA.addData( reinterpret_cast<const co::uint8*>( &v ), sizeof(v) );
+	hashA.addData( reinterpret_cast<const char*>( &v ), sizeof(v) );
 	hashB.addData( v );
 
 	hashA.getResult( resultA );

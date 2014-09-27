@@ -1,3 +1,4 @@
+
 #include <lua/Exception.h>
 #include <co/reserved/ReflectorBase.h>
 #include <memory>
@@ -27,7 +28,7 @@ public:
 		return co::typeOf<lua::Exception>::get();
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return sizeof(lua::Exception);
 	}

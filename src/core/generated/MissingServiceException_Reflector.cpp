@@ -1,3 +1,4 @@
+
 #include <co/MissingServiceException.h>
 #include <co/reserved/ReflectorBase.h>
 #include <memory>
@@ -24,7 +25,7 @@ public:
 		return co::typeOf<co::MissingServiceException>::get();
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return sizeof(co::MissingServiceException);
 	}

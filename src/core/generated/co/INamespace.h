@@ -1,3 +1,4 @@
+
 #ifndef _CO_INAMESPACE_H_
 #define _CO_INAMESPACE_H_
 

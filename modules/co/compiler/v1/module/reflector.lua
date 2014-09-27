@@ -85,7 +85,7 @@ local function template( writer, c, t )
 	if t.kind == 'TK_COMPONENT' then
 		writer( [[
 // The following two functions are implemented by CORAL_EXPORT_COMPONENT()
-co::uint32 __]], t.name, [[_getSize();
+co::int32 __]], t.name, [[_getSize();
 co::IObject* __]], t.name, [[_newInstance();
 
 ]] )
@@ -221,20 +221,20 @@ public:
 		writer( [[
 protected:
 	template<typename T>
-	co::IField* getField( co::uint32 index )
+	co::IField* getField( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getFields()[index];
 	}
 
 	template<typename T>
-	co::IMethod* getMethod( co::uint32 index )
+	co::IMethod* getMethod( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getMethods()[index];
 	}
 
 private:
 	co::IDynamicServiceProvider* _provider;
-	co::uint32 _cookie;
+	co::int32 _cookie;
 };
 
 ]] )
@@ -273,7 +273,7 @@ public:
 
 	if t.kind == 'TK_COMPONENT' then
 		writer( [[
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return __]], t.name, [[_getSize();
 	}
@@ -287,7 +287,7 @@ public:
 ]] )
 	else
 		local sizeofType = ( t.kind == 'TK_INTERFACE' and "void*" or t.cppName )
-		writer( "\tco::uint32 getSize()\n\t{\n\t\treturn sizeof(", sizeofType, ");\n\t}\n" )
+		writer( "\tco::int32 getSize()\n\t{\n\t\treturn sizeof(", sizeofType, ");\n\t}\n" )
 	end
 
 	if t.kind == 'TK_EXCEPTION' then

@@ -61,35 +61,24 @@ CORAL_EXPORT void setServiceByName(IObject* object,
 //---- Kind Trait Operators (to distinguish all kinds of types) ----------------
 
 //! Returns true for integer types.
-inline bool isInteger(TypeKind k) { return k >= TK_BOOL && k <= TK_UINT32; }
-
-//! Returns true for signed integer types.
-inline bool isSignedInteger(TypeKind k) {
-  return k >= TK_BOOL && k <= TK_INT32;
-}
-
-// Returns true for floating-point types.
-inline bool isFloat(TypeKind k) { return k == TK_FLOAT || k == TK_DOUBLE; }
+inline bool isInteger(TypeKind k) { return k >= TK_BOOL && k <= TK_INT64; }
 
 // Returns true for integer and floating-point types.
-inline bool isNumeric(TypeKind k) { return k >= TK_BOOL && k <= TK_DOUBLE; }
+inline bool isNumber(TypeKind k) { return k >= TK_BOOL && k <= TK_DOUBLE; }
 
-// Returns true for numeric and enumeration types.
-inline bool isScalar(TypeKind k) { return k >= TK_BOOL && k <= TK_ENUM; }
+// Returns true for numbers and enumeration types.
+inline bool isCountable(TypeKind k) { return isNumber(k) || k == TK_ENUM; }
 
-// Returns true for value types (with deep copy semantics).
+// Returns true for all value types.
 inline bool isValue(TypeKind k) { return k > TK_NULL && k <= TK_NATIVECLASS; }
 
-// Returns true for reference types (with shallow copy semantics).
+// Returns true for reference types.
 inline bool isReference(TypeKind k) { return k == TK_INTERFACE; }
 
-// Returns whether it is possible to declare variables and fields of this type.
+// Returns true if you can declare vars and pass parameters of this kind.
 inline bool isData(TypeKind k) { return k > TK_NULL && k <= TK_INTERFACE; }
 
-// Returns true for types whose variable is a scalar.
-inline bool isScalarOrRef(TypeKind k) { return isScalar(k) || isReference(k); }
-
-// Returns true if new types of this kind can be defined by users.
+// Returns true if users can define new types of this kind.
 inline bool isCustom(TypeKind k) { return k >= TK_STRUCT || k == TK_ENUM; }
 
 // Returns true for value types that require custom reflectors.
@@ -97,13 +86,13 @@ inline bool isComplexValue(TypeKind k) {
   return k == TK_STRUCT || k == TK_NATIVECLASS;
 }
 
-// Returns true for types that may contain members (ICompositeType).
+// Returns true for types with members (ICompositeType).
 inline bool isComposite(TypeKind k) {
   return k >= TK_STRUCT && k <= TK_COMPONENT;
 }
 
 // Returns true for types that support inheritance.
-inline bool isInheritable(TypeKind k) { return k == TK_INTERFACE; }
+inline bool hasInheritance(TypeKind k) { return k == TK_INTERFACE; }
 
 // Returns true if a built-in IReflector is available for the type.
 inline bool hasBuiltInReflector(TypeKind k) { return k < TK_STRUCT; }
@@ -120,10 +109,7 @@ template <> struct kindOf<bool> : public kindOfBase<TK_BOOL> {};
 template <> struct kindOf<int8> : public kindOfBase<TK_INT8> {};
 template <> struct kindOf<int16> : public kindOfBase<TK_INT16> {};
 template <> struct kindOf<int32> : public kindOfBase<TK_INT32> {};
-template <> struct kindOf<uint8> : public kindOfBase<TK_UINT8> {};
-template <> struct kindOf<uint16> : public kindOfBase<TK_UINT16> {};
-template <> struct kindOf<uint32> : public kindOfBase<TK_UINT32> {};
-template <> struct kindOf<float> : public kindOfBase<TK_FLOAT> {};
+template <> struct kindOf<int64> : public kindOfBase<TK_INT64> {};
 template <> struct kindOf<double> : public kindOfBase<TK_DOUBLE> {};
 template <> struct kindOf<std::string> : public kindOfBase<TK_STRING> {};
 
@@ -206,12 +192,9 @@ template <typename T> struct typeOfBasic {
 // specializations for basic types:
 template <> struct typeOf<bool> : public typeOfBasic<bool> {};
 template <> struct typeOf<int8> : public typeOfBasic<int8> {};
-template <> struct typeOf<uint8> : public typeOfBasic<uint8> {};
 template <> struct typeOf<int16> : public typeOfBasic<int16> {};
-template <> struct typeOf<uint16> : public typeOfBasic<uint16> {};
 template <> struct typeOf<int32> : public typeOfBasic<int32> {};
-template <> struct typeOf<uint32> : public typeOfBasic<uint32> {};
-template <> struct typeOf<float> : public typeOfBasic<float> {};
+template <> struct typeOf<int64> : public typeOfBasic<int64> {};
 template <> struct typeOf<double> : public typeOfBasic<double> {};
 template <> struct typeOf<std::string> : public typeOfBasic<std::string> {};
 

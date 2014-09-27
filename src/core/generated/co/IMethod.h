@@ -1,3 +1,4 @@
+
 #ifndef _CO_IMETHOD_H_
 #define _CO_IMETHOD_H_
 

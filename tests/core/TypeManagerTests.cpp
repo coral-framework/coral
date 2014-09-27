@@ -17,12 +17,9 @@ TEST( TypeManagerTests, preDefinedTypes )
 	EXPECT_TRUE( tm->findType( "any" ) != NULL );
 	EXPECT_TRUE( tm->findType( "bool" ) != NULL );
 	EXPECT_TRUE( tm->findType( "int8" ) != NULL );
-	EXPECT_TRUE( tm->findType( "uint8" ) != NULL );
 	EXPECT_TRUE( tm->findType( "int16" ) != NULL );
-	EXPECT_TRUE( tm->findType( "uint16" ) != NULL );
 	EXPECT_TRUE( tm->findType( "int32" ) != NULL );
-	EXPECT_TRUE( tm->findType( "uint32" ) != NULL );
-	EXPECT_TRUE( tm->findType( "float" ) != NULL );
+	EXPECT_TRUE( tm->findType( "int64" ) != NULL );
 	EXPECT_TRUE( tm->findType( "double" ) != NULL );
 	EXPECT_TRUE( tm->findType( "string" ) != NULL );
 
@@ -90,10 +87,10 @@ TEST( TypeManagerTests, loadType )
 
 struct TypeStatistics
 {
-	co::uint32 numNamespaces;
-	co::uint32 numTypes;
-	co::uint32 numCustomTypes;
-	co::uint32 numTypesWithReflector;
+	int numNamespaces;
+	int numTypes;
+	int numCustomTypes;
+	int numTypesWithReflector;
 
 	TypeStatistics()
 		: numNamespaces( 0 ), numTypes( 0 ), numCustomTypes( 0 ), numTypesWithReflector( 0 )

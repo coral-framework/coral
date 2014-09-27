@@ -22,7 +22,7 @@ public:
 public:
 	// IReflector methods:
 	IType* getType();
-	uint32 getSize() = 0;
+	int32 getSize() = 0;
 
 protected:
 	inline BasicReflector( IType* t ) : _type( t ) {;}

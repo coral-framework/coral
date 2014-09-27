@@ -1,3 +1,4 @@
+
 #include <co/IDocumentation.h>
 #include <co/IDynamicServiceProvider.h>
 #include <co/IMethod.h>
@@ -50,15 +51,15 @@ public:
 		_provider->dynamicSetField( _cookie, getField<co::IDocumentation>( 0 ), value_ );
 	}
 
-	void addDocFor( const std::string& element_, const std::string& text_ )
+	void addDocFor( const std::string& member_, const std::string& doc_ )
 	{
-		co::Any args[] = { element_, text_ };
+		co::Any args[] = { member_, doc_ };
 		_provider->dynamicInvoke( _cookie, getMethod<co::IDocumentation>( 0 ), args, co::Any() );
 	}
 
-	std::string getDocFor( const std::string& element_ )
+	std::string getDocFor( const std::string& member_ )
 	{
-		co::Any args[] = { element_ };
+		co::Any args[] = { member_ };
 		std::string res;
 		_provider->dynamicInvoke( _cookie, getMethod<co::IDocumentation>( 1 ), args, res );
 		return res;
@@ -66,20 +67,20 @@ public:
 
 protected:
 	template<typename T>
-	co::IField* getField( co::uint32 index )
+	co::IField* getField( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getFields()[index];
 	}
 
 	template<typename T>
-	co::IMethod* getMethod( co::uint32 index )
+	co::IMethod* getMethod( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getMethods()[index];
 	}
 
 private:
 	co::IDynamicServiceProvider* _provider;
-	co::uint32 _cookie;
+	co::int32 _cookie;
 };
 
 //------ Reflector Component ------//
@@ -102,7 +103,7 @@ public:
 		return co::typeOf<co::IDocumentation>::get();
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return sizeof(void*);
 	}
@@ -146,17 +147,17 @@ public:
 			{
 			case 1:
 				{
-					const std::string& element_ = args[++argIndex].get< const std::string& >();
-					const std::string& text_ = args[++argIndex].get< const std::string& >();
+					const std::string& member_ = args[++argIndex].get< const std::string& >();
+					const std::string& doc_ = args[++argIndex].get< const std::string& >();
 					argIndex = -1;
-					p->addDocFor( element_, text_ );
+					p->addDocFor( member_, doc_ );
 				}
 				break;
 			case 2:
 				{
-					const std::string& element_ = args[++argIndex].get< const std::string& >();
+					const std::string& member_ = args[++argIndex].get< const std::string& >();
 					argIndex = -1;
-					res.put( p->getDocFor( element_ ) );
+					res.put( p->getDocFor( member_ ) );
 				}
 				break;
 			default:

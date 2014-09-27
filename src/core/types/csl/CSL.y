@@ -115,7 +115,7 @@ csl_file
 			}
 			else
 			{
-				PUSH_ERROR( yylloc, "syntax error near '" << csl_get_text( scanner ) << "'" )
+				PUSH_ERROR( yyla.location, "syntax error near '" << csl_get_text( scanner ) << "'" )
 			}
 			YYABORT;
 		}

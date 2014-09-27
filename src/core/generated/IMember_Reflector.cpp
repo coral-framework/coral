@@ -1,8 +1,9 @@
+
 #include <co/IMember.h>
 #include <co/IDynamicServiceProvider.h>
-#include <co/ICompositeType.h>
 #include <co/IInterface.h>
 #include <co/IAnnotation.h>
+#include <co/ICompositeType.h>
 #include <co/IMethod.h>
 #include <co/IField.h>
 #include <co/IllegalCastException.h>
@@ -67,9 +68,9 @@ public:
 
 	// co.IMember Methods:
 
-	co::uint16 getIndex()
+	co::int16 getIndex()
 	{
-		co::uint16 res;
+		co::int16 res;
 		_provider->dynamicGetField( _cookie, getField<co::IMember>( 0 ), res );
 		return res;
 	}
@@ -97,20 +98,20 @@ public:
 
 protected:
 	template<typename T>
-	co::IField* getField( co::uint32 index )
+	co::IField* getField( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getFields()[index];
 	}
 
 	template<typename T>
-	co::IMethod* getMethod( co::uint32 index )
+	co::IMethod* getMethod( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getMethods()[index];
 	}
 
 private:
 	co::IDynamicServiceProvider* _provider;
-	co::uint32 _cookie;
+	co::int32 _cookie;
 };
 
 //------ Reflector Component ------//
@@ -133,7 +134,7 @@ public:
 		return co::typeOf<co::IMember>::get();
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return sizeof(void*);
 	}

@@ -1,9 +1,10 @@
+
 #include <co/IReflector.h>
-#include <co/IField.h>
 #include <co/IType.h>
 #include <co/IMethod.h>
-#include <co/IObject.h>
 #include <co/IDynamicServiceProvider.h>
+#include <co/IField.h>
+#include <co/IObject.h>
 #include <co/IllegalCastException.h>
 #include <co/MissingInputException.h>
 #include <co/IllegalArgumentException.h>
@@ -39,9 +40,9 @@ public:
 
 	// co.IReflector Methods:
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
-		co::uint32 res;
+		co::int32 res;
 		_provider->dynamicGetField( _cookie, getField<co::IReflector>( 0 ), res );
 		return res;
 	}
@@ -53,21 +54,21 @@ public:
 		return res.get();
 	}
 
-	void getField( const co::Any& instance_, co::IField* field_, const co::Any& value_ )
+	void getField( const co::Any& instance_, co::IField* field_, const co::Any& var_ )
 	{
-		co::Any args[] = { instance_, field_, value_ };
+		co::Any args[] = { instance_, field_, var_ };
 		_provider->dynamicInvoke( _cookie, getMethod<co::IReflector>( 0 ), args, co::Any() );
 	}
 
-	void invoke( const co::Any& instance_, co::IMethod* method_, co::Slice<co::Any> args_, const co::Any& returnValue_ )
+	void invoke( const co::Any& instance_, co::IMethod* method_, co::Slice<co::Any> args_, const co::Any& retVal_ )
 	{
-		co::Any args[] = { instance_, method_, args_, returnValue_ };
+		co::Any args[] = { instance_, method_, args_, retVal_ };
 		_provider->dynamicInvoke( _cookie, getMethod<co::IReflector>( 1 ), args, co::Any() );
 	}
 
-	co::IService* newDynamicProxy( co::IDynamicServiceProvider* dynamicProvider_ )
+	co::IService* newDynamicProxy( co::IDynamicServiceProvider* provider_ )
 	{
-		co::Any args[] = { dynamicProvider_ };
+		co::Any args[] = { provider_ };
 		co::IServiceRef res;
 		_provider->dynamicInvoke( _cookie, getMethod<co::IReflector>( 2 ), args, res );
 		return res.get();
@@ -117,20 +118,20 @@ public:
 
 protected:
 	template<typename T>
-	co::IField* getField( co::uint32 index )
+	co::IField* getField( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getFields()[index];
 	}
 
 	template<typename T>
-	co::IMethod* getMethod( co::uint32 index )
+	co::IMethod* getMethod( co::int32 index )
 	{
 		return co::typeOf<T>::get()->getMethods()[index];
 	}
 
 private:
 	co::IDynamicServiceProvider* _provider;
-	co::uint32 _cookie;
+	co::int32 _cookie;
 };
 
 //------ Reflector Component ------//
@@ -153,7 +154,7 @@ public:
 		return co::typeOf<co::IReflector>::get();
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return sizeof(void*);
 	}
@@ -201,9 +202,9 @@ public:
 				{
 					const co::Any& instance_ = args[++argIndex];
 					co::IField* field_ = args[++argIndex].get< co::IField* >();
-					const co::Any& value_ = args[++argIndex];
+					const co::Any& var_ = args[++argIndex];
 					argIndex = -1;
-					p->getField( instance_, field_, value_ );
+					p->getField( instance_, field_, var_ );
 				}
 				break;
 			case 3:
@@ -211,16 +212,16 @@ public:
 					const co::Any& instance_ = args[++argIndex];
 					co::IMethod* method_ = args[++argIndex].get< co::IMethod* >();
 					co::Slice<co::Any> args_ = args[++argIndex].get< co::Slice<co::Any> >();
-					const co::Any& returnValue_ = args[++argIndex];
+					const co::Any& retVal_ = args[++argIndex];
 					argIndex = -1;
-					p->invoke( instance_, method_, args_, returnValue_ );
+					p->invoke( instance_, method_, args_, retVal_ );
 				}
 				break;
 			case 4:
 				{
-					co::IDynamicServiceProvider* dynamicProvider_ = args[++argIndex].get< co::IDynamicServiceProvider* >();
+					co::IDynamicServiceProvider* provider_ = args[++argIndex].get< co::IDynamicServiceProvider* >();
 					argIndex = -1;
-					res.put( p->newDynamicProxy( dynamicProvider_ ) );
+					res.put( p->newDynamicProxy( provider_ ) );
 				}
 				break;
 			case 5:

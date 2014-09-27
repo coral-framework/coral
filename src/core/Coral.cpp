@@ -17,7 +17,7 @@ static const char* PATH_SEPARATORS = ";:,";
 #endif
 
 static std::vector<std::string> sg_paths;
-static uint8 sg_cslFlags(CSL_ANNOTATIONS);
+static int8 sg_cslFlags(CSL_ANNOTATIONS);
 static RefPtr<System> sg_system;
 static ITypeManager* sg_typeManager(NULL);
 static IServiceManager* sg_serviceManager(NULL);
@@ -51,9 +51,9 @@ void addPath(const std::string& path) {
   }
 }
 
-uint8 getCSLFlags() { return sg_cslFlags; }
+int8 getCSLFlags() { return sg_cslFlags; }
 
-void setCSLFlags(uint8 flags) { sg_cslFlags = flags; }
+void setCSLFlags(int8 flags) { sg_cslFlags = flags; }
 
 ISystem* getSystem() {
   if (!sg_system) {

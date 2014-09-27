@@ -35,7 +35,7 @@ public:
 	void dynamicInvoke( co::int32 cookie, co::IMethod* mi, co::Slice<co::Any> args, const co::Any& res );
 
 	// co::IReflector methods:
-	co::uint32 getSize();
+	co::int32 getSize();
 	co::IType* getType();
 	void createValues( void* ptr, size_t numValues );
     void copyValues( const void* fromPtr, void* toPtr, size_t numValues );

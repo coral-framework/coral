@@ -1,10 +1,11 @@
+
 #include <co/reserved/ReflectorBase.h>
 #include <memory>
 
 namespace lua {
 
 // The following two functions are implemented by CORAL_EXPORT_COMPONENT()
-co::uint32 __ModulePart_getSize();
+co::int32 __ModulePart_getSize();
 co::IObject* __ModulePart_newInstance();
 
 void moduleRetain();
@@ -30,7 +31,7 @@ public:
 		return co::getType( "lua.ModulePart" );
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return __ModulePart_getSize();
 	}

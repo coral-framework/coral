@@ -24,9 +24,9 @@ interface TestInterface
 
 	IDummy[] dummyInterfaces;
 
-	void testInParameters( in float size, in TestEnum enumValue, in string text, in TestStruct testStruct, in IDummy dummyInterface, in int32[] intList, in IDummy[] interfaces );
+	void testInParameters( in double d, in TestEnum e, in string text, in TestStruct testStruct, in IDummy dummyInterface, in int32[] intList, in IDummy[] interfaces );
 
-	void testOutParameters( out float size, out TestEnum enumValue, out string text, out TestStruct testStruct, out IDummy dummyInterface, out int32[] intList, out IDummy[] interfaces );
+	void testOutParameters( out double d, out TestEnum e, out string text, out TestStruct testStruct, out IDummy dummyInterface, out int32[] intList, out IDummy[] interfaces );
 
 	any testAnyReturn( in any param );
 

@@ -1,3 +1,4 @@
+
 #include "Uuid_Adapter.h"
 #include <co/IMethod.h>
 #include <co/IField.h>
@@ -30,7 +31,7 @@ public:
 		return co::typeOf<co::Uuid>::get();
 	}
 
-	co::uint32 getSize()
+	co::int32 getSize()
 	{
 		return sizeof(co::Uuid);
 	}
