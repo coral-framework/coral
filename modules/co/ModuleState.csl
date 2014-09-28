@@ -1,18 +1,17 @@
 /*
-	Enumeration of states in a module’s life cycle.
+  Enumeration of states in a module’s life cycle.
 
-	See co.IModule for an explanation of all module events.
+  See co.IModule for an explanation of all module events.
 
-	---
-	tags: module-system
+  ---
+  tags: module-system
  */
 enum ModuleState
 {
-	ModuleState_None,
-	ModuleState_Initialized,
-	ModuleState_Integrated,
-	ModuleState_PresentationIntegrated,
-	ModuleState_Disintegrated,
-	ModuleState_Disposed,
-	ModuleState_Aborted
+  None,
+  Initialized,
+  Integrated,
+  Disintegrated,
+  Disposed,
+  Aborted
 };

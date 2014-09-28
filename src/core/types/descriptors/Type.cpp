@@ -119,7 +119,7 @@ IReflector* TypeImpl::getReflector( IType* myType )
 
 	CORAL_THROW( NotSupportedException, "could not obtain a reflector for type '"
 		<< myType->getFullName() << "' (module " << ns->getFullName()
-		<< " is " << MODULE_STATE_STRINGS[module->getState()] << ")" );
+		<< " is " << module->getState() << ")" );
 }
 
 void TypeImpl::calculateSignatures( IType* myType )

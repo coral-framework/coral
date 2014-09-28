@@ -7,16 +7,12 @@
 // co.SystemState Mapping:
 namespace co {
 
-enum SystemState
-{
-	SystemState_None,
-	SystemState_Initializing,
-	SystemState_Integrating,
-	SystemState_Integrated,
-	SystemState_IntegratingPresentation,
-	SystemState_Running,
-	SystemState_Disintegrating,
-	__SystemState__FORCE_SIZEOF_UINT32 = 0xFFFFFFFF
+enum class SystemState : co::int16 {
+  None,
+  Initializing,
+  Integrating,
+  Running,
+  Disintegrating,
 };
 
 } // namespace co

@@ -30,7 +30,7 @@ void Method::setExceptions( Slice<IException*> exceptions )
 
 MemberKind Method::getKind()
 {
-	return MK_METHOD;
+  return MemberKind::Method;
 }
 
 IType* Method::getReturnType()

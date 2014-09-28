@@ -22,20 +22,6 @@ class ISystem : public co::IService
 public:
 	virtual ~ISystem() {;}
 
-	// Code From <c++ Block:
-	
-		// Sets the system up and running without loading any modules.
-		inline void setup() { setup( Slice<std::string>() ); }
-
-		// Sets the system up and running with the specified modules.
-		inline void setup( Slice<std::string> requiredModules )
-		{
-			setupBase( requiredModules );
-			setupPresentation();
-		}
-	
-	// End Of c++> Block
-
 	virtual co::IModuleManager* getModules() = 0;
 
 	virtual co::IServiceManager* getServices() = 0;
@@ -44,9 +30,7 @@ public:
 
 	virtual co::ITypeManager* getTypes() = 0;
 
-	virtual void setupBase( co::Slice<std::string> requiredModules ) = 0;
-
-	virtual void setupPresentation() = 0;
+	virtual void setup( co::Slice<std::string> requiredModules ) = 0;
 
 	virtual void tearDown() = 0;
 };

@@ -228,7 +228,7 @@ TEST(AnyTests, constructDouble) {
 }
 
 TEST(AnyTests, constructEnum) {
-  constructorValueTest<co::SystemState>(co::TK_ENUM, co::SystemState_Running,
+  constructorValueTest<co::SystemState>(co::TK_ENUM, co::SystemState::Running,
                                         "co.SystemState");
 }
 
@@ -696,22 +696,22 @@ TEST(AnyTests, coercionBetweenEnums) {
   co::Any a1(static_cast<short>(1));
   co::Any a2(co::TK_INT8);
   co::Any a3(co::TK_EXCEPTION);
-  co::Any a4(co::ModuleState_Integrated);
+  co::Any a4(co::ModuleState::Integrated);
 
   EXPECT_ANY_STREQ(a0, "in co.TypeKind: TK_NULL");
   EXPECT_ANY_STREQ(a1, "in int16: 1");
   EXPECT_ANY_STREQ(a2, "in co.TypeKind: TK_INT8");
   EXPECT_ANY_STREQ(a3, "in co.TypeKind: TK_EXCEPTION");
-  EXPECT_ANY_STREQ(a4, "in co.ModuleState: ModuleState_Integrated");
+  EXPECT_ANY_STREQ(a4, "in co.ModuleState: Integrated");
 
   EXPECT_EQ(0, a0.get<short>());
-  EXPECT_EQ(co::ModuleState_None, a0.get<co::ModuleState>());
+  EXPECT_EQ(co::ModuleState::None, a0.get<co::ModuleState>());
 
   EXPECT_EQ(co::TK_BOOL, a1.get<co::TypeKind>());
-  EXPECT_EQ(co::ModuleState_Initialized, a1.get<co::ModuleState>());
+  EXPECT_EQ(co::ModuleState::Initialized, a1.get<co::ModuleState>());
 
   EXPECT_EQ(static_cast<int>(co::TK_INT8), a2.get<co::int8>());
-  EXPECT_EQ(co::ModuleState_Integrated, a2.get<co::ModuleState>());
+  EXPECT_EQ(co::ModuleState::Integrated, a2.get<co::ModuleState>());
   EXPECT_EQ(co::TK_INT8, a4.get<co::TypeKind>());
 
   EXPECT_EQ(static_cast<int>(co::TK_EXCEPTION), a3.get<co::int16>());

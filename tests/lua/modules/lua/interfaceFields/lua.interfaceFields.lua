@@ -43,8 +43,8 @@ function M:initialize( module )
 	-- test getting/setting an interface array
 
 	-- try setting a read-only field
-	ASSERT_EQ( co.system.state, "SystemState_Running" )
-	ASSERT_ERROR( function() co.system.state = "SystemState_Integrating" end,
+	ASSERT_EQ( co.system.state, "Running" )
+	ASSERT_ERROR( function() co.system.state = "Integrating" end,
 		"field 'state' is read-only and cannot be changed" )
 end
 

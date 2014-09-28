@@ -1,10 +1,10 @@
 
 #include <co/IReflector.h>
-#include <co/IType.h>
 #include <co/IMethod.h>
-#include <co/IDynamicServiceProvider.h>
-#include <co/IField.h>
 #include <co/IObject.h>
+#include <co/IField.h>
+#include <co/IDynamicServiceProvider.h>
+#include <co/IType.h>
 #include <co/IllegalCastException.h>
 #include <co/MissingInputException.h>
 #include <co/IllegalArgumentException.h>

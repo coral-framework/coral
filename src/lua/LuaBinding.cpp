@@ -499,7 +499,7 @@ bool CompositeTypeBinding::pushMember( lua_State* L, co::ICompositeType* ct, boo
 
 			// push the member
 			lua_pushlightuserdata( L, member );
-			if( member->getKind() == co::MK_METHOD )
+            if( member->getKind() == co::MemberKind::Method )
 				lua_pushcclosure( L, callMethod, 1 );
 
 			// cache the member for future use

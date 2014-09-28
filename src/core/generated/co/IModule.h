@@ -40,8 +40,6 @@ public:
 	virtual void initialize() = 0;
 
 	virtual void integrate() = 0;
-
-	virtual void integratePresentation() = 0;
 };
 
 typedef co::RefPtr<IModule> IModuleRef;

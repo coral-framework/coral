@@ -1,8 +1,8 @@
 
 #include <co/IModuleManager.h>
 #include <co/IDynamicServiceProvider.h>
-#include <co/IModulePartLoader.h>
 #include <co/IModule.h>
+#include <co/IModulePartLoader.h>
 #include <co/IMethod.h>
 #include <co/IField.h>
 #include <co/IllegalCastException.h>

@@ -8,6 +8,4 @@ TEST(PlatformTests, sizeOf) {
   EXPECT_EQ(4, sizeof(co::int32));
   EXPECT_EQ(8, sizeof(co::int64));
   EXPECT_EQ(8, sizeof(double));
-
-  EXPECT_EQ(sizeof(co::int32), sizeof(co::TypeKind));
 }

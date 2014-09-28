@@ -1,12 +1,12 @@
 /*
-	Enumeration of member kinds. See co.IMember.
+  Enumeration of member kinds. See co.IMember.
 
-	---
-	tags: type-introspection
+  ---
+  tags: type-introspection
  */
 enum MemberKind
 {
-	MK_FIELD,	//< Field.
-	MK_METHOD,	//< Method.
-	MK_PORT		//< Component port.
+  Field,  //< Field.
+  Method, //< Method.
+  Port    //< Component port.
 };

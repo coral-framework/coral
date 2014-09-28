@@ -19,7 +19,7 @@ public:
 
 	// IEnum methods:
 	TSlice<std::string> getIdentifiers();
-	int32 getValueOf( const std::string& identifier );
+	int16 getValueOf( const std::string& identifier );
 
 private:
 	typedef std::vector<std::string> IdentifierVector;

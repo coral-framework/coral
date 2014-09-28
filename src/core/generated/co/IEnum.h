@@ -15,7 +15,7 @@ public:
 
 	virtual co::TSlice<std::string> getIdentifiers() = 0;
 
-	virtual co::int32 getValueOf( const std::string& id ) = 0;
+	virtual co::int16 getValueOf( const std::string& id ) = 0;
 };
 
 typedef co::RefPtr<IEnum> IEnumRef;

@@ -89,11 +89,11 @@ struct TypeStatistics
 {
 	int numNamespaces;
 	int numTypes;
-	int numCustomTypes;
+	int numUserDefinableTypes;
 	int numTypesWithReflector;
 
 	TypeStatistics()
-		: numNamespaces( 0 ), numTypes( 0 ), numCustomTypes( 0 ), numTypesWithReflector( 0 )
+		: numNamespaces( 0 ), numTypes( 0 ), numUserDefinableTypes( 0 ), numTypesWithReflector( 0 )
 	{;}
 
 	void traverse( co::INamespace* ns )
@@ -105,8 +105,8 @@ struct TypeStatistics
 			++numTypes;
 
 			co::IType* type = r.getFirst();
-			if( isCustom( type->getKind() ) )
-				++numCustomTypes;
+			if( isUserDefinable( type->getKind() ) )
+				++numUserDefinableTypes;
 
 			if( type->getReflector() )
 			   ++numTypesWithReflector;

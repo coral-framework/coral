@@ -397,22 +397,23 @@ void Any::put(Any in) const {
     case TK_ENUM: {
       IEnum* enumType = static_cast<IEnum*>(state.type);
       if (isCountable(inK)) {
-        int32 id;
-        castTo<int32>(inK, &in.state.data, &id);
+        int16 id;
+        castTo<int16>(inK, &in.state.data, &id);
         if (id < 0 ||
-            id >= static_cast<int32>(enumType->getIdentifiers().getSize()))
+            id >= static_cast<int16>(enumType->getIdentifiers().getSize()))
           THROW_NO_CONVERSION(in.state, state,
                               << ": " << id << " is out of range for the enum");
-        *reinterpret_cast<int32*>(state.data.ptr) = id;
+        *reinterpret_cast<int16*>(state.data.ptr) = id;
       } else if (inK == TK_STRING) {
         const std::string& str = *in.state.data.str;
-        int32 id = enumType->getValueOf(str);
+        int16 id = enumType->getValueOf(str);
         if (id == -1)
           THROW_NO_CONVERSION(in.state, state, << ": no such identifier '"
                                                << str << "' in the enum");
-        *reinterpret_cast<int32*>(state.data.ptr) = id;
-      } else
+        *reinterpret_cast<int16*>(state.data.ptr) = id;
+      } else {
         THROW_NO_CONVERSION(in.state, state, );
+      }
     } break;
 
     case TK_STRING:

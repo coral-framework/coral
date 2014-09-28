@@ -1,8 +1,8 @@
 
 #include <co/ISystem.h>
 #include <co/IDynamicServiceProvider.h>
-#include <co/IModuleManager.h>
 #include <co/IServiceManager.h>
+#include <co/IModuleManager.h>
 #include <co/ITypeManager.h>
 #include <co/IMethod.h>
 #include <co/IField.h>
@@ -68,22 +68,16 @@ public:
 		return res.get();
 	}
 
-	void setupBase( co::Slice<std::string> requiredModules_ )
+	void setup( co::Slice<std::string> requiredModules_ )
 	{
 		co::Any args[] = { requiredModules_ };
 		_provider->dynamicInvoke( _cookie, getMethod<co::ISystem>( 0 ), args, co::Any() );
 	}
 
-	void setupPresentation()
-	{
-		co::Slice<co::Any> args;
-		_provider->dynamicInvoke( _cookie, getMethod<co::ISystem>( 1 ), args, co::Any() );
-	}
-
 	void tearDown()
 	{
 		co::Slice<co::Any> args;
-		_provider->dynamicInvoke( _cookie, getMethod<co::ISystem>( 2 ), args, co::Any() );
+		_provider->dynamicInvoke( _cookie, getMethod<co::ISystem>( 1 ), args, co::Any() );
 	}
 
 protected:
@@ -176,15 +170,10 @@ public:
 				{
 					co::Slice<std::string> requiredModules_ = args[++argIndex].get< co::Slice<std::string> >();
 					argIndex = -1;
-					p->setupBase( requiredModules_ );
+					p->setup( requiredModules_ );
 				}
 				break;
 			case 5:
-				{
-					p->setupPresentation();
-				}
-				break;
-			case 6:
 				{
 					p->tearDown();
 				}

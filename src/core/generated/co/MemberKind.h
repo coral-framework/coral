@@ -7,12 +7,10 @@
 // co.MemberKind Mapping:
 namespace co {
 
-enum MemberKind
-{
-	MK_FIELD,
-	MK_METHOD,
-	MK_PORT,
-	__MemberKind__FORCE_SIZEOF_UINT32 = 0xFFFFFFFF
+enum class MemberKind : co::int16 {
+  Field,
+  Method,
+  Port,
 };
 
 } // namespace co

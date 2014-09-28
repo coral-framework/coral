@@ -210,7 +210,7 @@ IReflector* BasicReflector::create( IType* t )
     case TK_INT32:		return new PODReflector<int32>( t );
     case TK_INT64:		return new PODReflector<int64>( t );
 	case TK_DOUBLE:		return new PODReflector<double>( t );
-	case TK_ENUM:		return new PODReflector<int32>( t );
+	case TK_ENUM:		return new PODReflector<int16>( t );
 	case TK_STRING:		return new ClassReflector<std::string>( t );
 	case TK_ANY:		return new ClassReflector<AnyValue>( t );
 	case TK_ARRAY:		return new ArrayReflector( t );

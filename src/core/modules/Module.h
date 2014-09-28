@@ -7,9 +7,6 @@
 
 namespace co {
 
-// Maps co::ModuleState identifiers to readable strings.
-extern const char* MODULE_STATE_STRINGS[];
-
 /*!
 	Implements co.IModule.
  */

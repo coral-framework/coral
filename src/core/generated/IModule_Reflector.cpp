@@ -102,12 +102,6 @@ public:
 		_provider->dynamicInvoke( _cookie, getMethod<co::IModule>( 4 ), args, co::Any() );
 	}
 
-	void integratePresentation()
-	{
-		co::Slice<co::Any> args;
-		_provider->dynamicInvoke( _cookie, getMethod<co::IModule>( 5 ), args, co::Any() );
-	}
-
 protected:
 	template<typename T>
 	co::IField* getField( co::int32 index )
@@ -217,11 +211,6 @@ public:
 			case 8:
 				{
 					p->integrate();
-				}
-				break;
-			case 9:
-				{
-					p->integratePresentation();
 				}
 				break;
 			default:

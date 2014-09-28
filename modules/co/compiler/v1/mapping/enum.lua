@@ -1,9 +1,9 @@
 local function template( writer, c, t )
-	writer( "enum ", t.name, "\n{\n" )
+	writer( "enum class ", t.name, " : co::int16 {\n" )
 	for i, id in ipairs( t.identifiers ) do
-		writer( "\t", id, ",\n" )
+		writer( "  ", id, ",\n" )
 	end
-	writer( "\t__", t.name, "__FORCE_SIZEOF_INT32 = INT32_MAX\n};\n" )
+  writer( "};\n" )
 end
 
 return template

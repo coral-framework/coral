@@ -17,5 +17,5 @@ interface IEnum extends IType
 		Returns -1 if `id` is not a valid identifier.
 		Valid results are in the range [0, n-1].
 	 */
-	int32 getValueOf( in string id );
+	int16 getValueOf( in string id );
 };

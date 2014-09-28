@@ -2,12 +2,12 @@
 #include <co/ICompositeType.h>
 #include <co/IDynamicServiceProvider.h>
 #include <co/Uuid.h>
-#include <co/INamespace.h>
-#include <co/IMember.h>
 #include <co/IInterface.h>
-#include <co/IType.h>
 #include <co/IAnnotation.h>
+#include <co/IType.h>
+#include <co/IMember.h>
 #include <co/IReflector.h>
+#include <co/INamespace.h>
 #include <co/IMethod.h>
 #include <co/IField.h>
 #include <co/IllegalCastException.h>

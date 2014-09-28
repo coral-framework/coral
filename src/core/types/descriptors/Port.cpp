@@ -25,7 +25,7 @@ void Port::setIsFacet( bool isFacet )
 
 MemberKind Port::getKind()
 {
-	return MK_PORT;
+  return MemberKind::Port;
 }
 
 IInterface* Port::getType()

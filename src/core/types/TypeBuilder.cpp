@@ -221,7 +221,7 @@ public:
 
 	inline const char* describe( IMember* m )
 	{
-		return m->getKind() == MK_METHOD ? "method" : "field";
+        return m->getKind() == MemberKind::Method ? "method" : "field";
 	}
 
 	// Reusable method to handle member clashes.
@@ -359,13 +359,13 @@ public:
 	void checkForMemberClashes( IMember* m )
 	{
 		const std::string& name = m->getName();
-		if( m->getKind() == MK_METHOD )
+      if( m->getKind() == MemberKind::Method )
 		{
 			handleMemberClash( "method", m, getMember( name ) );
 		}
 		else
 		{
-			assert( m->getKind() == MK_FIELD );
+            assert( m->getKind() == MemberKind::Field );
 
 			handleMemberClash( "field", m, getMember( name ) );
 

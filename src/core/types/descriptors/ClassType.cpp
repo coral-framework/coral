@@ -17,8 +17,8 @@ void ClassTypeImpl::addMembers( Slice<IMember*> members )
 
 inline bool memberKindComparator( IMember* mA, IMember* mB )
 {
-	bool isFieldA = ( mA->getKind() == MK_FIELD );
-	bool isFieldB = ( mB->getKind() == MK_FIELD );
+    bool isFieldA = ( mA->getKind() == MemberKind::Field );
+    bool isFieldB = ( mB->getKind() == MemberKind::Field );
 
 	if( ( !isFieldA && isFieldB ) || ( isFieldA && !isFieldB ) )
 		return isFieldA;
@@ -41,7 +41,7 @@ void ClassTypeImpl::sortMembers( ICompositeType* owner )
 	size_t count = _members.size();
 	for( size_t i = 0; i < count; ++i )
 	{
-		if( _members[i]->getKind() == MK_FIELD )
+        if( _members[i]->getKind() == MemberKind::Field )
 		{
 			static_cast<Field*>( _members[i].get() )->setOwner( owner, i );
 		}

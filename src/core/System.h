@@ -9,31 +9,29 @@
 namespace co {
 
 // Implements co.ISystem.
-class System : public System_Base
-{
-public:
-	System();
-	virtual ~System();
+class System : public System_Base {
+ public:
+  System();
+  virtual ~System();
 
-	// internal methods:
-	void initialize();
+  // internal methods:
+  void initialize();
 
-	// ISystem methods:
-	SystemState getState();
-	ITypeManager* getTypes();
-	IModuleManager* getModules();
-	IServiceManager* getServices();
-	void setupBase( Slice<std::string> requiredModules );
-	void setupPresentation();
-	void tearDown();
+  // ISystem methods:
+  SystemState getState();
+  ITypeManager* getTypes();
+  IModuleManager* getModules();
+  IServiceManager* getServices();
+  void setup(Slice<std::string> requiredModules);
+  void tearDown();
 
-private:
-	SystemState _state;
-	RefPtr<TypeManager> _types;
-	RefPtr<ModuleManager> _modules;
-	RefPtr<ServiceManager> _services;
+ private:
+  SystemState _state;
+  RefPtr<TypeManager> _types;
+  RefPtr<ModuleManager> _modules;
+  RefPtr<ServiceManager> _services;
 };
 
-} // namespace co
+}  // namespace co
 
 #endif

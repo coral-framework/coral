@@ -17,10 +17,10 @@ TSlice<std::string> Enum::getIdentifiers()
 	return _identifiers;
 }
 
-int32 Enum::getValueOf( const std::string& identifier )
+int16 Enum::getValueOf( const std::string& identifier )
 {
-	int32 count = static_cast<int32>( _identifiers.size() );
-	for( int32 i = 0; i < count; ++i )
+	int16 count = static_cast<int16>( _identifiers.size() );
+	for( int16 i = 0; i < count; ++i )
 	{
 		if( identifier == _identifiers[i] )
 			return i;

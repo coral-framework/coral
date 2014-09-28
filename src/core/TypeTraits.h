@@ -79,7 +79,9 @@ inline bool isReference(TypeKind k) { return k == TK_INTERFACE; }
 inline bool isData(TypeKind k) { return k > TK_NULL && k <= TK_INTERFACE; }
 
 // Returns true if users can define new types of this kind.
-inline bool isCustom(TypeKind k) { return k >= TK_STRUCT || k == TK_ENUM; }
+inline bool isUserDefinable(TypeKind k) {
+  return k >= TK_STRUCT || k == TK_ENUM;
+}
 
 // Returns true for value types that require custom reflectors.
 inline bool isComplexValue(TypeKind k) {

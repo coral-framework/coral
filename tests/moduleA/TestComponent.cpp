@@ -8,7 +8,7 @@ namespace moduleA {
 class TestComponent : public TestComponent_Base {
  public:
   TestComponent() : _name("NOT SET"), _readOnlyString("READONLY") {
-    _testEnum = First;
+    _testEnum = TestEnum::First;
   }
 
   virtual ~TestComponent() {
@@ -87,7 +87,7 @@ class TestComponent : public TestComponent_Base {
                          std::vector<co::int32>& intList,
                          std::vector<IDummyRef>& interfaces) {
     d = -1;
-    e = First;
+    e = TestEnum::First;
     assert(text != "");
 
     assert(testStruct.anInt16 > 0);

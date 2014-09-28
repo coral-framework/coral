@@ -1,12 +1,12 @@
 
 #include <co/IEnum.h>
 #include <co/IDynamicServiceProvider.h>
-#include <co/Uuid.h>
 #include <co/IType.h>
 #include <co/IInterface.h>
-#include <co/INamespace.h>
 #include <co/IAnnotation.h>
+#include <co/Uuid.h>
 #include <co/IReflector.h>
+#include <co/INamespace.h>
 #include <co/IMethod.h>
 #include <co/IField.h>
 #include <co/IllegalCastException.h>
@@ -149,10 +149,10 @@ public:
 		return co::moveToSlice<std::string>( res );
 	}
 
-	co::int32 getValueOf( const std::string& id_ )
+	co::int16 getValueOf( const std::string& id_ )
 	{
 		co::Any args[] = { id_ };
-		co::int32 res;
+		co::int16 res;
 		_provider->dynamicInvoke( _cookie, getMethod<co::IEnum>( 0 ), args, res );
 		return res;
 	}

@@ -21,7 +21,7 @@ function M.raise( exceptionType, message )
 end
 
 function M.causeIllegalStateException()
-	co.system:setupBase( {} )
+	co.system:setup( {} )
 end
 
 return M

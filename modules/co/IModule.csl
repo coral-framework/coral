@@ -9,15 +9,14 @@
 	with the system's life cycle. Whenever the system changes state it updates
 	all modules, and whenever a module changes state it updates its #parts.
 
-	Modules must respond to five life-cycle events:
+	Modules must respond to four life-cycle events:
 
 	1. In #initialize modules should publish services and set reflectors for
 	all their types. During this event a module cannot do anything that
 	requires other modules---it should wait until #integrate.
 	2. In #integrate modules may query and use services from other modules.
-	3. In #integratePresentation modules can integrate presentation elements.
-	4. In #disintegrate modules should release all external references.
-	5. In #dispose modules should free all allocated resources.
+	3. In #disintegrate modules should release all external references.
+	4. In #dispose modules should free all allocated resources.
 
 	The system will #abort a module if any event raises an exception.
 
@@ -63,20 +62,11 @@ interface IModule
 	void integrate() raises IllegalStateException;
 
 	/*
-		Integrates the module's presentation into the system.
-
-		This changes #state to `ModuleState_PresentationIntegrated`.
-
-		Raises co.IllegalStateException if #state isn't `ModuleState_Integrated`.
-	 */
-	void integratePresentation() raises IllegalStateException;
-
-	/*
 		Disintegrates the module from the system.
 
 		This changes #state to `ModuleState_Disintegrated`.
 
-		Raises co.IllegalStateException if #state isn't `ModuleState_PresentationIntegrated`.
+		Raises co.IllegalStateException if #state isn't `ModuleState_Integrated`.
 	 */
 	void disintegrate() raises IllegalStateException;
 

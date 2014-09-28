@@ -7,16 +7,13 @@
 // co.ModuleState Mapping:
 namespace co {
 
-enum ModuleState
-{
-	ModuleState_None,
-	ModuleState_Initialized,
-	ModuleState_Integrated,
-	ModuleState_PresentationIntegrated,
-	ModuleState_Disintegrated,
-	ModuleState_Disposed,
-	ModuleState_Aborted,
-	__ModuleState__FORCE_SIZEOF_UINT32 = 0xFFFFFFFF
+enum class ModuleState : co::int16 {
+  None,
+  Initialized,
+  Integrated,
+  Disintegrated,
+  Disposed,
+  Aborted,
 };
 
 } // namespace co

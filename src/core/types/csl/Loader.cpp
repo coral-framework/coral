@@ -363,7 +363,7 @@ void Loader::onAnnotationData( const location& loc, const std::string& fieldName
 	{
 		IInterface* itf = annotation->getInterface();
 		IMember* m = itf->getMember( fieldName );
-		if( !m || m->getKind() != MK_FIELD )
+        if( !m || m->getKind() != MemberKind::Field )
 		{
 			PUSH_ERROR( loc, "annotation type '" << itf->getFullName() <<
 							"' has no field named '" << fieldName << "'" );

@@ -62,12 +62,6 @@ public:
 		_provider->dynamicInvoke( _cookie, getMethod<co::IModulePart>( 3 ), args, co::Any() );
 	}
 
-	void integratePresentation( co::IModule* module_ )
-	{
-		co::Any args[] = { module_ };
-		_provider->dynamicInvoke( _cookie, getMethod<co::IModulePart>( 4 ), args, co::Any() );
-	}
-
 protected:
 	template<typename T>
 	co::IField* getField( co::int32 index )
@@ -166,13 +160,6 @@ public:
 					co::IModule* module_ = args[++argIndex].get< co::IModule* >();
 					argIndex = -1;
 					p->integrate( module_ );
-				}
-				break;
-			case 4:
-				{
-					co::IModule* module_ = args[++argIndex].get< co::IModule* >();
-					argIndex = -1;
-					p->integratePresentation( module_ );
 				}
 				break;
 			default:

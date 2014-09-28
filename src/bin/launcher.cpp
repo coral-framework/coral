@@ -77,7 +77,7 @@ static void resolveCallee( const std::string& calleeName, co::IComponent*& compo
 			facet = facets.getFirst();
 			co::IMember* member = facet->getType()->getMember( "main" );
 			method = static_cast<co::IMethod*>( member );
-			if( member && member->getKind() == co::MK_METHOD )
+            if( member && member->getKind() == co::MemberKind::Method )
 				return;
 		}
 
@@ -109,7 +109,7 @@ static void resolveCallee( const std::string& calleeName, co::IComponent*& compo
 		CORAL_THROW( co::Exception, "'" << componentName << "' has no facet named '" << facetName << "'." );
 
 	facet = static_cast<co::IPort*>( member );
-	if( member->getKind() != co::MK_PORT || !facet->getIsFacet() )
+    if( member->getKind() != co::MemberKind::Port || !facet->getIsFacet() )
 		CORAL_THROW( co::Exception, "component port '" << componentName << "." << facetName
 						<< "' is a receptacle, not a facet." );
 
@@ -119,7 +119,7 @@ static void resolveCallee( const std::string& calleeName, co::IComponent*& compo
 		CORAL_THROW( co::Exception, "interface '" << facet->getType()->getFullName()
 						<< "' has no method named '" << methodName << "'." );
 
-	if( member->getKind() != co::MK_METHOD )
+    if( member->getKind() != co::MemberKind::Method )
 		CORAL_THROW( co::Exception, "interface member '" << facet->getType()->getFullName()
 						<< ":" << methodName << "' is a field, not a method." );
 
@@ -219,7 +219,7 @@ int main( int argc, char* argv[] )
 		{
 			system = co::getSystem();
 			system->getModules()->setCompatibilityChecking( abiChecks );
-			system->setup();
+            system->setup({});
 		}
 		catch( std::exception& e )
 		{

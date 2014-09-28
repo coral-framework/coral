@@ -25,11 +25,6 @@ interface IModulePart
 	void integrate( in IModule module );
 
 	/*
-		Integrates the module part's presentation into the system.
-	 */
-	void integratePresentation( in IModule module );
-
-	/*
 		Disintegrates the module part from the system.
 	 */
 	void disintegrate( in IModule module );

@@ -1,11 +1,11 @@
 
 #include <co/ITypeManager.h>
 #include <co/IDynamicServiceProvider.h>
-#include <co/IArray.h>
 #include <co/CSLError.h>
-#include <co/IType.h>
-#include <co/INamespace.h>
 #include <co/ITypeTransaction.h>
+#include <co/IType.h>
+#include <co/IArray.h>
+#include <co/INamespace.h>
 #include <co/IMethod.h>
 #include <co/IField.h>
 #include <co/IllegalCastException.h>

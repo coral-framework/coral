@@ -5,7 +5,7 @@
 
 namespace co {
 
-enum TypeKind {
+enum TypeKind : std::int16_t {
   TK_NULL,
   TK_BOOL,
   TK_INT8,
@@ -22,8 +22,7 @@ enum TypeKind {
   TK_INTERFACE,
   TK_COMPONENT,
   TK_EXCEPTION,
-  TK_COUNT,
-  TK__FORCE_SIZEOF_INT32 = INT32_MAX
+  TK_COUNT
 };
 
 }  // namespace co

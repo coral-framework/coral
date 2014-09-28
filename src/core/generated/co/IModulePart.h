@@ -26,8 +26,6 @@ public:
 	virtual void initialize( co::IModule* module ) = 0;
 
 	virtual void integrate( co::IModule* module ) = 0;
-
-	virtual void integratePresentation( co::IModule* module ) = 0;
 };
 
 typedef co::RefPtr<IModulePart> IModulePartRef;

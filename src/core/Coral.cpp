@@ -66,13 +66,8 @@ ISystem* getSystem() {
 void shutdown() {
   if (!sg_system.isValid()) return;
 
-  SystemState systemState = sg_system->getState();
-
-  // ISyste's setupBase() was called, but not setupPresentation() ?
-  assert(systemState != SystemState_Integrated);
-
   // tear down the system if it's still running
-  if (systemState == SystemState_Running) sg_system->tearDown();
+  if (sg_system->getState() == SystemState::Running) sg_system->tearDown();
 
   // release the main system interfaces
   sg_serviceManager = NULL;

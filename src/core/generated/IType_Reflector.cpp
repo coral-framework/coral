@@ -1,10 +1,10 @@
 
 #include <co/IType.h>
 #include <co/IDynamicServiceProvider.h>
-#include <co/IInterface.h>
-#include <co/INamespace.h>
 #include <co/IAnnotation.h>
+#include <co/IInterface.h>
 #include <co/IReflector.h>
+#include <co/INamespace.h>
 #include <co/IMethod.h>
 #include <co/IField.h>
 #include <co/IllegalCastException.h>
