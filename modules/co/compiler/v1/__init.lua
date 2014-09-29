@@ -140,10 +140,10 @@ function Compiler:generateMappings()
 		if t.kind ~= 'TK_COMPONENT' and not isBuiltInType( t ) then
 			numMappings = numMappings + 1
 			-- only regenerate out-of-date files
-			if cachedTypes[t.fullName] ~= t.fullSignatureStr then
+			if cachedTypes[t.fullName] ~= t.fullSignature then
 				local dir = self.mappingsDir .. '/' .. t.namespace.fullName:gsub( '%.', '/' )
 				expand( dir, t.name .. '.h', mapping, self, t )
-				updatedTypes[t.fullName] = t.fullSignatureStr
+				updatedTypes[t.fullName] = t.fullSignature
 			end
 		end
 	end
@@ -193,7 +193,7 @@ function Compiler:generateModule( moduleName )
 	local function updateExpand( dir, filename, template, c, t )
 		numFiles = numFiles + 1
 		if t and t.fullName then
-			updatedTypes[t.fullName] = t.fullSignatureStr
+			updatedTypes[t.fullName] = t.fullSignature
 		end
 		expand( dir, filename, template, c, t )
 	end
@@ -213,7 +213,7 @@ function Compiler:generateModule( moduleName )
 	-- Generate per-type files
 	for i, t in ipairs( self.types ) do
 		-- only regenerate out-of-date files
-		if self.simulation or cachedTypes[t.fullName] == t.fullSignatureStr then
+		if self.simulation or cachedTypes[t.fullName] == t.fullSignature then
 			expand = cachedExpand
 		else
 			expand = updateExpand

@@ -3,7 +3,7 @@
 #define _LUA_UNIVERSE_BASE_H_
 
 #include <lua/IState.h>
-#include <co/reserved/ComponentBase.h>
+#include <co/private/ComponentBase.h>
 
 namespace lua {
 

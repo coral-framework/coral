@@ -4,7 +4,7 @@
 #include <co/IModulePart.h>
 #include <co/ModuleLoadException.h>
 #include <co/IllegalArgumentException.h>
-#include <co/reserved/OS.h>
+#include <co/private/OS.h>
 #include <lua/Exception.h>
 
 namespace lua {

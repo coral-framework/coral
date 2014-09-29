@@ -19,7 +19,6 @@ interface ITestAnnotation extends co.IAnnotation
 
 	co.TypeKind typeKind;
 	co.CSLError cslError;
-	co.Uuid uuid;
 	Vec2D vec2D;
 
 	co.IType type;

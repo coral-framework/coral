@@ -27,7 +27,7 @@ interface IType extends IAnnotated
 
 		Considers all data that could affect the _source code_ of a type.
 	 */
-	readonly Uuid fullSignature;
+	readonly string fullSignature;
 
 	/*
 		Fingerprint of the type's binary interface.
@@ -35,7 +35,7 @@ interface IType extends IAnnotated
 		Considers all data that could affect the _binary interface_ of
 		a type---i.e. things that break C++ ABI compatibility.
 	 */
-	readonly Uuid binarySignature;
+	readonly string binarySignature;
 
 	/*
 		The type's reflector, or null if a reflector hasn't been set yet.

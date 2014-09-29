@@ -44,7 +44,7 @@ TEST( TypeManagerTests, getType )
 {
 	co::ITypeManager* tm = co::getSystem()->getTypes();
 
-	EXPECT_TRUE( tm->getType( "co.Uuid" ) != NULL );
+	EXPECT_TRUE( tm->getType( "co.IType" ) != NULL );
 
 	EXPECT_THROW( tm->getType( "" ), co::IllegalArgumentException );
 	EXPECT_THROW( tm->getType( "TypeManagerTests.Unexistent" ), co::TypeLoadException );

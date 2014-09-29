@@ -9,7 +9,7 @@ project( TESTS_CORE )
 ########################################################################
 
 include_directories(
-	${CORE_SOURCE_DIR}/generated
+	${CO_SOURCE_DIR}/generated
 	${CMAKE_SOURCE_DIR}/src
 )
 

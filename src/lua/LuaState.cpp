@@ -2,7 +2,7 @@
 #include "LuaBinding.h"
 #include <co/Log.h>
 #include <co/IReflector.h>
-#include <co/reserved/OS.h>
+#include <co/private/OS.h>
 #include <co/IllegalArgumentException.h>
 #include <lua/Exception.h>
 #include <sstream>

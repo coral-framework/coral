@@ -29,9 +29,9 @@ include_directories(
 )
 
 # Create the test executable
-get_property( CORE_SOURCES DIRECTORY ${CORE_SOURCE_DIR} PROPERTY SOURCES )
-add_definitions( -DBUILDING_CORAL_CORE )
-add_executable( tests_regen EXCLUDE_FROM_ALL ${CORE_SOURCES} ${_GENERATED_FILES} Main.cpp
+get_property( CO_SOURCES DIRECTORY ${CO_SOURCE_DIR} PROPERTY SOURCES )
+add_definitions( -DBUILDING_CORAL )
+add_executable( tests_regen EXCLUDE_FROM_ALL ${CO_SOURCES} ${_GENERATED_FILES} Main.cpp
 	# Select a few tests from tests_core to run again in tests_regen
 	../core/AnyTests.cpp
 	../core/ReflectorTests.cpp
@@ -45,11 +45,6 @@ set_target_properties( tests_regen PROPERTIES
 )
 
 target_link_libraries( tests_regen ${GTEST_LIBRARIES} )
-
-if( NOT MSVC )
-	# Disable warnings for auto-generated code
-	set_property( SOURCE "${CORE_SOURCE_DIR}/types/csl/scanner.cc" APPEND PROPERTY COMPILE_FLAGS "-Wno-unused-parameter" )
-endif()
 
 IF( UNIX )
     TARGET_LINK_LIBRARIES( tests_regen dl )
@@ -69,4 +64,4 @@ CORAL_TEST_ENVIRONMENT( tests_regen )
 # Source Groups
 ########################################################################
 
-source_group( "@Core" FILES ${CORE_SOURCES} )
+source_group( "@Core" FILES ${CO_SOURCES} )

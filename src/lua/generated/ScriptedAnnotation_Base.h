@@ -3,7 +3,7 @@
 #define _LUA_SCRIPTEDANNOTATION_BASE_H_
 
 #include <lua/IScripted.h>
-#include <co/reserved/ComponentBase.h>
+#include <co/private/ComponentBase.h>
 
 namespace lua {
 

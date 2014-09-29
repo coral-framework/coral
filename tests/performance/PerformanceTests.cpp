@@ -1,10 +1,8 @@
-#include <co/Uuid.h>
 #include <co/Coral.h>
 #include <co/ISystem.h>
 #include <co/CSLError.h>
 #include <co/ITypeManager.h>
 #include <co/IModuleManager.h>
-#include <co/reserved/Uuid.h>
 #include <lua/IState.h>
 #include <lua/Exception.h>
 #include <gtest/gtest.h>
@@ -13,7 +11,6 @@ TEST( PerformanceTests, callLuaFunction )
 {
 	std::string str;
 	co::CSLError cslError;
-	co::Uuid uuid;
 
 	co::Any args[] = {
 		3.14,
@@ -22,8 +19,7 @@ TEST( PerformanceTests, callLuaFunction )
 		str,
 		co::getSystem()->getTypes(),
 		cslError,
-		co::getPaths(),
-		uuid
+		co::getPaths()
 	};
 
 	static const int NUM_ARGS = CORAL_ARRAY_LENGTH( args );

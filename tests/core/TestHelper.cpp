@@ -4,7 +4,7 @@
 #include <co/INamespace.h>
 #include <co/ITypeManager.h>
 #include <co/ITypeTransaction.h>
-#include <core/utils/StringTokenizer.h>
+#include <co/private/StringTokenizer.h>
 #include <gtest/gtest.h>
 
 co::ITypeBuilder* TestHelper::createBuilder(co::TypeKind kind,
@@ -18,7 +18,7 @@ co::ITypeBuilder* TestHelper::createBuilder(co::TypeKind kind,
     co::INamespace* childNS = ns->findChildNamespace(current);
     if (!childNS) childNS = ns->defineChildNamespace(current);
     ns = childNS;
-    std::swap(current,next);
+    std::swap(current, next);
   }
 
   co::ITypeBuilder* typeBuilder = ns->defineType(current, kind);

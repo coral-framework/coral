@@ -3,7 +3,7 @@
 #define _LUA_MODULEPARTLOADER_BASE_H_
 
 #include <co/IModulePartLoader.h>
-#include <co/reserved/ComponentBase.h>
+#include <co/private/ComponentBase.h>
 
 namespace lua {
 

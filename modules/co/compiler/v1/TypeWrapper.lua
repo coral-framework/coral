@@ -150,10 +150,6 @@ function autoFields.headerName( t )
 	return utils.toHeaderName( t.fullName )
 end
 
-function autoFields.fullSignatureStr( t )
-	return t.fullSignature:getString()
-end
-
 local coIDynamicTypeProvider = co.Type "co.IDynamicTypeProvider"
 function autoFields.isDynamic( t )
 	return t[coIDynamicTypeProvider] ~= nil

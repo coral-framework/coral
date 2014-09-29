@@ -16,7 +16,6 @@
 #include <co/ITypeTransaction.h>
 #include <co/IllegalArgumentException.h>
 #include <co/NotSupportedException.h>
-#include <co/reserved/Uuid.h>
 #include <gtest/gtest.h>
 
 TEST(ReflectorTests, basicReflectors) {
@@ -360,79 +359,79 @@ TEST(ReflectorTests, interfaceNamespace) {
   co::getSystem()->getTypes()->getTransaction()->rollback();
 }
 
-TEST(ReflectorTests, nativeClass) {
-  co::IType* type = co::getType("co.Uuid");
-  co::IReflector* reflector = type->getReflector();
-  ASSERT_TRUE(reflector != NULL);
-
-  // --- sanity checks:
-  EXPECT_EQ(type, reflector->getType());
-  EXPECT_EQ(sizeof(co::Uuid), reflector->getSize());
-
-  // --- in-place allocation:
-  co::Uuid u1;
-  co::int8 memoryArea[sizeof(co::Uuid)] = {0x01, 0x23, 0x45};
-
-  co::Uuid& u2 = *reinterpret_cast<co::Uuid*>(memoryArea);
-
-  reflector->createValues(&u2, 1);
-
-  EXPECT_EQ(u1, u2);
-
-  // --- obtain the necessary member infos:
-  co::IField* isNullField = getField(type, "isNull");
-  ASSERT_TRUE(isNullField != NULL);
-
-  co::IMethod* createRandomMethod = getMethod(type, "createRandom");
-  ASSERT_TRUE(createRandomMethod != NULL);
-
-  co::IMethod* clearMethod = getMethod(type, "clear");
-  ASSERT_TRUE(clearMethod != NULL);
-
-  co::IMethod* getStringMethod = getMethod(type, "getString");
-  ASSERT_TRUE(getStringMethod != NULL);
-
-  co::IMethod* setStringMethod = getMethod(type, "setString");
-  ASSERT_TRUE(setStringMethod != NULL);
-
-  // --- both freshly constructed Uuids should be null; check this using
-  // 'isNull' and 'getString'
-  co::AnyValue v1, v2;
-
-  reflector->getField(u1, isNullField, v1);
-  EXPECT_TRUE(v1.get<bool>());
-
-  std::string str;
-  co::Any a1(str);
-
-  reflector->invoke(u2, getStringMethod, co::Slice<co::Any>(&a1, 1), v2);
-  EXPECT_EQ("00000000-0000-0000-0000000000000000", str);
-
-  // --- randomize u1, then copy its value to u2 via get/setString
-  reflector->invoke(u1, createRandomMethod, co::Slice<co::Any>(), v1);
-  reflector->getField(u1, isNullField, v1);
-  EXPECT_FALSE(v1.get<bool>());
-
-  EXPECT_NE(u1, u2);
-
-  v1.set(str);
-  reflector->invoke(u1, getStringMethod, co::Slice<co::Any>(&a1, 1), v2);
-  reflector->invoke(u2, setStringMethod, co::Slice<co::Any>(&a1, 1), v2);
-
-  EXPECT_EQ(u1, u2);
-
-  // --- clear u1 and it should be null again
-  reflector->invoke(u1, clearMethod, co::Slice<co::Any>(), v1);
-  reflector->getField(u1, isNullField, v1);
-  EXPECT_TRUE(v1.get<bool>());
-  EXPECT_NE(u1, u2);
-
-  // --- set u2 with an invalid string and it should become null as well
-  str = "{invalid}";
-  v1 = str;
-  reflector->invoke(u2, setStringMethod, co::Slice<co::Any>(&a1, 1), v2);
-  EXPECT_EQ(u1, u2);
-
-  // --- in-place destruction:
-  reflector->destroyValues(&u2, 1);
-}
+//TEST(ReflectorTests, nativeClass) {
+//  co::IType* type = co::getType("co.Uuid");
+//  co::IReflector* reflector = type->getReflector();
+//  ASSERT_TRUE(reflector != NULL);
+//
+//  // --- sanity checks:
+//  EXPECT_EQ(type, reflector->getType());
+//  EXPECT_EQ(sizeof(co::Uuid), reflector->getSize());
+//
+//  // --- in-place allocation:
+//  co::Uuid u1;
+//  co::int8 memoryArea[sizeof(co::Uuid)] = {0x01, 0x23, 0x45};
+//
+//  co::Uuid& u2 = *reinterpret_cast<co::Uuid*>(memoryArea);
+//
+//  reflector->createValues(&u2, 1);
+//
+//  EXPECT_EQ(u1, u2);
+//
+//  // --- obtain the necessary member infos:
+//  co::IField* isNullField = getField(type, "isNull");
+//  ASSERT_TRUE(isNullField != NULL);
+//
+//  co::IMethod* createRandomMethod = getMethod(type, "createRandom");
+//  ASSERT_TRUE(createRandomMethod != NULL);
+//
+//  co::IMethod* clearMethod = getMethod(type, "clear");
+//  ASSERT_TRUE(clearMethod != NULL);
+//
+//  co::IMethod* getStringMethod = getMethod(type, "getString");
+//  ASSERT_TRUE(getStringMethod != NULL);
+//
+//  co::IMethod* setStringMethod = getMethod(type, "setString");
+//  ASSERT_TRUE(setStringMethod != NULL);
+//
+//  // --- both freshly constructed Uuids should be null; check this using
+//  // 'isNull' and 'getString'
+//  co::AnyValue v1, v2;
+//
+//  reflector->getField(u1, isNullField, v1);
+//  EXPECT_TRUE(v1.get<bool>());
+//
+//  std::string str;
+//  co::Any a1(str);
+//
+//  reflector->invoke(u2, getStringMethod, co::Slice<co::Any>(&a1, 1), v2);
+//  EXPECT_EQ("00000000-0000-0000-0000000000000000", str);
+//
+//  // --- randomize u1, then copy its value to u2 via get/setString
+//  reflector->invoke(u1, createRandomMethod, co::Slice<co::Any>(), v1);
+//  reflector->getField(u1, isNullField, v1);
+//  EXPECT_FALSE(v1.get<bool>());
+//
+//  EXPECT_NE(u1, u2);
+//
+//  v1.set(str);
+//  reflector->invoke(u1, getStringMethod, co::Slice<co::Any>(&a1, 1), v2);
+//  reflector->invoke(u2, setStringMethod, co::Slice<co::Any>(&a1, 1), v2);
+//
+//  EXPECT_EQ(u1, u2);
+//
+//  // --- clear u1 and it should be null again
+//  reflector->invoke(u1, clearMethod, co::Slice<co::Any>(), v1);
+//  reflector->getField(u1, isNullField, v1);
+//  EXPECT_TRUE(v1.get<bool>());
+//  EXPECT_NE(u1, u2);
+//
+//  // --- set u2 with an invalid string and it should become null as well
+//  str = "{invalid}";
+//  v1 = str;
+//  reflector->invoke(u2, setStringMethod, co::Slice<co::Any>(&a1, 1), v2);
+//  EXPECT_EQ(u1, u2);
+//
+//  // --- in-place destruction:
+//  reflector->destroyValues(&u2, 1);
+//}

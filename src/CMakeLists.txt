@@ -2,6 +2,6 @@
 # Subdirectories
 ########################################################################
 
-add_subdirectory( core )
-add_subdirectory( bin )
+add_subdirectory( co )
 add_subdirectory( lua )
+add_subdirectory( tools )

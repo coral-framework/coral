@@ -3,7 +3,6 @@
 #include <co/Any.h>
 #include <co/IType.h>
 #include <co/CSLError.h>
-#include <co/reserved/Uuid.h>
 
 namespace moduleA {
 
@@ -60,9 +59,6 @@ class TestAnnotation : public TestAnnotation_Base {
   co::TypeKind getTypeKind() { return _typeKind; }
   void setTypeKind(co::TypeKind typeKind) { _typeKind = typeKind; }
 
-  co::Uuid getUuid() { return _uuid; }
-  void setUuid(const co::Uuid& uuid) { _uuid = uuid; }
-
   Vec2D getVec2D() { return _vec2d; }
   void setVec2D(const Vec2D& vec2d) { _vec2d = vec2d; }
 
@@ -86,7 +82,6 @@ class TestAnnotation : public TestAnnotation_Base {
 
   co::TypeKind _typeKind;
   co::CSLError _cslError;
-  co::Uuid _uuid;
   Vec2D _vec2d;
 
   co::IType* _type;

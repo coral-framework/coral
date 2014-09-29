@@ -4,7 +4,7 @@
 
 #include <co/IDynamicServiceProvider.h>
 #include <co/IReflector.h>
-#include <co/reserved/ComponentBase.h>
+#include <co/private/ComponentBase.h>
 
 namespace lua {
 

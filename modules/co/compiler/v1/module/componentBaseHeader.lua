@@ -17,7 +17,7 @@ local function template( writer, c, t )
 		writer( "#include <", type.headerName, ">\n" )
 	end
 
-	writer( "#include <co/reserved/ComponentBase.h>\n\n" )
+	writer( "#include <co/private/ComponentBase.h>\n\n" )
 
 	c.utils.openNamespaces( writer, c.moduleName )
 

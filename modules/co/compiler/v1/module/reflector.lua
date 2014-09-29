@@ -66,7 +66,7 @@ local function template( writer, c, t )
 		writer( "#include <co/NotSupportedException.h>\n" )
 	end
 
-	writer( "#include <co/reserved/ReflectorBase.h>\n" )
+	writer( "#include <co/private/ReflectorBase.h>\n" )
 
 	writer( "#include <memory>\n" )
 

@@ -1,5 +1,5 @@
 
-#include <co/reserved/ReflectorBase.h>
+#include <co/private/ReflectorBase.h>
 #include <memory>
 
 namespace lua {

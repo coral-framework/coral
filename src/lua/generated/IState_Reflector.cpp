@@ -7,7 +7,7 @@
 #include <co/IllegalCastException.h>
 #include <co/MissingInputException.h>
 #include <co/IllegalArgumentException.h>
-#include <co/reserved/ReflectorBase.h>
+#include <co/private/ReflectorBase.h>
 #include <memory>
 #include <sstream>
 

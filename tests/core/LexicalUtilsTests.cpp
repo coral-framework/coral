@@ -1,7 +1,7 @@
 #include <co/Coral.h>
 #include <co/RefPtr.h>
 #include <co/ITypeManager.h>
-#include <co/reserved/LexicalUtils.h>
+#include <co/private/LexicalUtils.h>
 #include <gtest/gtest.h>
 
 TEST( LexicalUtilsTests, isValidIdentifier )

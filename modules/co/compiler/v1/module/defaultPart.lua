@@ -5,7 +5,7 @@ local function template( writer, c )
 
 #include "ModuleInstaller.h"
 #include <co/IModule.h>
-#include <co/reserved/ModulePartBase.h>
+#include <co/private/ModulePartBase.h>
 
 ]] )
 

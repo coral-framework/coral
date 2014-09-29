@@ -18,7 +18,6 @@
 #include <co/IllegalCastException.h>
 #include <co/IllegalStateException.h>
 #include <co/SystemState.h>
-#include <co/reserved/Uuid.h>
 
 /*****************************************************************************/
 /* Performance and Portability Tests                                         */
@@ -281,14 +280,14 @@ TEST(AnyTests, constructArray) {
   EXPECT_EQ(0, a4.getCount());
   EXPECT_ANY_STREQ(a4, "out co.IInterface[]: {}");
 
-  EXPECT_TRUE(co::TK_NATIVECLASS == co::kindOf<co::Uuid>::kind);
-  EXPECT_EQ("co.Uuid", co::typeOf<co::Uuid>::get()->getFullName());
-  EXPECT_STREQ("co.Uuid", co::nameOf<co::Uuid>::get());
+//  EXPECT_TRUE(co::TK_NATIVECLASS == co::kindOf<co::Uuid>::kind);
+//  EXPECT_EQ("co.Uuid", co::typeOf<co::Uuid>::get()->getFullName());
+//  EXPECT_STREQ("co.Uuid", co::nameOf<co::Uuid>::get());
 
-  std::vector<co::Uuid> r5;
-  co::Any a5(r5);
-  EXPECT_EQ(0, a5.getCount());
-  EXPECT_ANY_STREQ(a5, "out co.Uuid[]: {}");
+//  std::vector<co::Uuid> r5;
+//  co::Any a5(r5);
+//  EXPECT_EQ(0, a5.getCount());
+//  EXPECT_ANY_STREQ(a5, "out co.Uuid[]: {}");
 
   std::vector<double> r6(5, 4321);
   co::Any a6(r6);
@@ -314,10 +313,10 @@ TEST(AnyTests, constructStruct) {
                    "message = \"msg\"}");
 }
 
-TEST(AnyTests, constructNativeClass) {
-  constructorRefTest<co::Uuid>(co::TK_NATIVECLASS, co::Uuid::createRandom(),
-                               "co.Uuid");
-}
+//TEST(AnyTests, constructNativeClass) {
+//  constructorRefTest<co::Uuid>(co::TK_NATIVECLASS, co::Uuid::createRandom(),
+//                               "co.Uuid");
+//}
 
 TEST(AnyTests, constructInterface) {
   constructorPtrTest<co::INamespace>(co::TK_INTERFACE,
@@ -458,11 +457,11 @@ TEST(AnyTests, setGetStruct) {
   setAndGetTest<co::CSLError&>(cslError1, cslError2);
 }
 
-TEST(AnyTests, setGetNativeClass) {
-  co::Uuid nullUuid = co::Uuid::null();
-  co::Uuid randUuid = co::Uuid::createRandom();
-  setAndGetTest<co::Uuid&>(randUuid, nullUuid);
-}
+//TEST(AnyTests, setGetNativeClass) {
+//  co::Uuid nullUuid = co::Uuid::null();
+//  co::Uuid randUuid = co::Uuid::createRandom();
+//  setAndGetTest<co::Uuid&>(randUuid, nullUuid);
+//}
 
 bool areSamePtr(void* a, void* b) { return a == b; }
 
@@ -587,7 +586,7 @@ TEST(AnyTests, coercionsFromBool) {
 
   // no conversion to string or 'reference-based' types
   EXPECT_THROW(a1.get<std::string&>(), co::IllegalCastException);
-  EXPECT_THROW(a1.get<co::Uuid&>(), co::IllegalCastException);
+  //EXPECT_THROW(a1.get<co::Uuid&>(), co::IllegalCastException);
 }
 
 TEST(AnyTests, coercionsFromInt32) {
@@ -626,7 +625,7 @@ TEST(AnyTests, coercionsFromInt32) {
 
   // no conversion to string or 'reference-based' types
   EXPECT_THROW(a0.get<std::string&>(), co::IllegalCastException);
-  EXPECT_THROW(a0.get<co::Uuid&>(), co::IllegalCastException);
+  //EXPECT_THROW(a0.get<co::Uuid&>(), co::IllegalCastException);
 }
 
 TEST(AnyTests, coercionsFromDouble) {

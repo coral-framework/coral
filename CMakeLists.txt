@@ -37,11 +37,11 @@ endif()
 set( CORAL_ROOT ${CMAKE_SOURCE_DIR} )
 set( CORAL_BIN_ROOT ${CMAKE_BINARY_DIR} )
 set( CORAL_LAUNCHER coral )
-set( CORAL_LIBRARIES core )
+set( CORAL_LIBRARIES co )
 find_package( Coral QUIET )
 
 # Shared include paths for all subprojects
-include_directories( "${CMAKE_BINARY_DIR}/include" )
+include_directories( "${CMAKE_SOURCE_DIR}/src" "${CMAKE_BINARY_DIR}/src" )
 
 ########################################################################
 # Packaging and Installation

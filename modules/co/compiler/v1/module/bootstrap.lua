@@ -5,7 +5,7 @@ local function template( writer, c )
 
 #include <co/RefPtr.h>
 #include <co/IModulePart.h>
-#include <co/reserved/LibraryManager.h>
+#include <co/private/LibraryManager.h>
 
 ]] )
 
@@ -34,7 +34,7 @@ const TypeDependency* coral_module_query_dependencies()
 ]] )
 
 	for t in pairs( c.dependencies ) do
-		writer( '\t\t{ "', t.fullName, '", "', t.binarySignature:getString(), '" },\n' )
+		writer( '\t\t{ "', t.fullName, '", "', t.binarySignature, '" },\n' )
 	end
 
 	writer( [[

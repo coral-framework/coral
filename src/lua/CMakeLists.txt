@@ -11,7 +11,7 @@ project( MODULE_LUA )
 # Compile the embedded Lua libraries into a static library
 add_subdirectory( libs )
 
-include_directories( libs libs/lua generated ${CORE_SOURCE_DIR}/generated )
+include_directories( libs libs/lua generated ${CO_SOURCE_DIR}/generated )
 
 file( GLOB HEADER_FILES *.h )
 FILE( GLOB SOURCE_FILES *.cpp )
