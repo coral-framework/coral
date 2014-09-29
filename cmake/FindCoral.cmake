@@ -70,10 +70,6 @@ if( MSVC )
   endif()
 else()
   set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11" )
-  # On OSX use libc++ by default
-  if( APPLE )
-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++" )
-  endif()
 endif()
 
 # On OSX use RPATH by default

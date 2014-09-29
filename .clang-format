@@ -3,7 +3,6 @@ BasedOnStyle: Google
 Language: Cpp
 Standard: Cpp11
 TabWidth: 2
-AlwaysBreakTemplateDeclarations: false
 
 # clang-format 3.5
 DerivePointerBinding: false

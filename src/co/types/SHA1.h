@@ -25,16 +25,18 @@ class CORAL_EXPORT SHA1 {
 
   // Feeds data to the algorithm.
   void add(const uint8* data, size_t size);
-  template <typename T> void add(const T* data, size_t size) {
+  template <typename T>
+  void add(const T* data, size_t size) {
     add(reinterpret_cast<const uint8*>(data), size);
   }
-  inline void add(const char* cstr) { add(cstr, strlen(cstr)); }
-  inline void add(const std::string& str) { add(str.c_str(), str.size()); }
-  template <typename T> void add(const T& object) {
+  void add(const char* cstr) { add(cstr, strlen(cstr)); }
+  void add(const std::string& str) { add(str.c_str(), str.size()); }
+  template <typename T>
+  void add(const T& object) {
     add(&object, sizeof(object));
   }
 
-  // Adds the required padding. MUST be called before getDigest().
+  // Adds required padding. This MUST be called before getDigest().
   void finish();
 
   // Gets the result in binary form.
