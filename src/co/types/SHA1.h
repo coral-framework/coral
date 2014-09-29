@@ -2,6 +2,7 @@
 #define _CO_SHA1_H_
 
 #include <co/Platform.h>
+#include <cstring>
 #include <string>
 
 namespace co {
