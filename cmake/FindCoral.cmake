@@ -153,7 +153,7 @@ function( CORAL_GENERATE_MODULE generatedSourceFiles moduleName )
     # Use the Compiler to get the actual list of generated source files
     execute_process(
       COMMAND ${CORAL_LAUNCHER} -p "${coralPathStr}" ${CORAL_LAUNCHER_FLAGS}
-            ${CORAL_COMPILER_ARGS} --list -g ${moduleName} ${ARGN}
+            ${CORAL_COMPILER_ARGS} --list -m ${moduleName} ${ARGN}
       OUTPUT_VARIABLE resultList
     )
     if( NOT resultList )
@@ -175,7 +175,7 @@ function( CORAL_GENERATE_MODULE generatedSourceFiles moduleName )
 
   add_custom_command( OUTPUT ${resultList}
     COMMAND ${CORAL_LAUNCHER} -p "${coralPathStr}" ${CORAL_LAUNCHER_FLAGS}
-          ${CORAL_COMPILER_ARGS} -g ${moduleName} ${ARGN}
+          ${CORAL_COMPILER_ARGS} -m ${moduleName} ${ARGN}
     DEPENDS ${CORAL_LAUNCHER} "${CMAKE_CURRENT_BINARY_DIR}/force_out_of_date"
     WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
     COMMENT "Running the Coral Compiler..."
@@ -185,19 +185,6 @@ function( CORAL_GENERATE_MODULE generatedSourceFiles moduleName )
 
   # "make clean" should delete the coralc cache file
   set_property( DIRECTORY APPEND PROPERTY ADDITIONAL_MAKE_CLEAN_FILES "${outDir}/__coralc_cache.lua" )
-endfunction()
-
-###############################################################################
-# Defines a target to generate docs for a module. Passes extra args to coralc.
-###############################################################################
-function( CORAL_GENERATE_DOX targetName moduleName outDir )
-  CORAL_GET_PATH_STRING( coralPathStr )
-  add_custom_target( ${targetName}
-    COMMAND ${CORAL_LAUNCHER} -p "${coralPathStr}" ${CORAL_LAUNCHER_FLAGS}
-      ${CORAL_COMPILER_ARGS} --dox -g ${moduleName} -o ${outDir} ${ARGN}
-    WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
-    COMMENT "Running the Coral Compiler to extract documentation..."
-  )
 endfunction()
 
 ###############################################################################

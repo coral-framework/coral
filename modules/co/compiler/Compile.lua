@@ -4,7 +4,6 @@
 
 local debug = require "debug"
 local cmdline = require "co.compiler.cmdline"
-local compiler = require( "co.compiler.v1" ).new()
 
 -- garbage collection is unnecessary for a compiler
 collectgarbage( "stop" )
@@ -13,15 +12,17 @@ collectgarbage( "stop" )
 -- Command-Line Handler Functions
 -------------------------------------------------------------------------------
 
+local outDir = nil
 local moduleName = nil
 local askedForJSON = false
 local askedForList = false
 local askedForVersion = false
+local compilerModule = "co.compiler.v1"
 
 local flags = {
   -- Aliases
-  g = 'generate',
   p = 'path',
+  m = 'module',
   o = 'outdir',
   v = 'version',
   h = 'help',
@@ -35,7 +36,7 @@ function flags.path( flag, dirList )
   return 1
 end
 
-function flags.generate( flag, name )
+function flags.module( flag, name )
   if not name then return nil, "missing module name" end
   moduleName = name
   return 1
@@ -51,8 +52,12 @@ end
 
 function flags.outdir( flag, dir )
   if not dir then return nil, "missing output directory" end
-  compiler.outDir = dir
+  outDir = dir
   return 1
+end
+
+function flags.v2()
+  compilerModule = "co.compiler.v2" -- switch to the v2 implementation
 end
 
 function flags.version()
@@ -63,20 +68,20 @@ end
 function flags.help()
   flags.version()
   print [[
-Usage: coralc [options] [-g MODULE] [TYPE1] [TYPE2] ...
+Usage: coralc [options] ... [-m module] [type] ...
 Description:
   Generates mappings for the list of types passed as command-line arguments.
-  If -g is specified, the compiler will generate source code for a module,
+  If -m is specified, the compiler will generate source code for a module,
   and the passed list of types will be considered extra module dependencies.
-  If --json is passed along with -g, the compiler will write everything it
+  If --json is passed along with -m, the compiler will write everything it
   knows about a module to a JSON file, instead of generating source code.
 Available options:
-  -p, --path EXTRA,DIRS  Add a list of repositories to the Coral path.
-  -g, --generate MODULE  Generate source code for the specified module.
-      --list             List module .cpp files without creating any file.
-      --json             Generate a module JSON file instead of source code.
-  -o, --outdir DIR       Output dir for generated files (default: ./generated).
-  -v, --version          Show version information.]]
+  -p path    List of repositories to add to the Coral path.
+  -m module  Module for which the compiler should generate source code; or...
+     --list  Print a list of the .cpp files that would be generated.
+     --json  Write available module data to a JSON file.
+  -o dir     Change the output dir for generated files (default: ./generated).
+  -v         Show version information.]]
 end
 
 -------------------------------------------------------------------------------
@@ -111,6 +116,13 @@ function Component:main( args )
     return -2
   end
 
+  local compiler = require(compilerModule).new()
+  if outDir then
+    compiler.outDir = outDir
+  end
+  if moduleName then
+    compiler.moduleName = moduleName
+  end
   if askedForList then
     compiler.simulation = true
   else
@@ -124,9 +136,9 @@ function Component:main( args )
 
     if moduleName then
       if askedForJSON then
-        compiler:generateJSON( moduleName )
+        compiler:generateJSON()
       else
-        local moduleSources = compiler:generateModule( moduleName )
+        local moduleSources = compiler:generateModule()
         if askedForList then
           for i, sourceFile in ipairs( moduleSources ) do
             print( sourceFile )
