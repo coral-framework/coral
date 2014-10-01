@@ -62,7 +62,7 @@ set_tests_properties( coral PROPERTIES
 )
 
 # Test the Compiler Front End
-add_test( NAME coralc COMMAND coralc -g nomodule )
+add_test( NAME coralc COMMAND coralc -m nomodule )
 set_tests_properties( coralc PROPERTIES
 	ENVIRONMENT "CORAL_PATH=${CORAL_PATH_STR}"
 	PASS_REGULAR_EXPRESSION "Generating code for module 'nomodule'"
