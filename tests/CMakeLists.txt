@@ -48,7 +48,7 @@ endif()
 
 find_program( BUSTED_PROGRAM busted )
 if( BUSTED_PROGRAM )
-  add_test( NAME spec COMMAND ${BUSTED_PROGRAM} "${CURRENT_SOURCE_DIR}/spec" )
+  add_test( NAME spec COMMAND ${BUSTED_PROGRAM} WORKING_DIRECTORY ${CMAKE_SOURCE_DIR} )
 else()
   message( "WARNING: busted not found - Lua tests have been disabled!" )
 endif()

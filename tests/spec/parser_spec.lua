@@ -1,7 +1,5 @@
-describe("busted", function()
-  it("has tests", function()
-    local obj1 = { test = "yes" }
-    local obj2 = { test = "yes" }
-    assert.same(obj1, obj2)
+describe("parser", function()
+  it("can load", function()
+    local parser = require "co.compiler.v2.parser"
   end)
 end)

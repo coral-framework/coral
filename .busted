@@ -1,0 +1,8 @@
+-- run 'busted' from the project root (http://olivinelabs.com/busted)
+return {
+  default = {
+    ROOT =  "tests/spec",
+    lpath = "modules/?.lua;modules/?/init.lua",
+    verbose = true,
+  }
+}
