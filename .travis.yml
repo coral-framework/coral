@@ -11,10 +11,10 @@ before_install:
   - cmake --version && g++ -v
 
 install:
-  - sudo apt-get install libgtest-dev valgrind lcov
-  - sudo luarocks install lpeg busted
-  - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -"
+  - luarocks make
   - gem install coveralls-lcov json
+  - sudo apt-get install libgtest-dev valgrind lcov
+  - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -"
 
 before_script:
   - pwd && mkdir build && cd build
