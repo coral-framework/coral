@@ -14,7 +14,7 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90
 LUA51_VERSION='5.1.5'
 LUA52_VERSION='5.2.3'
 LUAJIT_VERSION='2.0.3'
-LUAROCKS_VERSION='2.0.0'
+LUAROCKS_VERSION='2.2.0'
 
 if [ "$LUA" == "LuaJIT 2.0" ]; then
   curl http://luajit.org/download/LuaJIT-$LUAJIT_VERSION.tar.gz | tar xz

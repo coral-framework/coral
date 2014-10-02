@@ -7,7 +7,7 @@ env:
   - LUA='Lua 5.2'
 
 before_install:
-  - source .travis_setup.sh
+  - bash .travis_setup.sh
   - cmake --version && g++ -v
 
 install:
