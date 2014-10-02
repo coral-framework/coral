@@ -7,11 +7,10 @@ env:
   - LUA='Lua 5.2'
 
 before_install:
-  - bash .travis_setup.sh
-  - cmake --version && g++ -v
+  - bash -x .travis_setup.sh
 
 install:
-  - luarocks make
+  - sudo luarocks make
   - gem install coveralls-lcov json
   - sudo apt-get install libgtest-dev valgrind lcov
   - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -"

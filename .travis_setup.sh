@@ -43,3 +43,8 @@ fi
 
 make && sudo make install
 cd ..
+
+# Print Versions
+g++ -v
+lua -v
+cmake --version
