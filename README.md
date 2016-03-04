@@ -1,9 +1,8 @@
-# Coral [![Build Status](https://travis-ci.org/coral-framework/coral.svg?branch=master)](https://travis-ci.org/coral-framework/coral) [![Coverage Status](https://img.shields.io/coveralls/coral-framework/coral.svg)](https://coveralls.io/r/coral-framework/coral) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+# Coral [![Build Status](https://travis-ci.org/coral-framework/coral.svg?branch=master)](https://travis-ci.org/coral-framework/coral) [![Coverage Status](https://coveralls.io/repos/github/coral-framework/coral/badge.svg?branch=master)](https://coveralls.io/github/coral-framework/coral?branch=master) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Coral is a modern component-based C++ development framework.
+Coral is a component-based C++ development framework.
 
 Learn more at <http://www.coral-framework.org>.
-
 
 ## License
 
